@@ -30,6 +30,11 @@ const config = {
   },
   devServer: {
     contentBase: './dist'
+  },
+  externals: {
+    'react/addons': true,
+    'react/lib/ReactContext': true,
+    'react/lib/ExecutionEnvironment': true
   }
 }
 
