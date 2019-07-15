@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
-class App extends React.Component {
-    render() {
-        return <p>Properly Rendered.</p>
-    }
+const App = (props) => {
+    return (
+        <p>Rendered Properly</p>
+    )
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+export default App
