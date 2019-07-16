@@ -1,18 +1,38 @@
 /* eslint-disable no-undef */
 const puppeteer = require('puppeteer');
 
+let page;
+let browser;
+const width = 1920;
+const height = 1080;
+
 beforeAll(async () => {
-  puppeteer.launch().then((async browser => {
-    const page = await browser.newPage();
-    await page.goto('http://localhost:8888');
-    await browser.close();
-  }));
+  browser = await puppeteer.launch({
+    headless: false
+  });
+  page = await browser.newPage();
+  await page.setViewport({ width, height });
 });
+
+afterAll(() => {
+  browser.close();
+})
 
 test('tests running', () => {
   expect(true).toEqual(true);
 });
 
-test('can run e2e tests', async () => {
-  let selector = await page.$eval()
+describe('end-to-end tests', () => {
+  
+  beforeEach(async () => {
+    await page.goto('http://localhost:8888');
+  });
+
+  test('can run e2e tests', async () => {
+    let selector = 'p';
+    let text = await page.$eval(selector, el => {
+      return el.textContent;
+    });
+    expect(text).toEqual('Rendered Properly');
+  });
 });

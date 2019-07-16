@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true
+  },
   "scripts": {
-    "test": "npm run clean && webpack -d && node server.js && jest",
+    "test": "jest",
     "start": "node server.js",
     "build": "webpack -d --watch",
+    "travisbuild": "webpack -d",
     "clean": "eslint src/ && eslint server.js"
   },
   "repository": {
@@ -22,16 +27,20 @@
   "homepage": "https://github.com/hrnyc23-adamantium/project-greenfield#readme",
   "devDependencies": {
     "@babel/core": "^7.5.4",
+    "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-app": "^5.0.1",
     "jest": "^24.8.0",
+    "jest-puppeteer": "^4.3.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
