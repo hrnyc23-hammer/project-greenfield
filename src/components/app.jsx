@@ -4,6 +4,6 @@ const App = (props) => {
     return (
         <p>Rendered Properly</p>
     )
-}
+};
 
-export default App
+export default App;
