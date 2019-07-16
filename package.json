@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node server.js",
-    "build": "webpack -d --watch"
+    "build": "webpack -d --watch",
+    "travisbuild": "webpack -d"
   },
   "repository": {
     "type": "git",
