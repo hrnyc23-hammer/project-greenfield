@@ -1,1 +1,1 @@
-console.log('Welcome to Project Greenfield');
+module.exports.str = 'Welcome to Project Greenfield';
