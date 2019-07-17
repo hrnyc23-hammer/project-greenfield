@@ -10,7 +10,7 @@ var store = createStore(rootReducer,
         related: sample.related,
         qa: sample.qa,
         reviews: sample.reviews,
-        meta: JSON.parse(sample.meta)
+        meta: sample.meta
     },
     applyMiddleware(
         thunkMiddleWare
