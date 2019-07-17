@@ -1,8 +1,12 @@
 import React from 'react'
+import ReviewsStarsContainer from '../containers/ReviewsStarsContainer.js'
 
 const Reviews = (props) => {
     return (
-        <p>Reviews: {props.meta.product_id}</p>
+        <React.Fragment>
+            <p>Reviews: {props.meta.product_id}</p>
+            <ReviewsStarsContainer />
+        </React.Fragment>
     )
 }
 
