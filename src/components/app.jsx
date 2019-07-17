@@ -1,8 +1,11 @@
 import React from 'react'
+import ReviewsContainer from '../containers/reviewscontainer.js'
 
 const App = (props) => {
     return (
-        <p>Rendered Properly</p>
+        <React.Fragment>
+            <ReviewsContainer />
+        </React.Fragment>
     )
 };
 
