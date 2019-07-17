@@ -1,9 +1,9 @@
 import Redux from 'redux'
 
-let overviewChangeStyleReducer = (state = null, action) => {
+let overviewChangeStyleReducer = (state = {}, action) => {
   switch (action.type) {
     case 'OVERVIEW_CHANGE_STYLE':
-      return action.payload;
+      return Object.assign(state,action.selectedStyle);
     default:
     return state;
   }
