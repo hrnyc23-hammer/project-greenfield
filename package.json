@@ -51,6 +51,8 @@
     "puppeteer": "^1.18.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-hot-loader": "^4.12.6"
+    "react-hot-loader": "^4.12.6",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   }
 }
