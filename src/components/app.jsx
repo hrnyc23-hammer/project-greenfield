@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import OverviewContainer from '../containers/OverviewContainer.js';
 
 const App = (props) => {
     return (
-        <p>Rendered Properly</p>
+        <React.Fragment>
+            <OverviewContainer />
+        </React.Fragment>
     )
 };
 
