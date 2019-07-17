@@ -1,9 +1,11 @@
-import React from 'react'
-
-const App = (props) => {
-    return (
-        <p>Rendered Properly</p>
-    )
+import React from "react";
+import QAContainer from "./../containers/QAContainer";
+const App = props => {
+  return (
+    <div>
+      <QAContainer />
+    </div>
+  );
 };
 
 export default App;
