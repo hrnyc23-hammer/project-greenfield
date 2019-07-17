@@ -3,7 +3,17 @@ import React from 'react'
 
 const Overview = (props) => {
     return (
-        <p>Product Name</p>
+      <React.Fragment>
+        {console.log(props)}
+        <div>Product Name : {props.info.name}</div>
+        <div>Category : {props.info.category}</div>
+        <div>Price : {props.info.price}</div>
+        <div>
+          {props.styles.results.map(style => {
+            return <div key={style.style_id}>{style.name} {console.log(style)}</div>
+          })}
+        </div>
+      </React.Fragment>
     )
 }
 
