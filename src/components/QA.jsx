@@ -1,15 +1,13 @@
 import React from "react";
 import store from "./../store/store";
+import QASearchBarContainer from './../containers/QASearchBarContainer'
 
 let QA = props => {
   return (
     <div>
-      {console.log(props)}
-      <form>
-        <p>Questions and Answers</p>
-        <input placeholder={"Have a Question? Search for answers...."} />
-        <button>search</button>
-      </form>
+      {console.log('WITHIN MAIN QA: (STORE): ', store.getState())}
+      {console.log('WITHIN MAIN QA: (PROPS.QA): ', props.qa)}
+    <QASearchBarContainer />
     </div>
   );
 };

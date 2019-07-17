@@ -8,7 +8,8 @@ var mapStateToProps = state => ({
   related: sample.related,
   qa: sample.qa,
   reviews: sample.reviews,
-  meta: sample.meta
+  meta: sample.meta,
+  QASearchEntry: state.QASearchEntry
 });
 
 var mapDispatchToProps = dispatch => ({});
