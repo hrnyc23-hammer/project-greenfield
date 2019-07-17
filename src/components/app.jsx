@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import OverviewContainer from '../containers/OverviewContainer.js';
 import RelatedContainer from '../containers/RelatedContainer.js';
