@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
-import QA from "./../components/QA.jsx";
+import QAAnswers from "./../components/QAAnswers.jsx";
+
 
 var mapStateToProps = state => ({
-  initialState: state,
+  qa: state.qa,
   QASearchEntry: state.QASearchEntry
 });
 
 var mapDispatchToProps = dispatch => ({});
 
-var QAContainer = connect(
+var QAAnswersContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(QA);
+)(QAAnswers);
 
-export default QAContainer;
+export default QAAnswersContainer;

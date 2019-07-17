@@ -1,18 +1,18 @@
 import { connect } from "react-redux";
 import QAForum from "./../components/QAForum.jsx";
 import sample from "../data/sampleItemData.js";
+import QAHandleMoreQuestionsButton from "./../actions/QAHandleMoreQuestionsButton";
 
 var mapStateToProps = state => ({
-  info: sample.info,
-  styles: sample.styles,
-  related: sample.related,
-  qa: sample.qa,
-  reviews: sample.reviews,
-  meta: sample.meta,
-  QASearchEntry: state.QASearchEntry
+  qa: state.qa,
+  qaResultsArr: sample.qa.results
 });
 
-var mapDispatchToProps = dispatch => ({});
+var mapDispatchToProps = dispatch => ({
+  QAHandleMoreQuestionsButton: entry => {
+    dispatch(QAHandleMoreQuestionsButton(entry));
+  }
+});
 
 var QAForumContainer = connect(
   mapStateToProps,

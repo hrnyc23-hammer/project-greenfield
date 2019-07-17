@@ -6,8 +6,8 @@ import QAForumContainer from './../containers/QAForumContainer'
 let QA = props => {
   return (
     <div>
-      {console.log('WITHIN MAIN QA: (STORE): ', store.getState())}
-      {console.log('WITHIN MAIN QA: (PROPS.QA): ', props.qa)}
+      {/* {console.log('WITHIN MAIN QA: (STORE): ', store.getState())} */}
+      {console.log('WITHIN MAIN QA: (PROPS): ', props)}
     <QASearchBarContainer />
     <QAForumContainer />
     </div>
