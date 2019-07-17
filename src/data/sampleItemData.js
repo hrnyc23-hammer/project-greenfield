@@ -520,5 +520,21 @@ module.exports = {
         photos: []
       }
     ]
+  },
+  meta: {
+    "product_id": "1",
+    "ratings": {
+        "4": 1,
+        "5": 1
+    },
+    "recommended": {
+        "0": 2
+    },
+    "characteristics": {
+        "Comfort": "5.0000",
+        "Fit": "4.0000",
+        "Length": "3.5000",
+        "Quality": "4.0000"
+    }
   }
 };
