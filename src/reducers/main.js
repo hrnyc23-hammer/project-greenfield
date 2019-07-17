@@ -1,12 +1,10 @@
-import { combineReducers } from "redux";
-import QAHandleSearchEntryReducer from "./QAHandleSearchEntryReducer";
-import QAHandleMoreQuestionsButtonReducer from "./QAHandleMoreQuestionsButtonReducer";
-// import QAReducer from "./QAReducer";
-import store from "./../store/store";
+import { combineReducers } from 'redux';
+import related from './related.js';
+import QAHandleSearchEntry from './QAHandleSearchEntryReducer.js';
+
 
 const rootReducer = combineReducers({
-  // QAHandleSearchEntryReducer,
-  // QAHandleMoreQuestionsButtonReducer
+  related
 });
 
 export default rootReducer;

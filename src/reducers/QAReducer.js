@@ -1,8 +1,13 @@
-import Redux from "redux";
-import store from "./../store/store";
+import Redux from 'redux';
 
-var QAReducer = (state = store, action) => {
-  return state;
+
+var currentVideoReducer = (state = null, action) => {
+  switch (action.type) {
+  case 'CHANGE_VIDEO':
+    return action.video || null;
+  default:
+    return state;
+  }
 };
 
-export default QAReducer;
+export default currentVideoReducer;

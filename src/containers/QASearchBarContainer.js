@@ -4,7 +4,7 @@ import sample from "../data/sampleItemData.js";
 import QAHandleSearchEntry from "./../actions/QAHandleSearchEntry";
 
 var mapStateToProps = state => ({
-  qa: sample.qa,
+  qa: state.qa,
   QASearchEntry: state.QASearchEntry
 });
 

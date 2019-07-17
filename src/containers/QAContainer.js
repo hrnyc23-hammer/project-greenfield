@@ -2,8 +2,10 @@ import { connect } from "react-redux";
 import QA from "./../components/QA.jsx";
 
 var mapStateToProps = state => ({
-  initialState: state,
-  QASearchEntry: state.QASearchEntry
+ 
+  qa: state.qa,
+  initialState: state
+  // QASearchEntry: state.QASearchEntry
 });
 
 var mapDispatchToProps = dispatch => ({});
