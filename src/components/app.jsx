@@ -1,11 +1,19 @@
-import React from "react";
+import React from 'react';
+import OverviewContainer from '../containers/OverviewContainer.js';
+import RelatedContainer from '../containers/RelatedContainer.js';
+import ReviewsContainer from '../containers/ReviewsContainer.js';
 import QAContainer from "./../containers/QAContainer";
-const App = props => {
+
+
+const App = (props) => {
   return (
-    <div>
+    <React.Fragment>
+      <OverviewContainer />
+      <ReviewsContainer />
+      <RelatedContainer />
       <QAContainer />
-    </div>
-  );
+    </React.Fragment>
+  )
 };
 
 export default App;
