@@ -1,10 +1,10 @@
-import React from 'react'
-import ReviewsContainer from '../containers/reviewscontainer.js'
+import React from 'react';
+import OverviewContainer from '../containers/OverviewContainer.js';
 
 const App = (props) => {
     return (
         <React.Fragment>
-            <ReviewsContainer />
+            <OverviewContainer />
         </React.Fragment>
     )
 };
