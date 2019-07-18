@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
   qaResultsArr,
   qaIncrementer,
   qaSendDataToStore
-  // qaAddAnswer
+
 });
 
 export default rootReducer;
