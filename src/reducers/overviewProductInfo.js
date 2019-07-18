@@ -3,8 +3,8 @@ import { info } from '../data/sampleItemData.js';
 
 let overviewChangeProductInfo = (state = info, action) => {
   switch (action.type) {
-    case 'OVERVIEW_CHANGE_PRODUCTS':
-      return Object.assign(state,action.product);
+    case 'OVERVIEW_CHANGE_INFO':
+      return Object.assign({},state,action.product);
     default:
     return state;
   }
