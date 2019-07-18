@@ -1,17 +1,27 @@
 import React from "react";
-import store from "./../store/store";
-import QAAnswersContainer from "./../containers/QAAnswersContainer";
 
 let QAForum = props => {
   return (
     <div>
-      {/* {console.log("QAForum.jsx's props: ", props)} */}
       <ul>
         {props.qaResultsArr.map((result, i) => {
           return (
             <React.Fragment key={i}>
-              <li key={i}>Q: {result.question_body}</li>
-              <QAAnswersContainer />
+              <p key={i}>Q: {result.question_body}</p>
+              <ul>
+                {Object.values(result.answers)
+                  .slice(0, result.answerLimit)
+                  .map((answer, i) => {
+                    return <li key={i}>{answer.body}</li>;
+                  })}
+              </ul>
+              <button
+                onClick={() => {
+                  props.QAAddAnswers(i);
+                }}
+              >
+                load more answers
+              </button>
             </React.Fragment>
           );
         })}
