@@ -1,6 +1,7 @@
 import React from 'react'
 import ReviewsStarsContainer from '../containers/ReviewsStarsContainer.js'
 import ReviewsBarsContainer from '../containers/ReviewsBarsContainer.js';
+import ReviewListContainer from '../containers/ReviewListContainer.js'
 
 const Reviews = (props) => {
     if (!props.meta.recommended[1]) {
@@ -10,12 +11,12 @@ const Reviews = (props) => {
     }
     return (
         <React.Fragment>
-            
+
             <div>Rating &amp; Reviews</div>
             <div><ReviewsStarsContainer /></div>
             <div>{recommended} of reviews recommend this product</div>
             <div><ReviewsBarsContainer /></div>
-
+            <div><ReviewListContainer /></div>
         </React.Fragment>
     )
 }
