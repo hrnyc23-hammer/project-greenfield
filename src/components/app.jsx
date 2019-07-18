@@ -9,9 +9,9 @@ const App = (props) => {
   return (
     <React.Fragment>
       <OverviewContainer />
+      <RelatedContainer />
+      <QAContainer /> 
       <ReviewsContainer />
-      <RelatedContainer /> 
-      <QAContainer />
     </React.Fragment>
   )
 };
