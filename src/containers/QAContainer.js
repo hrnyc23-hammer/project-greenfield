@@ -7,8 +7,6 @@ var mapStateToProps = state => ({
   QASearchEntry: state.qaSearchEntry
 });
 
-
-
 var mapDispatchToProps = dispatch => ({});
 
 var QAContainer = connect(
