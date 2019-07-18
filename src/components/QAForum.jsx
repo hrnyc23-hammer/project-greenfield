@@ -1,12 +1,8 @@
 import React from "react";
-import store from "./../store/store";
-import QAAnswersContainer from "./../containers/QAAnswersContainer";
 
 let QAForum = props => {
   return (
     <div>
-      {/* {console.log(props)} */}
-
       <ul>
         {props.qaResultsArr.map((result, i) => {
           return (
