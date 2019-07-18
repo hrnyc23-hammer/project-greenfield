@@ -8,9 +8,9 @@ import QAContainer from "./../containers/QAContainer";
 const App = (props) => {
   return (
     <React.Fragment>
-      {/* <OverviewContainer /> */}
-      {/* <ReviewsContainer />
-      <RelatedContainer /> */}
+      <OverviewContainer />
+      <ReviewsContainer />
+      <RelatedContainer /> 
       <QAContainer />
     </React.Fragment>
   )
