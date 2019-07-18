@@ -9,6 +9,8 @@ import meta from "./metaReducer.js";
 import reviews from "./reviewsReducer.js";
 import qaResultsArr from "./QAChangeResultsArrReducer.js";
 import qaIncrementer from "./QAIncrementerReducer.js";
+import qaSendDataToStore from "./QASendDataToStoreReducer.js";
+import qaAddAnswer from './QAAddAnswerReducer.js';
 
 const rootReducer = combineReducers({
   related,
@@ -20,7 +22,9 @@ const rootReducer = combineReducers({
   meta,
   reviews,
   qaResultsArr,
-  qaIncrementer
+  qaIncrementer,
+  qaSendDataToStore
+  // qaAddAnswer
 });
 
 export default rootReducer;
