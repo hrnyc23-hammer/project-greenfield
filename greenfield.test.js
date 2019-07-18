@@ -1,5 +1,9 @@
-/* eslint-disable no-undef */
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk';
+import fetchNewRelated from './src/actions/fetchNewRelated.js';
+import changeRelated from './src/actions/changeRelated.js';
+import sample from './src/data/sampleItemData.js';
 
 let page;
 let browser;
@@ -20,8 +24,26 @@ const height = 1080;
 //   browser.close();
 // });
 
-test('tests running', () => {
-  expect(true).toEqual(true);
+describe('redux', () => {
+  const mockStore = configureStore([thunk]);
+
+  describe('dispatch actions', () => {
+
+    let store;
+
+    beforeEach(() => {
+      const initialState = sample;
+      store = mockStore(initialState);
+    });
+
+    it('should dispatch related change', () => {
+      store.dispatch(changeRelated([sample.info]));
+      const actions = store.getActions();
+      const expectedPayload = {type: 'CHANGE_RELATED', related: [sample.info]};
+      expect(actions).toEqual([expectedPayload]);
+    });
+    
+  });
 });
 
 // describe('end-to-end tests', () => {
