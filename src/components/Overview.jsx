@@ -3,6 +3,7 @@ import React from 'react'
 
 const Overview = (props) => {
     return (
+
       <React.Fragment>
         <div>Product Name : {props.info.name}</div>
         <div>Category : {props.info.category}</div>
