@@ -7,6 +7,8 @@ import qaSearchEntry from './QAHandleSearchEntryReducer.js';
 import qa from './QAReducer.js';
 import meta from './metaReducer.js'
 import reviews from './reviewsReducer.js'
+import qaResultsArr from "./QAChangeResultsArrReducer.js";
+import qaIncrementer from "./QAIncrementerReducer.js";
 
 const rootReducer = combineReducers({
     related,
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
     qaSearchEntry,
     qa,
     meta,
-    reviews
+    reviews,
+    qaResultsArr,
+    qaIncrementer
 });
 
 export default rootReducer;

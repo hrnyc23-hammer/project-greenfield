@@ -1,6 +1,7 @@
 import Redux from "redux";
 
 
+
 var QAHandleSearchEntryReducer = (state = '', action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_ENTRY":
