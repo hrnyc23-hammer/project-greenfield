@@ -18,8 +18,10 @@ let QAForum = props => {
       </ul>
       <button
         onClick={() => {
-          props.QAIncrementer(1);
-          props.QAChangeResultsArr(props.qaCount);
+          if (props.qaCount < props.qa.results.length) {
+            props.QAIncrementer(1);
+            props.QAChangeResultsArr(props.qaCount);
+          }
         }}
       >
         More Answered Questions
