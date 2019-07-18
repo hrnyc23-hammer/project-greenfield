@@ -1,5 +1,4 @@
 import React from 'react'
-import store from '../store/store.js'
 
 const ReviewsBars = (props) => {
     var totalStars = 0

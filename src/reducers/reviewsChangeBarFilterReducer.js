@@ -3,11 +3,10 @@ import Redux from 'redux'
 let reviewsChangeBarFilterReducer = (state = [], action) => {
     switch (action.type) {
         case 'CHANGE_BAR_FILTER':
-            var temp = JSON.parse(JSON.stringify(state))
-            if (!temp.includes(action.barFilter)) {
-                temp.push(action.barFilter)
+            if (!state.includes(action.barFilter)) {
+                return [...state, action.barFilter]
             }
-            return Object.assign([], state, temp);
+            return state
         case 'RESET_BAR_FILTER':
             return []
         default:
