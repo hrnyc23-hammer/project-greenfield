@@ -7,6 +7,7 @@ import qaSearchEntry from "./QAHandleSearchEntryReducer.js";
 import qa from "./QAReducer.js";
 import meta from "./metaReducer.js";
 import reviews from "./reviewsReducer.js";
+import reviewsChangeBarFilter from './reviewsChangeBarFilterReducer.js'
 import qaResultsArr from "./QAChangeResultsArrReducer.js";
 import qaIncrementer from "./QAIncrementerReducer.js";
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   qa,
   meta,
   reviews,
+  reviewsChangeBarFilter,
   qaResultsArr,
   qaIncrementer
 });
