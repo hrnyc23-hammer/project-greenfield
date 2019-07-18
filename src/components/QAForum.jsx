@@ -5,22 +5,25 @@ import QAAnswersContainer from "./../containers/QAAnswersContainer";
 let QAForum = props => {
   return (
     <div>
+      {console.log(props)}
+
       <ul>
         {props.qaResultsArr.map((result, i) => {
           return (
             <React.Fragment key={i}>
-              {console.log(
-                "results within map: ",
-                Object.values(result.answers)
-              )}
-
               <p key={i}>Q: {result.question_body}</p>
               <ul>
-                {Object.values(result.answers).map(answer => {
+                {Object.values(result.answers).slice(0, result.answerLimit).map(answer => {
                   return <li>{answer.body}</li>;
                 })}
               </ul>
-              <button>more answers</button>
+              <button
+                onClick={() => {
+                  props.QAAddAnswers(i);
+                }}
+              >
+                load more answers
+              </button>
             </React.Fragment>
           );
         })}
