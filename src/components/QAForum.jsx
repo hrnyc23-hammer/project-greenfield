@@ -5,7 +5,7 @@ import QAAnswersContainer from "./../containers/QAAnswersContainer";
 let QAForum = props => {
   return (
     <div>
-      {console.log(props)}
+      {/* {console.log(props)} */}
 
       <ul>
         {props.qaResultsArr.map((result, i) => {
@@ -13,9 +13,11 @@ let QAForum = props => {
             <React.Fragment key={i}>
               <p key={i}>Q: {result.question_body}</p>
               <ul>
-                {Object.values(result.answers).slice(0, result.answerLimit).map(answer => {
-                  return <li>{answer.body}</li>;
-                })}
+                {Object.values(result.answers)
+                  .slice(0, result.answerLimit)
+                  .map(answer => {
+                    return <li>{answer.body}</li>;
+                  })}
               </ul>
               <button
                 onClick={() => {
