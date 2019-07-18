@@ -46,6 +46,7 @@ const ReviewsBars = (props) => {
                     <div style={{ width: `${(oneStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
+            <br />
         </React.Fragment>
     )
 }
