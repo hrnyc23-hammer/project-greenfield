@@ -12,12 +12,13 @@ const Reviews = (props) => {
     }
     return (
         <React.Fragment>
-
-            <div>Rating &amp; Reviews</div>
-            <div><ReviewsScoresContainer /></div>
-            <div>{recommended} of reviews recommend this product</div>
-            <div><ReviewsBarsContainer /></div>
-            <div><ReviewListContainer /></div>
+            <div style={{ float: 'left' }}>
+                <h3>Rating &amp; Reviews</h3>
+                <div><ReviewsScoresContainer /></div>
+                <div>{recommended} of reviews recommend this product</div>
+                <div><ReviewsBarsContainer /></div>
+            </div>
+            <div style={{ marginLeft: '350px' }}><ReviewListContainer /></div>
         </React.Fragment>
     )
 }
