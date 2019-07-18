@@ -15,8 +15,8 @@ let QAForum = props => {
               <ul>
                 {Object.values(result.answers)
                   .slice(0, result.answerLimit)
-                  .map(answer => {
-                    return <li>{answer.body}</li>;
+                  .map((answer, i) => {
+                    return <li key={i}>{answer.body}</li>;
                   })}
               </ul>
               <button

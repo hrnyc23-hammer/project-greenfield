@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import QAForum from "./../components/QAForum.jsx";
 import QAChangeResultsArr from "./../actions/QAChangeResultsArr";
 import QAIncrementer from "./../actions/QAIncrementer";
-import QASendDataToStore from "./../actions/QASendDataToStore";
 import QAAddAnswers from "./../actions/QAAddAnswers";
 
 var mapStateToProps = state => ({
@@ -18,9 +17,6 @@ var mapDispatchToProps = dispatch => ({
   },
   QAIncrementer: entry => {
     dispatch(QAIncrementer(entry));
-  },
-  QASendDataToStore: entry => {
-    dispatch(QASendDataToStore(entry));
   },
   QAAddAnswers: index => {
     dispatch(QAAddAnswers(index));
