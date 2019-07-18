@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 
 const ReviewList = (props) => {
     return (
@@ -14,7 +15,7 @@ const ReviewList = (props) => {
                                     </span>
                                 </div >
                                 <div>
-                                    <span>{review.reviewer_name}   {review.date}</span>
+                                    <span style={{ fontSize: 'small', float: 'right' }}>{review.reviewer_name}   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
                                 </div>
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
@@ -34,6 +35,7 @@ const ReviewList = (props) => {
                     }
                 })}
             </div>
+
         </React.Fragment>
     )
 }
