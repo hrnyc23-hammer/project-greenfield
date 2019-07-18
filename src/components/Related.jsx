@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 
 const Related = (props) => {
-  console.log(props);
-
   useEffect(() => {
     if (typeof props.related[0] === 'number') {
       props.load(props.related);

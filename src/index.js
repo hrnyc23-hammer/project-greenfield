@@ -1,12 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 import App from './components/app.jsx';
-import { Provider } from 'react-redux'
-import store from './store/store.js'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleWare from 'redux-thunk';
+import rootReducer from './reducers/main.js';
 
-ReactDOM.render(
+const preloadedState = window.__PRELOADED_STATE__;
+
+delete window.__PRELOADED_STATE__;
+
+const store = createStore(
+    rootReducer, 
+    preloadedState,
+    applyMiddleware(thunkMiddleWare)
+  );
+
+hydrate(
     <Provider store={store}>
         <App />
-    </Provider>, document.getElementById('app'));
+    </Provider>, 
+    document.getElementById('app')
+);
 
 
