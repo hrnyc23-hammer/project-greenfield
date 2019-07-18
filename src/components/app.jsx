@@ -10,7 +10,7 @@ const App = (props) => {
     <React.Fragment>
       <OverviewContainer />
       <ReviewsContainer />
-      <RelatedContainer />
+      <RelatedContainer /> 
       <QAContainer />
     </React.Fragment>
   )
