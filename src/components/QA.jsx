@@ -8,6 +8,7 @@ let QA = props => {
     <div>
       {/* {console.log('WITHIN MAIN QA: (STORE): ', store.getState())} */}
       {/* {console.log('QA.jsx\'s props: ', props)} */}
+     {console.log('QA search entry: ', props.QASearchEntry)}
       <QASearchBarContainer />
       <QAForumContainer />
     </div>
