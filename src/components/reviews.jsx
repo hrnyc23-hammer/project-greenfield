@@ -9,6 +9,7 @@ const Reviews = (props) => {
     }
     return (
         <React.Fragment>
+            
             <div>Rating &amp; Reviews</div>
             <div>{recommended} of reviews recommend this product</div>
             <div><ReviewsStarsContainer /></div>
