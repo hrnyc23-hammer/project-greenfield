@@ -5,14 +5,18 @@ import overviewChangeStyles from './overviewChangeStyles';
 import overviewChangeSelectedStyles from './overviewChangeSelectedStyle.js';
 import qaSearchEntry from './QAHandleSearchEntryReducer.js';
 import qa from './QAReducer.js';
+import meta from './metaReducer.js'
+import reviews from './reviewsReducer.js'
 
 const rootReducer = combineReducers({
-  related,
-  overviewProductInfo,
-  overviewChangeStyles,
-  overviewChangeSelectedStyles,  
-  qaSearchEntry,
-  qa
+    related,
+    overviewProductInfo,
+    overviewChangeStyles,
+    overviewChangeSelectedStyles,
+    qaSearchEntry,
+    qa,
+    meta,
+    reviews
 });
 
 export default rootReducer;
