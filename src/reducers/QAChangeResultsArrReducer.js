@@ -9,12 +9,9 @@ var QAChangeResultsArrReducer = (state = qa.results.slice(0, 2), action) => {
       return [...state, temp];
     case "ADD_ANSWERS":
       let questions = [...state];
-      let inc = 2;
 
-      questions[action.index].answerLimit = Math.min(
-        Object.keys(questions[action.index].answers).length,
-        questions[action.index].answerLimit + inc
-      );
+      questions[action.index].answerLimit += 2;
+
       return questions;
     default:
       if (state[0].answerLimit === undefined) {
