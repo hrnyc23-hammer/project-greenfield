@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    "no-undef": 0,
+    "no-unused-vars": "off"
+  },
   "env": {
     "es6": true,
     "browser": true,
