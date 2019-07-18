@@ -9,7 +9,7 @@ let QASearchBar = props => {
         <input onChange={(e) => {props.QAHandleSearchEntry(e.target.value)}} placeholder={"Have a Question? Search for answers...."} />
         <button onClick={(e) => {
           e.preventDefault()
-          console.log('yo')}}
+          console.log('search!')}}
           >search</button>
       </form>
     </div>
