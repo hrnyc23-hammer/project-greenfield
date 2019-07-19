@@ -2,46 +2,55 @@ import React from 'react';
 import Fab from "@material-ui/core/Fab";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import OutfitItem from './OutfitItem';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  }
+}));
 
 const Outfits = (props) => {
-  let outfits = props.outfits ? JSON.parse(localStorage.getItem("greenfieldOutfits")) : [];
-  outfits = outfits === null ? [] : outfits;
-  console.log(outfits);
-  const containsOutfit = (outfit) => {
-    if (!outfit) {
-      return false;
+  const classes = useStyles();
+
+  let outfits = props.outfits ? JSON.parse(localStorage.getItem("greenfieldOutfits")) : {};
+  outfits = outfits === null ? {} : outfits;
+
+  const addOutfit = (event) => {
+    event.preventDefault();
+    if (outfits[props.info.id] === undefined) {
+      let outfitPackage = {
+        info: props.info,
+        styles: props.styles.results,
+        meta: props.meta
+      };
+      outfits[props.info.id] = outfitPackage;
+      localStorage.setItem("greenfieldOutfits", JSON.stringify(outfits));
+      props.addToOutfits(outfitPackage);
     }
-    return outfits.reduce((memo, ele) => {
-      return memo || outfit.id === ele.id;
-    }, false);
-  }
+  };
+
+
   return (
-  <React.Fragment>
-    <Fab
-      onClick={e => {
-        e.preventDefault();
-        if (!containsOutfit(props.info)) {
-          localStorage.setItem("greenfieldOutfits", JSON.stringify([...outfits, props.info]));
-          props.addToOutfits(props.info);
-        }
-      }}
+    <Grid container className={classes.root}
+    direction="row"
+    justify="flex-start"
+    alignItems="center"
+    spacing={4}
     >
-      +
-    </Fab>
-    <div>
-      {outfits ? outfits.map((ele, idx) => {
+      <Grid item>
+        <Fab onClick={e => addOutfit(e)}>+</Fab>
+      </Grid>
+      {outfits ? Object.keys(outfits).map((ele, idx) => {
         return (
-        <div key={idx}>
-          <div>{ele.id}</div>
-          <div>{ele.name}</div>
-          <div>{ele.category}</div>
-        </div>
+          <Grid item key={idx}>
+            <OutfitItem item={outfits[ele]} removeFromOutfits={props.removeFromOutfits}/>
+          </Grid>
         )
       }) : 
-        <div></div>
-      }
-    </div>
-  </React.Fragment>  
+      null
+    }  
+    </Grid>
   )
 };
 
