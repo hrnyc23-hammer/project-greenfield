@@ -16,7 +16,7 @@ const ReviewList = (props) => {
                                     </span>
                                 </div >
                                 <div>
-                                    <span style={{ fontSize: 'small', float: 'right' }}>{review.reviewer_name}   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
+                                    <span style={{ fontSize: 'small', float: 'right' }}><strong>{review.reviewer_name}</strong>   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
                                 </div>
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
