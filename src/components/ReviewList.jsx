@@ -2,12 +2,13 @@ import React from 'react'
 import moment from 'moment'
 
 const ReviewList = (props) => {
+    console.log(props.reviewsLength)
     return (
         <React.Fragment>
             <h4>{props.reviews.results.length} reviews, sorted by relevance</h4>
             <div>
-                {props.reviews.results.map((review) => {
-                    if (props.barFilter.length === 0 || props.barFilter.includes(review.rating)) {
+                {props.reviews.results.map((review, index) => {
+                    if ((props.barFilter.length === 0 || props.barFilter.includes(review.rating)) && index <= props.reviewsLength) {
                         return (
                             <React.Fragment key={review.review_id}>
                                 <div style={{ background: 'url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png) repeat-x', fontSize: '0', height: '21px', lineHeight: '0', overflow: 'hidden', textIndent: '-999em', width: '110px' }}>
@@ -35,7 +36,7 @@ const ReviewList = (props) => {
                     }
                 })}
             </div>
-
+            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <button style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</button> : null}<button>Add A Review    +</button></span>
         </React.Fragment>
     )
 }
