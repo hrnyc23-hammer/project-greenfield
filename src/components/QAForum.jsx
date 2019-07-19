@@ -19,15 +19,17 @@ let QAForum = props => {
           .map((question, i) => {
             return (
               <React.Fragment key={Math.random()}>
-                <span
-                  key={Math.random()}
-                  style={{
-                    fontSize: "large",
-                    padding: "0px 0px 0px 55px"
-                  }}
-                >
-                  Q: {question.question_body}
-                </span>
+                <strong>
+                  <span
+                    key={Math.random()}
+                    style={{
+                      fontSize: "large",
+                      padding: "0px 0px 0px 55px"
+                    }}
+                  >
+                    Q: {question.question_body}
+                  </span>
+                </strong>
 
                 <span
                   style={{
@@ -50,7 +52,13 @@ let QAForum = props => {
                   |
                 </span>
 
-                <span style={{ fontSize: "small", float: "right" }}>
+                <span
+                  style={{
+                    fontSize: "small",
+                    float: "right",
+                    paddingLeft: "5px"
+                  }}
+                >
                   {" "}
                   ({question.question_helpfulness}){" "}
                 </span>
@@ -58,7 +66,8 @@ let QAForum = props => {
                   style={{
                     fontSize: "small",
                     float: "right",
-                    textDecoration: "underline"
+                    textDecoration: "underline",
+                    paddingLeft: "5px"
                   }}
                 >
                   {" "}
@@ -85,12 +94,28 @@ let QAForum = props => {
                           <ListItem alignItems="flex-start" key={Math.random()}>
                             <p key={Math.random()}>A: {answer.body}</p>
                           </ListItem>
+
+                          <ListItem key={Math.random()}>
+                            {answer.photos.map(photo => {
+                              return (
+                                <img
+                                  onClick={() => {}}
+                                  src={photo}
+                                  width="100"
+                                  height="60"
+                                  key={Math.random()}
+                                />
+                              );
+                            })}
+                          </ListItem>
+
                           <ListItem key={Math.random()}>
                             <span
                               key={Math.random()}
                               style={{
                                 fontSize: "small",
-                                spanadding: "0px 0px 0px 0px"
+                                spanadding: "0px 0px 0px 0px",
+                                paddingRight: "5px"
                               }}
                             >
                               by: {answer.answerer_name} | date:{" "}
@@ -99,7 +124,8 @@ let QAForum = props => {
                             <span
                               style={{
                                 fontSize: "small",
-                                textDecoration: "underline"
+                                textDecoration: "underline",
+                                paddingRight: "5px"
                               }}
                             >
                               Yes
@@ -130,35 +156,28 @@ let QAForum = props => {
                               Report
                             </span>
                           </ListItem>
-                          <ListItem key={Math.random()}>
-                            {answer.photos.map(photo => {
-                              return (
-                                <img
-                                  onClick={() => {
-                                    console.log("need to add modal");
-                                  }}
-                                  src={photo}
-                                  width="100"
-                                  height="60"
-                                  key={Math.random()}
-                                />
-                              );
-                            })}
-                          </ListItem>
+
                           <Divider />
                         </List>
                       );
                     })}
                 </ul>
-                {question.answerLimit >= Object.keys(question.answers).length ? <div></div> : <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={() => {
-                    props.QAAddAnswers(i);
-                  }}
-                >
-                  load more answers
-                </Button>}
+                {question.answerLimit >=
+                Object.keys(question.answers).length ? (
+                  <div />
+                ) : (
+                  <Button
+                    size="small"
+                    style={{ marginRight: "20px" }}
+                    onClick={() => {
+                      props.QAAddAnswers(i);
+                    }}
+                  >
+                    load more answers
+                  </Button>
+                )}
+                <br />
+                <br />
               </React.Fragment>
             );
           })}
