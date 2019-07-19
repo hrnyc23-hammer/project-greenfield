@@ -18,6 +18,7 @@ import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import OverviewSearch from './OverviewSearch.jsx'
+import Badge from '@material-ui/core/Badge';
 
 const Overview = props => {
   const useStyles = makeStyles(theme => ({
@@ -44,6 +45,11 @@ const Overview = props => {
       width: 70,
       height: 70
     },
+    selectedStyle: {
+      width:70,
+      height:70,
+      border: '5px solid lightGreen'
+    },
     tile: {
       flexWrap: "wrap"
     },
@@ -59,6 +65,9 @@ const Overview = props => {
     },
     button: {
       margin: theme.spacing(1)
+    },
+    badge: {
+      margin: theme.spacing(2)
     }
   }));
 
@@ -96,15 +105,16 @@ const Overview = props => {
                     ? `Sale Price : ${props.selectedStyle.sale_price}`
                     : `Price : ${props.selectedStyle.original_price}`}
                 </Typography>
-                <Typography>{props.selectedStyle.name}</Typography>
+                <Typography variant="h5">{props.selectedStyle.name}</Typography>
               </Grid>
               <Grid item>
                 <GridList className={classes.tile} cellHeight={100} cols={4}>
                   {props.styles.results.map(style => (
                     <GridListTile key={style.style_id}>
-                      <a onClick={() => props.handleSelectedStyle(style)}>
-                      <Avatar src={style.photos[0].thumbnail_url} className={classes.bigAvatar} />
-                      </a>
+                      <ButtonBase onClick={() => props.handleSelectedStyle(style)}>
+                      <Avatar src={style.photos[0].thumbnail_url} 
+                      className={style.style_id === props.selectedStyle.style_id ? classes.selectedStyle:classes.bigAvatar} />
+                      </ButtonBase>
                     </GridListTile>
                   ))}
                 </GridList>
