@@ -24,8 +24,14 @@ const Outfits = (props) => {
       +
     </Fab>
     <div>
-      {outfits.map(ele => {
-        return <div>{ele.id}</div>
+      {outfits.map((ele, idx) => {
+        return (
+        <div key={idx}>
+          <div>{ele.id}</div>
+          <div>{ele.name}</div>
+          <div>{ele.category}</div>
+        </div>
+        )
       })}
     </div>
   </React.Fragment>  
