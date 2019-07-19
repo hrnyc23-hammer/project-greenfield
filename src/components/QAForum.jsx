@@ -170,6 +170,7 @@ let QAForum = props => {
                   </Button>
                 )}
                 <br />
+                <br />
               </React.Fragment>
             );
           })}
