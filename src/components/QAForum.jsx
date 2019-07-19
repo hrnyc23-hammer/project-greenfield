@@ -67,7 +67,6 @@ let QAForum = props => {
                     fontSize: "small",
                     float: "right",
                     textDecoration: "underline",
-
                     paddingLeft: "5px"
                   }}
                 >
@@ -118,7 +117,6 @@ let QAForum = props => {
                               style={{
                                 fontSize: "small",
                                 spanadding: "0px 0px 0px 0px",
-
                                 paddingRight: "5px"
                               }}
                             >
