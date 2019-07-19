@@ -57,9 +57,9 @@ const Overview = props => {
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
                   {props.selectedStyle.sale_price > 0 ? (
-                    <div>Sale Price : {props.selectedStyle.sale_price}</div>
+                    `Sale Price : ${props.selectedStyle.sale_price}`
                   ) : (
-                    <div>Price : {props.selectedStyle.original_price}</div>
+                    `Price : ${props.selectedStyle.original_price}`
                   )}
                 </Typography>
               </Grid>
