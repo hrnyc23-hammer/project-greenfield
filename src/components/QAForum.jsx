@@ -87,6 +87,23 @@ let QAForum = props => {
                           <ListItem alignItems="flex-start" key={Math.random()}>
                             <p key={Math.random()}>A: {answer.body}</p>
                           </ListItem>
+
+                          <ListItem key={Math.random()}>
+                            {answer.photos.map(photo => {
+                              return (
+                                <img
+                                  onClick={() => {
+                                    console.log("need to add modal");
+                                  }}
+                                  src={photo}
+                                  width="100"
+                                  height="60"
+                                  key={Math.random()}
+                                />
+                              );
+                            })}
+                          </ListItem>
+
                           <ListItem key={Math.random()}>
                             <span
                               key={Math.random()}
@@ -132,21 +149,7 @@ let QAForum = props => {
                               Report
                             </span>
                           </ListItem>
-                          <ListItem key={Math.random()}>
-                            {answer.photos.map(photo => {
-                              return (
-                                <img
-                                  onClick={() => {
-                                    console.log("need to add modal");
-                                  }}
-                                  src={photo}
-                                  width="100"
-                                  height="60"
-                                  key={Math.random()}
-                                />
-                              );
-                            })}
-                          </ListItem>
+
                           <Divider />
                         </List>
                       );
@@ -157,7 +160,6 @@ let QAForum = props => {
                   <div />
                 ) : (
                   <Button
-                    variant="outlined"
                     size="small"
                     style={{ marginRight: "20px" }}
                     onClick={() => {
