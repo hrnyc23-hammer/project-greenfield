@@ -11,7 +11,7 @@ const ReviewsStars = (props) => {
     const rating = (totalRatings / numberOfRatings).toFixed(1);
     return rating;
   };
-  let rating = getRating(props.meta);
+  let rating = getRating(props.meta || {ratings: {0: 0}});
   const width = isNaN(rating) ? '0%' : (rating * 20).toString() + '%';
 
   return (
