@@ -4,8 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 const Outfits = (props) => {
-  const outfits = props.outfits ? JSON.parse(localStorage.getItem("greenfieldOutfits")) : [];
+  let outfits = props.outfits ? JSON.parse(localStorage.getItem("greenfieldOutfits")) : [];
+  outfits = outfits === null ? [] : outfits;
+  console.log(outfits);
   const containsOutfit = (outfit) => {
+    if (!outfit) {
+      return false;
+    }
     return outfits.reduce((memo, ele) => {
       return memo || outfit.id === ele.id;
     }, false);
@@ -24,7 +29,7 @@ const Outfits = (props) => {
       +
     </Fab>
     <div>
-      {outfits.map((ele, idx) => {
+      {outfits ? outfits.map((ele, idx) => {
         return (
         <div key={idx}>
           <div>{ele.id}</div>
@@ -32,7 +37,9 @@ const Outfits = (props) => {
           <div>{ele.category}</div>
         </div>
         )
-      })}
+      }) : 
+        <div></div>
+      }
     </div>
   </React.Fragment>  
   )
