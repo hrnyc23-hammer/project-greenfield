@@ -4,7 +4,7 @@ import thunkMiddleWare from "redux-thunk";
 import sample from "../data/sampleItemData.js";
 
 var store = createStore(
-  rootReducer, {},
+  rootReducer,
   applyMiddleware(thunkMiddleWare)
 );
 

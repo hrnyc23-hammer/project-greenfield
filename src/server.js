@@ -5,32 +5,37 @@ const React = require('react');
 const { renderToString } = require('react-dom/server');
 const { createStore } = require('redux');
 const { Provider } = require('react-redux');
-const rootReducer = require('./reducers/main.js');
+let rootReducer = require('./reducers/main.js');
 let App = require('./components/app.js');
 const bodyParser = require('body-parser');
 const Axios = require('axios');
-const { template } = require('underscore');
 const apiUrl = 'http://18.222.40.124';
 
 const port = process.env.PORT || 8888;
 
 App = App.default;
+rootReducer = rootReducer.default;
 
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/dist')));
 
-const handleRender = (req, res, next) => {
-  if (req.path !== '/products/') {
-    next();
+let counter = 0;
+
+const handleRender = (req, res) => {
+  counter++;
+  let productId = parseInt(req.query.products);
+  if (productId === undefined) {
+    res.sendStatus(404);
   }
-  let { products } = req.query;
-  let productId = parseInt(products);
   // let sessionId = parseInt(session_id);
   Axios.get(`${apiUrl}/products/${productId}`)
     .then(({data}) => {
+      let info = {
+        overviewProductInfo: data,
+      };
       const store = createStore(
-        
+        rootReducer, info
       );
       const html = renderToString(
         <Provider store={store}>
@@ -55,7 +60,7 @@ function renderFullPage(html, preloadedState) {
       <body>
         <div id="app">${html}</div>
         <script>
-          window.__PRELOADED_STATE__ = ${template(preloadedState)}
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>
         <script src="bundle.js"></script>
       </body>
@@ -63,7 +68,7 @@ function renderFullPage(html, preloadedState) {
     `
 }
 
-app.use(handleRender);
+app.get('/', handleRender);
 
 app.listen(port, () => {
   console.log('Listening on ', port)

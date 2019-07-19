@@ -25,26 +25,29 @@ var bodyParser = require('body-parser');
 
 var Axios = require('axios');
 
-var _require4 = require('underscore'),
-    template = _require4.template;
-
 var apiUrl = 'http://18.222.40.124';
 var port = process.env.PORT || 8888;
 App = App["default"];
+rootReducer = rootReducer["default"];
 app.use(bodyParser.json());
 app.use(express["static"](path.join(__dirname, '/dist')));
+var counter = 0;
 
-var handleRender = function handleRender(req, res, next) {
-  if (req.path !== '/products/') {
-    next();
-  }
+var handleRender = function handleRender(req, res) {
+  counter++;
+  var productId = parseInt(req.query.products);
 
-  var products = req.query.products;
-  var productId = parseInt(products); // let sessionId = parseInt(session_id);
+  if (productId === undefined) {
+    res.sendStatus(404);
+  } // let sessionId = parseInt(session_id);
+
 
   Axios.get("".concat(apiUrl, "/products/").concat(productId)).then(function (_ref) {
     var data = _ref.data;
-    var store = createStore();
+    var info = {
+      overviewProductInfo: data
+    };
+    var store = createStore(rootReducer, info);
     var html = renderToString(React.createElement(Provider, {
       store: store
     }, React.createElement(App, null)));
@@ -57,10 +60,10 @@ var handleRender = function handleRender(req, res, next) {
 };
 
 function renderFullPage(html, preloadedState) {
-  return "\n    <!doctype html>\n    <html>\n      <head>\n        <title>Project Greenfield</title>\n      </head>\n      <body>\n        <div id=\"app\">".concat(html, "</div>\n        <script>\n          window.__PRELOADED_STATE__ = ").concat(template(preloadedState), "\n        </script>\n        <script src=\"bundle.js\"></script>\n      </body>\n    </html>\n    ");
+  return "\n    <!doctype html>\n    <html>\n      <head>\n        <title>Project Greenfield</title>\n      </head>\n      <body>\n        <div id=\"app\">".concat(html, "</div>\n        <script>\n          window.__PRELOADED_STATE__ = ").concat(JSON.stringify(preloadedState), "\n        </script>\n        <script src=\"bundle.js\"></script>\n      </body>\n    </html>\n    ");
 }
 
-app.use(handleRender);
+app.get('/', handleRender);
 app.listen(port, function () {
   console.log('Listening on ', port);
 });

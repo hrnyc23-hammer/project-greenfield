@@ -18,6 +18,7 @@ var _main = _interopRequireDefault(require("./reducers/main.js"));
 
 var preloadedState = window.__PRELOADED_STATE__;
 delete window.__PRELOADED_STATE__;
+console.log(preloadedState);
 var store = (0, _redux.createStore)(_main["default"], preloadedState, (0, _redux.applyMiddleware)(_reduxThunk["default"]));
 (0, _reactDom.hydrate)(_react["default"].createElement(_reactRedux.Provider, {
   store: store
