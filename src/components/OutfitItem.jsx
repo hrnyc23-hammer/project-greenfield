@@ -9,7 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 const OutfitItem = props => {
-  console.log(props);
   const noImgAvailableURL =
     "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
   let imgSrc;
