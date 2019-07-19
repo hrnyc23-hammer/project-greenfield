@@ -3,6 +3,7 @@ import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk';
 import fetchNewRelated from './src/actions/fetchNewRelated.js';
 import changeRelated from './src/actions/changeRelated.js';
+import changeSelectedStyle from './src/actions/changeSelectedStyle.js';
 import sample from './src/data/sampleItemData.js';
 
 let page;
@@ -42,6 +43,13 @@ describe('redux', () => {
       const expectedPayload = {type: 'CHANGE_RELATED', related: [sample.info]};
       expect(actions).toEqual([expectedPayload]);
     });
+
+    it('should dispatch selected style change', () => {
+      store.dispatch(changeSelectedStyle({foo: 'bar'}));
+      const action = store.getActions();
+      const expectedPayload = { type: 'OVERVIEW_CHANGE_SELECTED_STYLE', selectedStyle: {foo: 'bar'}};
+      expect(action).toEqual([expectedPayload]);
+    })
     
   });
 });
@@ -53,10 +61,10 @@ describe('redux', () => {
 //   });
 
 //   test('can run e2e tests', async () => {
-//     let selector = 'p';
+//     let selector = '#app';
 //     let text = await page.$eval(selector, el => {
-//       return el.textContent;
+//       return el !== undefined;
 //     });
-//     expect(text).toEqual('Rendered Properly');
+//     expect(text).toEqual(true);
 //   });
 // });
