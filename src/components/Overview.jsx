@@ -1,4 +1,5 @@
 import React from "react";
+import ReviewsStars from './ReviewsStars.jsx'
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import GridList from "@material-ui/core/GridList";
@@ -13,6 +14,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
+
 
 const Overview = props => {
   const useStyles = makeStyles(theme => ({
@@ -32,15 +34,14 @@ const Overview = props => {
       margin: "auto",
       display: "block",
       maxWidth: "100%",
-      maxHeight: "100%"
+      maxHeight: "100%",
+      objectFit: "cover"
+    },
+    imgStyles:{
+      objectFit : "cover"
     },
     tile: {
       flexWrap: "wrap"
-    },
-    bigAvatar: {
-      margin: 10,
-      width: 60,
-      height: 60,
     },
     slogan: {
       textAlign: "center"
@@ -56,11 +57,12 @@ const Overview = props => {
 
   const classes = useStyles();
 
+  
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-          <Grid item ws={8}>
+          <Grid item xs={6}>
             <ButtonBase className={classes.image}>
               <img
                 className={classes.img}
@@ -68,71 +70,72 @@ const Overview = props => {
               />
             </ButtonBase>
           </Grid>
-          <Grid item xs={4} container direction="column">
-              <Grid item>
-                <Typography gutterBottom variant="subtitle1">
-                  REVIEWS GO HERE
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  {props.info.category}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {props.selectedStyle.sale_price > 0
-                    ? `Sale Price : ${props.selectedStyle.sale_price}`
-                    : `Price : ${props.selectedStyle.original_price}`}
-                </Typography>
-                <Typography>{props.selectedStyle.name}</Typography>
-              </Grid>
-              <Grid item>
-                <GridList className={classes.tile} cols={4}>
-                  {props.styles.results.map(style => (
-                    <GridListTile key={style.style_id}>
+          <Grid item xs={4} container direction="column" className={classes.rows}>
+            <Grid item>
+              <Typography gutterBottom variant="subtitle1">
+              {props.meta ? <ReviewsStars meta={props.meta} /> : null}
+              </Typography>
+              <Typography variant="body2" gutterBottom>
+                {props.info.category}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {props.selectedStyle.sale_price > 0
+                  ? `Sale Price : ${props.selectedStyle.sale_price}`
+                  : `Price : ${props.selectedStyle.original_price}`}
+              </Typography>
+              <Typography>{props.selectedStyle.name}</Typography>
+            </Grid>
+            <Grid item>
+              <GridList className={classes.tile} cols={4}>
+                {props.styles.results.map(style => (
+                  <GridListTile key={style.style_id}>
                     <a onClick={() => props.handleSelectedStyle(style)}>
-                      <Avatar src={style.photos[0].thumbnail_url} className={classes.bigAvatar} /></a>
-                      {/* <a onClick={() => props.handleSelectedStyle(style)}>
-                        <img src={style.photos[0].thumbnail_url} className={classes.img}/></a> */}
-                    </GridListTile>
-                  ))}
-                </GridList>
-              </Grid>
-              <Grid item>
-                <Grid container>
+                        <img src={style.photos[0].thumbnail_url} className={classes.imgStyles}/></a>
+                  </GridListTile>
+                ))}
+              </GridList>
+            </Grid>
+            <Grid item>
+              <Grid container>
                 <Grid item xs={6}>
-                <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-helper">Size</InputLabel>
-        <NativeSelect
-          // value={state.age}
-          // onChange={handleChange("age")}
-          // input={<Input name="age" id="age-native-helper" />}
-        >
-          <option value="" />
-          <option value={10}>S</option>
-          <option value={20}>M</option>
-          <option value={30}>L</option>
-        </NativeSelect>
-      </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="age-native-helper">Qty</InputLabel>
+                    <NativeSelect
+                    // value={state.age}
+                    // onChange={handleChange("age")}
+                    // input={<Input name="age" id="age-native-helper" />}
+                    > 
+                      <option value="" />
+                      {Array(Math.min(15,props.selectedStyle.skus[props.size] ? props.selectedStyle.skus[props.size] : 0)).fill(0).map((amt,i) => {
+                        return <option key={i} value={i+1}>{i+1}</option>
+                      })}
+                    </NativeSelect>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={6}>
-                <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-helper">Qty</InputLabel>
-        <NativeSelect
-          // value={state.age}
-          // onChange={handleChange("age")}
-          // input={<Input name="age" id="age-native-helper" />}
-        >
-          <option value="" />
-          <option value={10}>1</option>
-          <option value={20}>5</option>
-          <option value={30}>10</option>
-        </NativeSelect>
-      </FormControl>
-                </Grid>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="age-native-helper">Size</InputLabel>
+                    <NativeSelect
+                    onChange={(e)=>props.handleSelectedSize(e.target.value)}>
+                    <option value=""/>
+                    {Object.keys(props.selectedStyle.skus).map(size=>{
+                      return <option key={size} value={size}>{size}</option>
+                    })}
+                    </NativeSelect>
+                  </FormControl>
                 </Grid>
               </Grid>
             </Grid>
+          </Grid>
 
+          <Grid container>
+            <Grid item xs={6} className={classes.slogan}>
+              <Typography variant="h4">
+                {props.info.slogan}
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid className={classes.slogan}>{props.info.slogan}</Grid>
       </Paper>
     </div>
   );
