@@ -4,7 +4,7 @@ import addToOutfits from '../actions/addToOutfits';
 
 const mapStateToProps = (store) => ({
   info: store.overviewProductInfo,
-  outfit: store.outfit
+  outfits: store.outfits
 });
 
 const mapDispatchToProps = (dispatch) => {
