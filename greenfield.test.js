@@ -5,6 +5,7 @@ import fetchNewRelated from './src/actions/fetchNewRelated.js';
 import changeRelated from './src/actions/changeRelated.js';
 import changeSelectedStyle from './src/actions/changeSelectedStyle.js';
 import sample from './src/data/sampleItemData.js';
+import changeSize from './src/actions/changeSize.js'
 
 let page;
 let browser;
@@ -48,6 +49,13 @@ describe('redux', () => {
       store.dispatch(changeSelectedStyle({foo: 'bar'}));
       const action = store.getActions();
       const expectedPayload = { type: 'OVERVIEW_CHANGE_SELECTED_STYLE', selectedStyle: {foo: 'bar'}};
+      expect(action).toEqual([expectedPayload]);
+    })
+
+    it('should dispatch size change', () => {
+      store.dispatch(changeSize('M'));
+      const action = store.getActions();
+      const expectedPayload = {type : 'OVERVIEW_CHANGE_SIZE', size : 'M'};
       expect(action).toEqual([expectedPayload]);
     })
     
