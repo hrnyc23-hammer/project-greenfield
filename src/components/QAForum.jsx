@@ -99,9 +99,7 @@ let QAForum = props => {
                             {answer.photos.map(photo => {
                               return (
                                 <img
-                                  onClick={() => {
-                                    console.log("need to add modal");
-                                  }}
+                                  onClick={() => {}}
                                   src={photo}
                                   width="100"
                                   height="60"
