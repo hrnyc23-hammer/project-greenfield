@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from "@material-ui/core/Button"
 
 const ReviewsBars = (props) => {
     var totalStars = 0
@@ -52,7 +53,7 @@ const ReviewsBars = (props) => {
                 <span>{props.barFilter.map((star, index) => {
                     return <span key={index}> {star}</span>
                 })}
-                    </span><br /><button onClick={props.handleBarFilterReset}>Reset Filter</button></span>
+                    </span><br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
             ) : null}
             </div>
         </React.Fragment>

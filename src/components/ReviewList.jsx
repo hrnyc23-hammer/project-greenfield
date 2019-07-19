@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import Button from "@material-ui/core/Button"
 
 const ReviewList = (props) => {
     return (
@@ -20,7 +21,7 @@ const ReviewList = (props) => {
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
                                 <br />
-                                {(review.recommend === 1 ? <p>✓ I recommend this product</p> : null)}
+                                {(review.recommend === 1) ? <p>✓ I recommend this product</p> : null}
                                 <span style={{ fontSize: 'small' }}>Was this review helpful?   </span>
                                 <span style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
@@ -35,7 +36,7 @@ const ReviewList = (props) => {
                     }
                 })}
             </div>
-            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <button style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</button> : null}<button>Add A Review    +</button></span>
+            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</Button> : null}<Button variant='contained'>Add A Review    +</Button></span>
         </React.Fragment>
     )
 }
