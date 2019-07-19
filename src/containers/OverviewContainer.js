@@ -1,17 +1,24 @@
 import { connect } from 'react-redux'
 import Overview from '../components/Overview.jsx'
 import changeSelectedStyle from '../actions/changeSelectedStyle.js'
+import changeSize from '../actions/changeSize.js'
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = (store) => (
+  {
   info : store.overviewProductInfo,
   styles : store.overviewChangeStyles,
-  selectedStyle : store.overviewChangeSelectedStyles
+  selectedStyle : store.overviewChangeSelectedStyles,
+  meta: store.meta,
+  size :store.overviewChangeSize
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSelectedStyle : selectedStyle => {
       dispatch(changeSelectedStyle(selectedStyle))
+    },
+    handleSelectedSize : selectedSize => {
+      dispatch(changeSize(selectedSize))
     }
   }
 }
