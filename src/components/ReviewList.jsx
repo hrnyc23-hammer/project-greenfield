@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import Button from "@material-ui/core/Button"
+import { borderRadius } from '@material-ui/system';
 
 const ReviewList = (props) => {
     return (
@@ -20,8 +21,15 @@ const ReviewList = (props) => {
                                 </div>
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
+                                {review.photos.map((photo) => {
+                                    return <img key={photo.id} style={{ marginRight: '10px' }} src={photo.url}></img>
+                                })}
+                                {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
+                                {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
+                                    <p><strong>Response:</strong></p>
+                                    <p>{review.response}</p>
+                                </div> : null}
                                 <br />
-                                {(review.recommend === 1) ? <p>✓ I recommend this product</p> : null}
                                 <span style={{ fontSize: 'small' }}>Was this review helpful?   </span>
                                 <span style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
