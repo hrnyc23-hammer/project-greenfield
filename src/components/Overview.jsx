@@ -15,6 +15,9 @@ import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import OverviewSearch from './OverviewSearch.jsx'
 
 const Overview = props => {
   const useStyles = makeStyles(theme => ({
@@ -37,8 +40,9 @@ const Overview = props => {
       maxHeight: "100%",
       objectFit: "cover"
     },
-    imgStyles: {
-      objectFit: "cover"
+    bigAvatar: {
+      width: 70,
+      height: 70
     },
     tile: {
       flexWrap: "wrap"
@@ -62,17 +66,16 @@ const Overview = props => {
 
   return (
     <div className={classes.root}>
+    <OverviewSearch/>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <Box border={1} height="100%">
               <ButtonBase className={classes.image}>
                 <img
                   className={classes.img}
                   src={props.selectedStyle.photos[0].url}
                 />
               </ButtonBase>
-            </Box>
           </Grid>
           <Grid
             item
@@ -81,7 +84,6 @@ const Overview = props => {
             direction="column"
             className={classes.rows}
           >
-            <Box border={1}>
               <Grid item>
                 <Typography gutterBottom variant="subtitle1">
                   {props.meta ? <ReviewsStars meta={props.meta} /> : null}
@@ -97,14 +99,11 @@ const Overview = props => {
                 <Typography>{props.selectedStyle.name}</Typography>
               </Grid>
               <Grid item>
-                <GridList className={classes.tile} cols={4}>
+                <GridList className={classes.tile} cellHeight={100} cols={4}>
                   {props.styles.results.map(style => (
                     <GridListTile key={style.style_id}>
                       <a onClick={() => props.handleSelectedStyle(style)}>
-                        <img
-                          src={style.photos[0].thumbnail_url}
-                          className={classes.imgStyles}
-                        />
+                      <Avatar src={style.photos[0].thumbnail_url} className={classes.bigAvatar} />
                       </a>
                     </GridListTile>
                   ))}
@@ -160,7 +159,6 @@ const Overview = props => {
                   Add to cart
                 </Button>
               </Grid>
-            </Box>
           </Grid>
             <Grid item xs={12} className={classes.slogan}>
               <Typography variant="h5">{props.info.slogan}</Typography>
