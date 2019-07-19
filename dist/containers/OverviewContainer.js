@@ -11,13 +11,24 @@ var _reactRedux = require("react-redux");
 
 var _Overview = _interopRequireDefault(require("../components/Overview"));
 
+var _changeSelectedStyle = _interopRequireDefault(require("../actions/changeSelectedStyle.js"));
+
 var mapStateToProps = function mapStateToProps(store) {
   return {
-    info: store.info,
-    styles: store.styles
+    info: store.overviewProductInfo,
+    styles: store.overviewChangeStyles,
+    selectedStyle: store.overviewChangeSelectedStyles
   };
 };
 
-var OverviewContainer = (0, _reactRedux.connect)(mapStateToProps)(_Overview["default"]);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    handleSelectedStyle: function handleSelectedStyle(selectedStyle) {
+      dispatch((0, _changeSelectedStyle["default"])(selectedStyle));
+    }
+  };
+};
+
+var OverviewContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Overview["default"]);
 var _default = OverviewContainer;
 exports["default"] = _default;

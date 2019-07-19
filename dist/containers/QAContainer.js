@@ -14,8 +14,8 @@ var _QA = _interopRequireDefault(require("./../components/QA"));
 var mapStateToProps = function mapStateToProps(state) {
   return {
     qa: state.qa,
-    initialState: state // QASearchEntry: state.QASearchEntry
-
+    // initialState: state
+    QASearchEntry: state.qaSearchEntry
   };
 };
 

@@ -5,12 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var changeInfo = function changeInfo(info) {
+var QAChangeResultsArr = function QAChangeResultsArr(entry) {
   return {
-    type: 'OVERVIEW_CHANGE_INFO',
-    info: info
+    type: "CHANGE_RESULTS_ARRAY",
+    entry: entry
   };
 };
 
-var _default = changeInfo;
+var _default = QAChangeResultsArr;
 exports["default"] = _default;

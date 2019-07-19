@@ -15,6 +15,7 @@ var QAHandleSearchEntryReducer = function QAHandleSearchEntryReducer() {
 
   switch (action.type) {
     case "CHANGE_SEARCH_ENTRY":
+      // return Object.assign({}, state, action.entry);
       return action.entry;
 
     default:

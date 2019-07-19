@@ -11,18 +11,18 @@ var _redux = _interopRequireDefault(require("redux"));
 
 var _sampleItemData = require("../data/sampleItemData.js");
 
-var relatedReducer = function relatedReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.related;
+var overviewChangeStylesReducer = function overviewChangeStylesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.styles;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'CHANGE_RELATED':
-      return action.related;
+    case 'OVERVIEW_CHANGE_STYLES':
+      return Object.assign({}, state, action.styles);
 
     default:
       return state;
   }
 };
 
-var _default = relatedReducer;
+var _default = overviewChangeStylesReducer;
 exports["default"] = _default;

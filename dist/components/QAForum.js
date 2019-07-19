@@ -9,20 +9,27 @@ exports["default"] = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _store = _interopRequireDefault(require("./../store/store"));
-
-var _QAAnswersContainer = _interopRequireDefault(require("./../containers/QAAnswersContainer"));
-
 var QAForum = function QAForum(props) {
-  return _react["default"].createElement("div", null, _react["default"].createElement("ul", null, props.qaResultsArr.map(function (result) {
+  return _react["default"].createElement("div", null, _react["default"].createElement("ul", null, props.qaResultsArr.map(function (result, i) {
     return _react["default"].createElement(_react["default"].Fragment, {
-      key: Math.random()
-    }, _react["default"].createElement("li", {
-      key: Math.random()
-    }, "Q: ", result.question_body), _react["default"].createElement(_QAAnswersContainer["default"], null));
+      key: i
+    }, _react["default"].createElement("p", {
+      key: i
+    }, "Q: ", result.question_body), _react["default"].createElement("ul", null, Object.values(result.answers).slice(0, result.answerLimit).map(function (answer, i) {
+      return _react["default"].createElement("li", {
+        key: i
+      }, answer.body);
+    })), _react["default"].createElement("button", {
+      onClick: function onClick() {
+        props.QAAddAnswers(i);
+      }
+    }, "load more answers"));
   })), _react["default"].createElement("button", {
     onClick: function onClick() {
-      console.log("hi");
+      if (props.qaCount < props.qa.results.length) {
+        props.QAIncrementer(1);
+        props.QAChangeResultsArr(props.qaCount);
+      }
     }
   }, "More Answered Questions"));
 };

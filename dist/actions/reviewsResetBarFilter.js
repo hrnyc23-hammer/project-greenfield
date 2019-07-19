@@ -5,12 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var changeInfo = function changeInfo(info) {
+var reviewsResetBarFilter = function reviewsResetBarFilter() {
   return {
-    type: 'OVERVIEW_CHANGE_INFO',
-    info: info
+    type: 'RESET_BAR_FILTER'
   };
 };
 
-var _default = changeInfo;
+var _default = reviewsResetBarFilter;
 exports["default"] = _default;

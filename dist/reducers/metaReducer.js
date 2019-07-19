@@ -11,18 +11,18 @@ var _redux = _interopRequireDefault(require("redux"));
 
 var _sampleItemData = require("../data/sampleItemData.js");
 
-var relatedReducer = function relatedReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.related;
+var metaReducer = function metaReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.meta;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'CHANGE_RELATED':
-      return action.related;
+    case 'CHANGE_META':
+      return action.meta;
 
     default:
       return state;
   }
 };
 
-var _default = relatedReducer;
+var _default = metaReducer;
 exports["default"] = _default;

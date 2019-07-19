@@ -16,9 +16,21 @@ var apiUrl = 'http://18.222.40.124/';
 var fetchNewRelated = function fetchNewRelated(relatedIds) {
   return function (dispatch) {
     Promise.all(relatedIds.map(function (id) {
-      return _axios["default"].get("".concat(apiUrl, "products/").concat(id)).then(function (_ref) {
-        var data = _ref.data;
-        return data;
+      return _axios["default"].get("".concat(apiUrl, "products/").concat(id)).then(function (idResponse) {
+        var relatedResult = {
+          info: idResponse.data
+        };
+        return _axios["default"].get("".concat(apiUrl, "products/").concat(id, "/styles")).then(function (styleResponse) {
+          var styleResult = {
+            styles: styleResponse.data.results
+          };
+          return _axios["default"].get("".concat(apiUrl, "reviews/").concat(id, "/meta")).then(function (metaResponse) {
+            var metaResult = {
+              meta: metaResponse.data
+            };
+            return Object.assign({}, relatedResult, styleResult, metaResult);
+          });
+        });
       });
     })).then(function (response) {
       dispatch((0, _changeRelated["default"])(response));

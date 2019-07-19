@@ -11,18 +11,18 @@ var _redux = _interopRequireDefault(require("redux"));
 
 var _sampleItemData = require("../data/sampleItemData.js");
 
-var relatedReducer = function relatedReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.related;
+var reviewsReducer = function reviewsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.reviews;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'CHANGE_RELATED':
-      return action.related;
+    case 'CHANGE_REVIEWS':
+      return action.reviews;
 
     default:
       return state;
   }
 };
 
-var _default = relatedReducer;
+var _default = reviewsReducer;
 exports["default"] = _default;

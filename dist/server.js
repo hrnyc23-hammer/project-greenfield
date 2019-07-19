@@ -42,11 +42,9 @@ var handleRender = function handleRender(req, res, next) {
   var products = req.query.products;
   var productId = parseInt(products); // let sessionId = parseInt(session_id);
 
-  return Axios.get("".concat(apiUrl, "/products/").concat(productId)).then(function (_ref) {
+  Axios.get("".concat(apiUrl, "/products/").concat(productId)).then(function (_ref) {
     var data = _ref.data;
-    var store = createStore(rootReducer["default"], {
-      info: data
-    });
+    var store = createStore();
     var html = renderToString(React.createElement(Provider, {
       store: store
     }, React.createElement(App, null)));

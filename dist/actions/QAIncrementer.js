@@ -5,12 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var changeInfo = function changeInfo(info) {
+var QAIncrementer = function QAIncrementer(entry) {
   return {
-    type: 'OVERVIEW_CHANGE_INFO',
-    info: info
+    type: "QA_INCREMENT_BY_ENTRY",
+    entry: entry
   };
 };
 
-var _default = changeInfo;
+var _default = QAIncrementer;
 exports["default"] = _default;

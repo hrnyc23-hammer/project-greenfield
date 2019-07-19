@@ -17,7 +17,8 @@ var _fetchNewRelated = _interopRequireDefault(require("../actions/fetchNewRelate
 
 var mapStateToProps = function mapStateToProps(store) {
   return {
-    related: store.related
+    related: store.related,
+    info: store.overviewProductInfo
   };
 };
 

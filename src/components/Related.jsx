@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import RelatedItem from './RelatedItem.jsx';
+import RelatedItem from './RelatedItem';
 
 const Related = (props) => {
   useEffect(() => {

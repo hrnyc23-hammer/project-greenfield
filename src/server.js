@@ -27,10 +27,10 @@ const handleRender = (req, res, next) => {
   let { products } = req.query;
   let productId = parseInt(products);
   // let sessionId = parseInt(session_id);
-  return Axios.get(`${apiUrl}/products/${productId}`)
+  Axios.get(`${apiUrl}/products/${productId}`)
     .then(({data}) => {
       const store = createStore(
-        rootReducer.default, {info: data}
+        
       );
       const html = renderToString(
         <Provider store={store}>

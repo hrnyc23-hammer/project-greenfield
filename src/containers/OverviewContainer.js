@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Overview from '../components/Overview.jsx'
+import Overview from '../components/Overview'
 import changeSelectedStyle from '../actions/changeSelectedStyle.js'
 
 const mapStateToProps = (store) => ({
