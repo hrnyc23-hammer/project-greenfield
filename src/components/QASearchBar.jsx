@@ -24,7 +24,7 @@ let QASearchBar = props => {
         <Fab
           onClick={e => {
             e.preventDefault();
-            console.log("search!");
+            
           }}
         >
           Go!
