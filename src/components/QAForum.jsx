@@ -52,7 +52,13 @@ let QAForum = props => {
                   |
                 </span>
 
-                <span style={{ fontSize: "small", float: "right" }}>
+                <span
+                  style={{
+                    fontSize: "small",
+                    float: "right",
+                    paddingLeft: "5px"
+                  }}
+                >
                   {" "}
                   ({question.question_helpfulness}){" "}
                 </span>
@@ -60,7 +66,9 @@ let QAForum = props => {
                   style={{
                     fontSize: "small",
                     float: "right",
-                    textDecoration: "underline"
+                    textDecoration: "underline",
+
+                    paddingLeft: "5px"
                   }}
                 >
                   {" "}
@@ -109,7 +117,9 @@ let QAForum = props => {
                               key={Math.random()}
                               style={{
                                 fontSize: "small",
-                                spanadding: "0px 0px 0px 0px"
+                                spanadding: "0px 0px 0px 0px",
+
+                                paddingRight: "5px"
                               }}
                             >
                               by: {answer.answerer_name} | date:{" "}
@@ -118,7 +128,8 @@ let QAForum = props => {
                             <span
                               style={{
                                 fontSize: "small",
-                                textDecoration: "underline"
+                                textDecoration: "underline",
+                                paddingRight: "5px"
                               }}
                             >
                               Yes
