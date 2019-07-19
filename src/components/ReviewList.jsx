@@ -2,7 +2,6 @@ import React from 'react'
 import moment from 'moment'
 
 const ReviewList = (props) => {
-    console.log(props.reviewsLength)
     return (
         <React.Fragment>
             <h4>{props.reviews.results.length} reviews, sorted by relevance</h4>
