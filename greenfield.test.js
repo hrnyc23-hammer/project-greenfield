@@ -13,17 +13,17 @@ const height = 1080;
 
 // UNCOMMENT IF RUNNING TESTS LOCALLY - COMMENTED WHILE NOT DEPLOYED
 
-beforeAll(async () => {
-  browser = await puppeteer.launch({
-    headless: false
-  });
-  page = await browser.newPage();
-  await page.setViewport({ width, height });
-});
+// beforeAll(async () => {
+//   browser = await puppeteer.launch({
+//     headless: false
+//   });
+//   page = await browser.newPage();
+//   await page.setViewport({ width, height });
+// });
 
-afterAll(() => {
-  browser.close();
-});
+// afterAll(() => {
+//   browser.close();
+// });
 
 describe('redux', () => {
   const mockStore = configureStore([thunk]);
@@ -54,17 +54,17 @@ describe('redux', () => {
   });
 });
 
-describe('end-to-end tests', () => {
+// describe('end-to-end tests', () => {
   
-  beforeEach(async () => {
-    await page.goto('http://localhost:8888');
-  });
+//   beforeEach(async () => {
+//     await page.goto('http://localhost:8888');
+//   });
 
-  test('can run e2e tests', async () => {
-    let selector = '#app';
-    let text = await page.$eval(selector, el => {
-      return el !== undefined;
-    });
-    expect(text).toEqual(true);
-  });
-});
+//   test('can run e2e tests', async () => {
+//     let selector = '#app';
+//     let text = await page.$eval(selector, el => {
+//       return el !== undefined;
+//     });
+//     expect(text).toEqual(true);
+//   });
+// });
