@@ -19,15 +19,17 @@ let QAForum = props => {
           .map((question, i) => {
             return (
               <React.Fragment key={Math.random()}>
-                <span
-                  key={Math.random()}
-                  style={{
-                    fontSize: "large",
-                    padding: "0px 0px 0px 55px"
-                  }}
-                >
-                  Q: {question.question_body}
-                </span>
+                <strong>
+                  <span
+                    key={Math.random()}
+                    style={{
+                      fontSize: "large",
+                      padding: "0px 0px 0px 55px"
+                    }}
+                  >
+                    Q: {question.question_body}
+                  </span>
+                </strong>
 
                 <span
                   style={{
@@ -150,15 +152,22 @@ let QAForum = props => {
                       );
                     })}
                 </ul>
-                {question.answerLimit >= Object.keys(question.answers).length ? <div></div> : <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={() => {
-                    props.QAAddAnswers(i);
-                  }}
-                >
-                  load more answers
-                </Button>}
+                {question.answerLimit >=
+                Object.keys(question.answers).length ? (
+                  <div />
+                ) : (
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    style={{ marginRight: "20px" }}
+                    onClick={() => {
+                      props.QAAddAnswers(i);
+                    }}
+                  >
+                    load more answers
+                  </Button>
+                )}
+                <br />
               </React.Fragment>
             );
           })}
