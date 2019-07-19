@@ -53,7 +53,7 @@ const RelatedItem = props => {
 
   const useStyles = makeStyles({
     card: {
-      maxWidth: 345
+      width: 250
     },
     media: {
       height: 140
