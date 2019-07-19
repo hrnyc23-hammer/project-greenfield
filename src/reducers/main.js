@@ -12,6 +12,7 @@ import qaResultsArr from "./QAChangeResultsArrReducer.js";
 import qaIncrementer from "./QAIncrementerReducer.js";
 import reviewsLengthReducer from './reviewsLengthReducer.js';
 import overviewChangeSize from "./overviewChangeSize.js";
+import outfits from "./outfitsReducer.js";
 
 const rootReducer = combineReducers({
   related,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   qaResultsArr,
   qaIncrementer,
   reviewsLengthReducer,
-  overviewChangeSize
+  overviewChangeSize,
+  outfits
 });
 
 export default rootReducer;
