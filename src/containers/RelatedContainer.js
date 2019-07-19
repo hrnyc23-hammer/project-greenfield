@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import Related from '../components/Related.jsx';
+import Related from '../components/Related';
 import fetchNewProduct from '../actions/fetchNewProduct';
-import fetchNewRelated from '../actions/fetchNewRelated.js';
+import fetchNewRelated from '../actions/fetchNewRelated';
 
 const mapStateToProps = (store) => ({related: store.related});
 
