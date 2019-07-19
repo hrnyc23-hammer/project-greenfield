@@ -68,6 +68,15 @@ const Overview = props => {
     },
     badge: {
       margin: theme.spacing(2)
+    },
+    originalPrice: {
+      textDecoration: "line-through",
+    },
+    salePrice: {
+      color: "red"
+    },
+    saleHidden: {
+      visibility: "hidden"
     }
   }));
 
@@ -100,10 +109,13 @@ const Overview = props => {
                 <Typography variant="h4" gutterBottom>
                   {props.info.category}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {props.selectedStyle.sale_price > 0
-                    ? `Sale Price : ${props.selectedStyle.sale_price}`
-                    : `Price : ${props.selectedStyle.original_price}`}
+                <Typography variant="body2" color="textSecondary" 
+                className={props.selectedStyle.sale_price > 0 ? classes.originalPrice:null}>
+                ${props.selectedStyle.original_price}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" 
+                className={props.selectedStyle.sale_price > 0 ? classes.salePrice : classes.saleHidden}>
+                ${props.selectedStyle.sale_price}
                 </Typography>
                 <Typography variant="h5">{props.selectedStyle.name}</Typography>
               </Grid>
