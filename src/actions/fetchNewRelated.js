@@ -6,7 +6,24 @@ const fetchNewRelated = (relatedIds) => {
   return (dispatch) => {
     Promise.all(relatedIds.map((id) => {
       return Axios.get(`${apiUrl}products/${id}`)
-      .then(({data}) => data);
+      .then((idResponse) => {
+        let relatedResult = {
+          info: idResponse.data
+        };
+        return Axios.get((`${apiUrl}products/${id}/styles`))
+        .then((styleResponse) => {
+          let styleResult = {
+            styles: styleResponse.data.results
+          };
+          return Axios.get((`${apiUrl}reviews/${id}/meta`))
+          .then((metaResponse) => {
+            let metaResult = {
+              meta: metaResponse.data
+            };
+            return Object.assign({}, relatedResult, styleResult, metaResult);
+          });
+        })
+      });
     })).then((response) => {
       dispatch(changeRelated(response));
     }).catch(() => {

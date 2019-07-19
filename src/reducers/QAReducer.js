@@ -1,13 +1,14 @@
 import Redux from 'redux';
+import { qa } from '../data/sampleItemData.js';
 
 
-var currentVideoReducer = (state = null, action) => {
+var qaReducer = (state = qa, action) => {
   switch (action.type) {
-  case 'CHANGE_VIDEO':
-    return action.video || null;
+  case 'CHANGE_QA':
+    return action.qa;
   default:
     return state;
   }
 };
 
-export default currentVideoReducer;
+export default qaReducer;

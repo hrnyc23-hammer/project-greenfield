@@ -1,17 +1,24 @@
 import React from 'react'
-import ReviewsStarsContainer from '../containers/ReviewsStarsContainer.js'
+import ReviewsScoresContainer from '../containers/ReviewsScoresContainer.js'
+import ReviewsBarsContainer from '../containers/ReviewsBarsContainer.js';
+import ReviewListContainer from '../containers/ReviewListContainer.js'
 
 const Reviews = (props) => {
+    var recommended;
     if (!props.meta.recommended[1]) {
-        var recommended = '0%'
+        recommended = '0%'
     } else {
-        var recommended = ((props.meta.recommended[1] / (props.meta.recommended[0] + props.meta.recommended[1])) * 100).toFixed().toString() + '%'
+        recommended = ((props.meta.recommended[1] / (props.meta.recommended[0] + props.meta.recommended[1])) * 100).toFixed().toString() + '%'
     }
     return (
         <React.Fragment>
-            <div>Rating &amp; Reviews</div>
-            <div>{recommended} of reviews recommend this product</div>
-            <div><ReviewsStarsContainer /></div>
+            <div style={{ float: 'left' }}>
+                <h3>Rating &amp; Reviews</h3>
+                <div><ReviewsScoresContainer /></div>
+                <div>{recommended} of reviews recommend this product</div>
+                <div><ReviewsBarsContainer /></div>
+            </div>
+            <div style={{ marginLeft: '350px' }}><ReviewListContainer /></div>
         </React.Fragment>
     )
 }

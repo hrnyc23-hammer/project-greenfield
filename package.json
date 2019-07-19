@@ -50,11 +50,16 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@material-ui/core": "^4.2.1",
     "axios": "^0.19.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "nodemon": "^1.19.1",
+=======
+    "moment": "^2.24.0",
+>>>>>>> master
     "puppeteer": "^1.18.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

@@ -1,13 +1,27 @@
 import { connect } from "react-redux";
-import QAForum from "./../components/QAForum";
-import sample from "../data/sampleItemData";
+import QAForum from "./../components/QAForum.jsx";
+import QAChangeResultsArr from "./../actions/QAChangeResultsArr";
+import QAIncrementer from "./../actions/QAIncrementer";
+import QAAddAnswers from "./../actions/QAAddAnswers";
 
 var mapStateToProps = state => ({
   qa: state.qa,
-  qaResultsArr: state.qa.results
+  qaResultsArr: state.qaResultsArr,
+  qaCount: state.qaIncrementer,
+  qaAnswersArr: state.qaSendDataToStore
 });
 
-var mapDispatchToProps = dispatch => ({});
+var mapDispatchToProps = dispatch => ({
+  QAChangeResultsArr: entry => {
+    dispatch(QAChangeResultsArr(entry));
+  },
+  QAIncrementer: entry => {
+    dispatch(QAIncrementer(entry));
+  },
+  QAAddAnswers: index => {
+    dispatch(QAAddAnswers(index));
+  }
+});
 
 var QAForumContainer = connect(
   mapStateToProps,

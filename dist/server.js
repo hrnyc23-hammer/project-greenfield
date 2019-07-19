@@ -30,6 +30,7 @@ var _require4 = require('underscore'),
 
 var apiUrl = 'http://18.222.40.124';
 var port = process.env.PORT || 8888;
+App = App["default"];
 app.use(bodyParser.json());
 app.use(express["static"](path.join(__dirname, '/dist')));
 
@@ -43,8 +44,9 @@ var handleRender = function handleRender(req, res, next) {
 
   return Axios.get("".concat(apiUrl, "/products/").concat(productId)).then(function (_ref) {
     var data = _ref.data;
-    console.log(rootReducer);
-    var store = createStore(rootReducer["default"], data);
+    var store = createStore(rootReducer["default"], {
+      info: data
+    });
     var html = renderToString(React.createElement(Provider, {
       store: store
     }, React.createElement(App, null)));

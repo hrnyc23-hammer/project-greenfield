@@ -6,13 +6,16 @@ const { renderToString } = require('react-dom/server');
 const { createStore } = require('redux');
 const { Provider } = require('react-redux');
 const rootReducer = require('./reducers/main.js');
-const App = require('./components/app.js');
+let App = require('./components/app.js');
 const bodyParser = require('body-parser');
 const Axios = require('axios');
 const { template } = require('underscore');
 const apiUrl = 'http://18.222.40.124';
 
 const port = process.env.PORT || 8888;
+
+App = App.default;
+
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/dist')));
@@ -26,9 +29,8 @@ const handleRender = (req, res, next) => {
   // let sessionId = parseInt(session_id);
   return Axios.get(`${apiUrl}/products/${productId}`)
     .then(({data}) => {
-      console.log(rootReducer);
       const store = createStore(
-        rootReducer.default, data
+        rootReducer.default, {info: data}
       );
       const html = renderToString(
         <Provider store={store}>

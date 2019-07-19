@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import RelatedItem from './RelatedItem.jsx';
 
 const Related = (props) => {
   useEffect(() => {
@@ -7,9 +8,13 @@ const Related = (props) => {
     }
   });
 
-  return <div>{props.related.map((ele, idx) => {
-    return <div key={idx}>{`${ele.name} ${ele.description}`}</div>
-  })}</div>
+  return (
+    <div>
+      {props.related.map((item, idx) => {
+        return <RelatedItem key={idx} item={item} currentItemInfo={props.info} handleRelatedClick={props.handleRelatedClick}/>
+      })}
+    </div>
+  )
 };
 
 export default Related;

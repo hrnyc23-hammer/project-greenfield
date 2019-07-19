@@ -1,24 +1,37 @@
 import React from "react";
-import store from "./../store/store";
-import QAAnswersContainer from "./../containers/QAAnswersContainer";
 
 let QAForum = props => {
   return (
     <div>
-      {/* {console.log("WITHIN QAFORUM: ", props)} */}
       <ul>
-        {props.qaResultsArr.map(result => {
+        {props.qaResultsArr.map((result, i) => {
           return (
-            <React.Fragment key={Math.random()}>
-              <li key={Math.random()}>Q: {result.question_body}</li>
-              <QAAnswersContainer />
+            <React.Fragment key={i}>
+              <p key={i}>Q: {result.question_body}</p>
+              <ul>
+                {Object.values(result.answers)
+                  .slice(0, result.answerLimit)
+                  .map((answer, i) => {
+                    return <li key={i}>{answer.body}</li>;
+                  })}
+              </ul>
+              <button
+                onClick={() => {
+                  props.QAAddAnswers(i);
+                }}
+              >
+                load more answers
+              </button>
             </React.Fragment>
           );
         })}
       </ul>
       <button
         onClick={() => {
-          console.log("hi");
+          if (props.qaCount < props.qa.results.length) {
+            props.QAIncrementer(1);
+            props.QAChangeResultsArr(props.qaCount);
+          }
         }}
       >
         More Answered Questions
