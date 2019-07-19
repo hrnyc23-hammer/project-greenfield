@@ -43,7 +43,7 @@ const ReviewsBars = (props) => {
             <br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(1) }} style={{ textDecoration: 'underline', float: 'left' }}>1 star</span>
-                <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
+                <div style={{ float: 'left', marginTop: '5px', marginLeft: '16px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: `${(oneStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
@@ -51,22 +51,20 @@ const ReviewsBars = (props) => {
             <div>{(props.barFilter.length > 0) ? (<div>
                 <span>Filtered by stars:
                 <span>{props.barFilter.map((star, index) => {
-                    return <span key={index}> {star}</span>
+                    if (index !== props.barFilter.length - 1) {
+                        return <span key={index}> <strong>{star},</strong></span>
+                    } else {
+                        return <span key={index}> <strong>{star}</strong></span>
+                    }
                 })}
                     </span><br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
             </div>) : (<div style={{ visibility: 'hidden' }}>
                 <span>Filtered by stars:
-                <span>{props.barFilter.map((star, index) => {
-                    return <span key={index}> {star}</span>
-                })}
-                    </span><br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
+                <br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
             </div>)}
             </div>
             {props.meta.characteristics.Comfort ? <React.Fragment><p>Comfort</p>
-
                 <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Comfort * 46}px`, marginBottom: '10px' }}>▼</div></div>
-
-
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Poor</p>
                 <p style={{ marginLeft: '185px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
