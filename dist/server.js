@@ -30,33 +30,33 @@ var port = process.env.PORT || 8888;
 App = App["default"];
 rootReducer = rootReducer["default"];
 app.use(bodyParser.json());
-app.use(express["static"](path.join(__dirname, '/dist')));
+app.use(express["static"](path.join(__dirname, '../dist')));
 var counter = 0;
 
 var handleRender = function handleRender(req, res) {
   counter++;
   var productId = parseInt(req.query.products);
 
-  if (productId === undefined) {
-    res.sendStatus(404);
-  } // let sessionId = parseInt(session_id);
-
-
-  Axios.get("".concat(apiUrl, "/products/").concat(productId)).then(function (_ref) {
-    var data = _ref.data;
-    var info = {
-      overviewProductInfo: data
-    };
-    var store = createStore(rootReducer, info);
-    var html = renderToString(React.createElement(Provider, {
-      store: store
-    }, React.createElement(App, null)));
-    var finalState = store.getState();
-    res.send(renderFullPage(html, finalState));
-  })["catch"](function (err) {
-    console.log(err);
-    res.sendStatus(500);
-  });
+  if (productId !== undefined || !isNaN(productId)) {
+    // let sessionId = parseInt(session_id);
+    Axios.get("".concat(apiUrl, "/products/").concat(productId)).then(function (_ref) {
+      var data = _ref.data;
+      var info = {
+        overviewProductInfo: data
+      };
+      var store = createStore(rootReducer, info);
+      var html = renderToString(React.createElement(Provider, {
+        store: store
+      }, React.createElement(App, null)));
+      var finalState = store.getState();
+      res.send(renderFullPage(html, finalState));
+    })["catch"](function (err) {
+      console.log(err);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(200);
+  }
 };
 
 function renderFullPage(html, preloadedState) {

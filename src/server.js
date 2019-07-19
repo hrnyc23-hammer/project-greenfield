@@ -18,36 +18,37 @@ rootReducer = rootReducer.default;
 
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 let counter = 0;
 
 const handleRender = (req, res) => {
   counter++;
   let productId = parseInt(req.query.products);
-  if (productId === undefined) {
-    res.sendStatus(404);
+  if (productId !== undefined || !isNaN(productId)) {
+    // let sessionId = parseInt(session_id);
+    Axios.get(`${apiUrl}/products/${productId}`)
+      .then(({data}) => {
+        let info = {
+          overviewProductInfo: data,
+        };
+        const store = createStore(
+          rootReducer, info
+        );
+        const html = renderToString(
+          <Provider store={store}>
+            <App />
+          </Provider>
+        );
+        const finalState = store.getState();
+        res.send(renderFullPage(html, finalState));
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500)});
+  } else {
+    res.sendStatus(200);
   }
-  // let sessionId = parseInt(session_id);
-  Axios.get(`${apiUrl}/products/${productId}`)
-    .then(({data}) => {
-      let info = {
-        overviewProductInfo: data,
-      };
-      const store = createStore(
-        rootReducer, info
-      );
-      const html = renderToString(
-        <Provider store={store}>
-          <App />
-        </Provider>
-      );
-      const finalState = store.getState();
-      res.send(renderFullPage(html, finalState));
-    })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(500)});
 };
 
 function renderFullPage(html, preloadedState) {
