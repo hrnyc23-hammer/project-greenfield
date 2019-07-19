@@ -16,7 +16,7 @@ let QAForum = props => {
               ? -1
               : 0
           )
-          .map((result, i) => {
+          .map((question, i) => {
             return (
               <React.Fragment key={Math.random()}>
                 <span
@@ -26,7 +26,7 @@ let QAForum = props => {
                     padding: "0px 0px 0px 55px"
                   }}
                 >
-                  Q: {result.question_body}
+                  Q: {question.question_body}
                 </span>
 
                 <span
@@ -52,7 +52,7 @@ let QAForum = props => {
 
                 <span style={{ fontSize: "small", float: "right" }}>
                   {" "}
-                  ({result.question_helpfulness}){" "}
+                  ({question.question_helpfulness}){" "}
                 </span>
                 <span
                   style={{
@@ -70,7 +70,7 @@ let QAForum = props => {
                 </span>
 
                 <ul>
-                  {Object.values(result.answers)
+                  {Object.values(question.answers)
                     .sort((a, b) =>
                       a.helpfulness < b.helpfulness
                         ? 1
@@ -78,7 +78,7 @@ let QAForum = props => {
                         ? -1
                         : 0
                     )
-                    .slice(0, result.answerLimit)
+                    .slice(0, question.answerLimit)
                     .map(answer => {
                       return (
                         <List key={Math.random()}>
@@ -150,7 +150,7 @@ let QAForum = props => {
                       );
                     })}
                 </ul>
-                <Button
+                {question.answerLimit >= Object.keys(question.answers).length ? <div></div> : <Button
                   variant="outlined"
                   size="small"
                   onClick={() => {
@@ -158,7 +158,7 @@ let QAForum = props => {
                   }}
                 >
                   load more answers
-                </Button>
+                </Button>}
               </React.Fragment>
             );
           })}
