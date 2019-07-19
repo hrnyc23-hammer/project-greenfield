@@ -1,13 +1,24 @@
 import { connect } from 'react-redux'
 import ReviewList from '../components/ReviewList.jsx'
+import reviewsLength from '../actions/reviewsLength.js'
 
 const mapStateToProps = (store) => ({
     reviews: store.reviews,
-    barFilter: store.reviewsChangeBarFilter
+    barFilter: store.reviewsChangeBarFilter,
+    reviewsLength: store.reviewsLengthReducer
 })
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleLengthChange: () => {
+            dispatch(reviewsLength())
+        }
+    }
+}
+
 const ReviewListContainer = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(ReviewList)
 
 export default ReviewListContainer
