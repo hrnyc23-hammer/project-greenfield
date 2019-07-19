@@ -11,7 +11,15 @@ let QAForum = props => {
         {props.qaResultsArr.map((result, i) => {
           return (
             <React.Fragment key={Math.random()}>
-              <p key={Math.random()}>Q: {result.question_body}</p>
+              <p
+                key={Math.random()}
+                style={{
+                  fontSize: "large",
+                  padding: "0px 0px 0px 55px"
+                }}
+              >
+                Q: {result.question_body}{" "}
+              </p>
               <ul>
                 {Object.values(result.answers)
                   .slice(0, result.answerLimit)
@@ -22,7 +30,13 @@ let QAForum = props => {
                           <p key={Math.random()}>A: {answer.body}</p>
                         </ListItem>
                         <ListItem key={Math.random()}>
-                          <p key={Math.random()}>
+                          <p
+                            key={Math.random()}
+                            style={{
+                              fontSize: "small",
+                              padding: "0px 10px 0px 0px"
+                            }}
+                          >
                             by: {answer.answerer_name} | date:{" "}
                             {answer.date.split("T")[0]}
                           </p>
@@ -39,11 +53,7 @@ let QAForum = props => {
                             );
                           })}
                         </ListItem>
-                        <Divider
-                          variant="inset"
-                          component="li"
-                          key={Math.random()}
-                        />
+                        <Divider />
                       </List>
                     );
                   })}
