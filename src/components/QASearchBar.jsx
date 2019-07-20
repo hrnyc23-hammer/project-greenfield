@@ -4,8 +4,9 @@ import Fab from "@material-ui/core/Fab";
 
 let QASearchBar = props => {
   return (
-    <div>
-      <form>
+    <React.Fragment>
+     {console.log(props)}
+      <div>
         <h3>Questions and Answers</h3>
         <TextField
           style={{ margin: 8 }}
@@ -17,19 +18,14 @@ let QASearchBar = props => {
           }}
           onChange={e => {
             props.QAHandleSearchEntry(e.target.value);
+            props.QAFilterResultsArr(e.target.value);
           }}
           placeholder={"Have a Question? Search for answers...."}
         />
 
-        <Fab
-          onClick={e => {
-            e.preventDefault();
-          }}
-        >
-          Go!
-        </Fab>
-      </form>
-    </div>
+        <Fab onClick={e => {}}>Go!</Fab>
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -8,7 +8,7 @@ var mapStateToProps = state => ({
   qa: state.qa,
   qaResultsArr: state.qaResultsArr,
   qaCount: state.qaIncrementer,
-  qaAnswersArr: state.qaSendDataToStore
+  qaSearchEntry: state.qaSearchEntry
 });
 
 var mapDispatchToProps = dispatch => ({
