@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import QAForum from "./../components/QAForum.jsx";
+import QAForum from "./../components/QAForum";
 import QAChangeResultsArr from "./../actions/QAChangeResultsArr";
 import QAIncrementer from "./../actions/QAIncrementer";
 import QAAddAnswers from "./../actions/QAAddAnswers";

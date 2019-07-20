@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import moment from 'moment'
 import Button from "@material-ui/core/Button"
-import ReviewsModal from './ReviewsModal.jsx'
+import ReviewsModal from './ReviewsModal'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);

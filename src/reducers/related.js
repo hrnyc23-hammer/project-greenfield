@@ -1,7 +1,6 @@
 import Redux from 'redux';
-import { related } from '../data/sampleItemData.js';
 
-const relatedReducer = (state = related, action) => {
+const relatedReducer = (state = [], action) => {
   switch(action.type) {
     case('CHANGE_RELATED'):
       return action.related;

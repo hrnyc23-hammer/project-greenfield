@@ -21,3 +21,4 @@ install:
 script:
 - npm run test
 - npm run travisbuild
+- npm run babelbuild

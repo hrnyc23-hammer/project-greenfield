@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Fab from "@material-ui/core/Fab";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -12,9 +12,19 @@ const useStyles = makeStyles(theme => ({
 
 const Outfits = (props) => {
   const classes = useStyles();
+  let outfits = {};
 
-  let outfits = props.outfits ? JSON.parse(localStorage.getItem("greenfieldOutfits")) : {};
-  outfits = outfits === null ? {} : outfits;
+  useEffect(() => {
+    outfits = JSON.parse(localStorage.getItem("greenfieldOutfits"))
+    outfits = outfits === null ? {} : outfits;
+    for (let outfit in outfits) {
+      if (JSON.stringify(outfits[outfit]) !== JSON.stringify(props.outfits[outfit])) {
+        props.addToOutfits(outfits);
+      }
+    }
+  });
+
+  
 
   const addOutfit = (event) => {
     event.preventDefault();
@@ -26,7 +36,7 @@ const Outfits = (props) => {
       };
       outfits[props.info.id] = outfitPackage;
       localStorage.setItem("greenfieldOutfits", JSON.stringify(outfits));
-      props.addToOutfits(outfitPackage);
+      props.addToOutfits(outfits);
     }
   };
 
@@ -41,14 +51,13 @@ const Outfits = (props) => {
       <Grid item>
         <Fab onClick={e => addOutfit(e)}>+</Fab>
       </Grid>
-      {outfits ? Object.keys(outfits).map((ele, idx) => {
+      {Object.keys(props.outfits).map((ele, idx) => {
         return (
           <Grid item key={idx}>
-            <OutfitItem item={outfits[ele]} removeFromOutfits={props.removeFromOutfits}/>
+            <OutfitItem item={props.outfits[ele]} removeFromOutfits={props.removeFromOutfits}/>
           </Grid>
         )
-      }) : 
-      null
+      })
     }  
     </Grid>
   )

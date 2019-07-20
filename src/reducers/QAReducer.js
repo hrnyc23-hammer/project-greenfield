@@ -1,8 +1,7 @@
 import Redux from 'redux';
-import { qa } from '../data/sampleItemData.js';
 
 
-var qaReducer = (state = qa, action) => {
+var qaReducer = (state = {}, action) => {
   switch (action.type) {
   case 'CHANGE_QA':
     return action.qa;

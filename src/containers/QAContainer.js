@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import QA from "./../components/QA.jsx";
+import QA from "./../components/QA";
 
 var mapStateToProps = state => ({
   qa: state.qa,

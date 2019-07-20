@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ReviewsBars from '../components/ReviewsBars.jsx'
+import ReviewsBars from '../components/ReviewsBars'
 import reviewsChangeBarFilter from '../actions/reviewsChangeBarFilter.js'
 import reviewsResetBarFilter from '../actions/reviewsResetBarFilter'
 

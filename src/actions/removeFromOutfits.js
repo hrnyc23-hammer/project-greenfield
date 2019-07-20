@@ -1,6 +1,6 @@
-const removeFromOutfits = (outfit) => ({
+const removeFromOutfits = (outfitId) => ({
   type: 'REMOVE_FROM_OUTFITS',
-  outfit: outfit
+  outfitId: outfitId
 });
 
 export default removeFromOutfits;

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import QAAnswers from "./../components/QAAnswers.jsx";
+import QAAnswers from "./../components/QAAnswers";
 
 
 var mapStateToProps = state => ({

@@ -2,7 +2,7 @@ import Redux from 'redux';
 import { meta } from '../data/sampleItemData.js';
 
 
-var metaReducer = (state = meta, action) => {
+var metaReducer = (state = {}, action) => {
     switch (action.type) {
         case 'CHANGE_META':
             return action.meta;

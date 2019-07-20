@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import QASearchBar from "./../components/QASearchBar.jsx";
-import sample from "../data/sampleItemData.js";
+import QASearchBar from "./../components/QASearchBar";
+import sample from "../data/sampleItemData";
 import QAHandleSearchEntry from "./../actions/QAHandleSearchEntry";
 
 var mapStateToProps = state => ({

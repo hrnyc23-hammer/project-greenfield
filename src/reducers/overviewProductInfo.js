@@ -1,7 +1,6 @@
 import Redux from 'redux'
-import { info } from '../data/sampleItemData.js';
 
-let overviewChangeProductInfo = (state = info, action) => {
+let overviewChangeProductInfo = (state = {}, action) => {
   switch (action.type) {
     case 'OVERVIEW_CHANGE_INFO':
       return Object.assign({},state,action.product);

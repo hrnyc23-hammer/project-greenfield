@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ReviewsScores from '../components/ReviewsScores.jsx'
+import ReviewsScores from '../components/ReviewsScores'
 
 const mapStateToProps = (store) => ({
     meta: store.meta

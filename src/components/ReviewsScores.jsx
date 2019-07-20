@@ -1,6 +1,6 @@
 import React from 'react';
-import ReviewsStars from './ReviewsStars.jsx';
-import ReviewsRating from './ReviewsRating.jsx';
+import ReviewsStars from './ReviewsStars';
+import ReviewsRating from './ReviewsRating';
 
 
 const ReviewsScores = (props) => {

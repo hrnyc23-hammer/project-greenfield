@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import RelatedItem from './RelatedItem.jsx';
+import RelatedItem from './RelatedItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 

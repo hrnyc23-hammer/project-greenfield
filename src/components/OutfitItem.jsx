@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReviewsStars from './ReviewsStars.jsx';
+import ReviewsStars from './ReviewsStars';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -49,11 +49,7 @@ const OutfitItem = props => {
     let outfits = JSON.parse(localStorage.getItem("greenfieldOutfits"));
     delete outfits[props.item.info.id];
     localStorage.setItem("greenfieldOutfits", JSON.stringify(outfits));
-    props.removeFromOutfits({
-      info: props.item.info,
-      meta: props.item.meta,
-      styles: props.item.styles
-    });
+    props.removeFromOutfits(props.item.info.id);
   }
 
   const classes = useStyles();

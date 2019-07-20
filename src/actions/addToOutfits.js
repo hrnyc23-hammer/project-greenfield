@@ -1,6 +1,6 @@
-const addToOutfits = (outfit) => ({
+const addToOutfits = (outfits) => ({
   type: 'ADD_TO_OUTFITS',
-  outfit: outfit
+  outfits: outfits
 });
 
 export default addToOutfits;
