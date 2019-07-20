@@ -1,5 +1,4 @@
 import Redux from 'redux';
-import { reviews } from '../data/sampleItemData.js';
 
 
 var reviewsReducer = (state = [], action) => {
