@@ -36,7 +36,7 @@ const Overview = props => {
       <OverviewSearch />
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <Carousel props={props} />
           </Grid>
           <Grid item xs={4} container direction="column">
