@@ -5,7 +5,7 @@ import Fab from "@material-ui/core/Fab";
 let QASearchBar = props => {
   return (
     <React.Fragment>
-     {console.log(props)}
+      {console.log(props)}
       <div>
         <h3>Questions and Answers</h3>
         <TextField

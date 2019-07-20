@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import QASearchBar from "./../components/QASearchBar.jsx";
+import QASearchBar from "./../components/QASearchBar";
 import QAHandleSearchEntry from "./../actions/QAHandleSearchEntry";
 import QAFilterResultsArr from "./../actions/QAFilterResultsArr";
 
