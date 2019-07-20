@@ -35,7 +35,7 @@ var Outfits = function Outfits(props) {
     outfits = outfits === null ? {} : outfits;
 
     for (var outfit in outfits) {
-      if (outfits[outfit] !== props.outfits[outfit]) {
+      if (JSON.stringify(outfits[outfit]) !== JSON.stringify(props.outfits[outfit])) {
         props.addToOutfits(outfits);
       }
     }

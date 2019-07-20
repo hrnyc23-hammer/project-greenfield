@@ -18,7 +18,7 @@ const Outfits = (props) => {
     outfits = JSON.parse(localStorage.getItem("greenfieldOutfits"))
     outfits = outfits === null ? {} : outfits;
     for (let outfit in outfits) {
-      if (outfits[outfit] !== props.outfits[outfit]) {
+      if (JSON.stringify(outfits[outfit]) !== JSON.stringify(props.outfits[outfit])) {
         props.addToOutfits(outfits);
       }
     }
