@@ -54,7 +54,7 @@ const Overview = props => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid container justify="center" alignItems="stretch">
+            <Grid container justify="flex-start" >
               <Button variant="contained" className={classes.button}>
                 Add to cart
               </Button>
