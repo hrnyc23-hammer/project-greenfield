@@ -22,7 +22,6 @@ app.use(express.static(path.join(__dirname, '../dist')));
 const handleRender = (req, res) => {
   let productId = parseInt(req.query.products);
   if (productId !== undefined || !isNaN(productId)) {
-    // let sessionId = parseInt(session_id);
     Axios.all([getProductInfo(productId), 
       getStyles(productId), 
       getRelated(productId), 

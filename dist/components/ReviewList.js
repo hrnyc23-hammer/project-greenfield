@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -7,15 +9,34 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
 var _Button = _interopRequireDefault(require("@material-ui/core/Button"));
 
-var _system = require("@material-ui/system");
+var _ReviewsModal = _interopRequireDefault(require("./ReviewsModal"));
 
 var ReviewList = function ReviewList(props) {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      open = _useState2[0],
+      setOpen = _useState2[1];
+
+  var handleOpen = function handleOpen() {
+    setOpen(true);
+  };
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  var toggleOpen = function toggleOpen() {
+    open ? handleClose() : handleOpen();
+  };
+
   return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("h4", null, props.reviews.results.length, " reviews, sorted by relevance"), _react["default"].createElement("div", null, props.reviews.results.map(function (review, index) {
     if ((props.barFilter.length === 0 || props.barFilter.includes(review.rating)) && index <= props.reviewsLength) {
       return _react["default"].createElement(_react["default"].Fragment, {
@@ -93,8 +114,12 @@ var ReviewList = function ReviewList(props) {
     },
     onClick: props.handleLengthChange
   }, "More Reviews") : null, _react["default"].createElement(_Button["default"], {
-    variant: "contained"
-  }, "Add A Review    +")));
+    variant: "contained",
+    onClick: toggleOpen
+  }, "Add A Review    +")), _react["default"].createElement(_ReviewsModal["default"], {
+    open: open,
+    handleClose: handleClose
+  }));
 };
 
 var _default = ReviewList;

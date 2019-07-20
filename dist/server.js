@@ -41,7 +41,6 @@ var handleRender = function handleRender(req, res) {
   var productId = parseInt(req.query.products);
 
   if (productId !== undefined || !isNaN(productId)) {
-    // let sessionId = parseInt(session_id);
     Axios.all([getProductInfo(productId), getStyles(productId), getRelated(productId), getQA(productId), getReviews(productId), getMeta(productId)]).then(Axios.spread(function (infoResponse, stylesResponse, relatedResponse, qaResponse, reviewsResponse, metaResponse) {
       var info = {
         overviewProductInfo: infoResponse.data
