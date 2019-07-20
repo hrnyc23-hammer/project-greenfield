@@ -187,8 +187,8 @@ let QAForum = props => {
         variant="contained"
         size="large"
         onClick={() => {
-          if (props.qaCount < props.qa.length) {
-            props.QAIncrementer(1);
+          if (props.qaCount < props.qaResultsArr.length) {
+            props.QAIncrementer(2);
             props.QAChangeResultsArr(props.qaCount);
           }
         }}
