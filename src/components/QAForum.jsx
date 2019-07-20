@@ -17,6 +17,7 @@ let QAForum = props => {
               ? -1
               : 0
           )
+          .slice(0, props.qaCount)
           .map((question, i) => {
             return (
               <React.Fragment key={Math.random()}>
@@ -188,7 +189,7 @@ let QAForum = props => {
         size="large"
         onClick={() => {
           if (props.qaCount < props.qaResultsArr.length) {
-            props.QAIncrementer(2);
+            props.QAIncrementer(1);
             props.QAChangeResultsArr(props.qaCount);
           }
         }}
