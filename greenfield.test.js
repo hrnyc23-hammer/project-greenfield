@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import fetchNewRelated from './src/actions/fetchNewRelated.js';
 import changeRelated from './src/actions/changeRelated.js';
 import changeSelectedStyle from './src/actions/changeSelectedStyle.js';
-import sample from './src/data/sampleItemData.js';
 import changeSize from './src/actions/changeSize.js'
 
 let page;
@@ -34,7 +33,7 @@ describe('redux', () => {
     let store;
 
     beforeEach(() => {
-      const initialState = sample;
+      const initialState = {};
       store = mockStore(initialState);
     });
 
