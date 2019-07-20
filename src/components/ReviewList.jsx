@@ -1,13 +1,15 @@
 import React from 'react'
 import moment from 'moment'
+import Button from "@material-ui/core/Button"
+import { borderRadius } from '@material-ui/system';
 
 const ReviewList = (props) => {
     return (
         <React.Fragment>
             <h4>{props.reviews.results.length} reviews, sorted by relevance</h4>
             <div>
-                {props.reviews.results.map((review) => {
-                    if (props.barFilter.length === 0 || props.barFilter.includes(review.rating)) {
+                {props.reviews.results.map((review, index) => {
+                    if ((props.barFilter.length === 0 || props.barFilter.includes(review.rating)) && index <= props.reviewsLength) {
                         return (
                             <React.Fragment key={review.review_id}>
                                 <div style={{ background: 'url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png) repeat-x', fontSize: '0', height: '21px', lineHeight: '0', overflow: 'hidden', textIndent: '-999em', width: '110px' }}>
@@ -15,12 +17,19 @@ const ReviewList = (props) => {
                                     </span>
                                 </div >
                                 <div>
-                                    <span style={{ fontSize: 'small', float: 'right' }}>{review.reviewer_name}   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
+                                    <span style={{ fontSize: 'small', float: 'right' }}><strong>{review.reviewer_name}</strong>   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
                                 </div>
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
+                                {review.photos.map((photo) => {
+                                    return <img key={photo.id} style={{ marginRight: '10px' }} src={photo.url}></img>
+                                })}
+                                {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
+                                {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
+                                    <p><strong>Response:</strong></p>
+                                    <p>{review.response}</p>
+                                </div> : null}
                                 <br />
-                                {(review.recommend === 1 ? <p>✓ I recommend this product</p> : null)}
                                 <span style={{ fontSize: 'small' }}>Was this review helpful?   </span>
                                 <span style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
@@ -35,7 +44,7 @@ const ReviewList = (props) => {
                     }
                 })}
             </div>
-
+            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</Button> : null}<Button variant='contained'>Add A Review    +</Button></span>
         </React.Fragment>
     )
 }

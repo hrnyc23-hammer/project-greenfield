@@ -31,6 +31,12 @@ var _QAChangeResultsArrReducer = _interopRequireDefault(require("./QAChangeResul
 
 var _QAIncrementerReducer = _interopRequireDefault(require("./QAIncrementerReducer.js"));
 
+var _reviewsLengthReducer = _interopRequireDefault(require("./reviewsLengthReducer.js"));
+
+var _overviewChangeSize = _interopRequireDefault(require("./overviewChangeSize.js"));
+
+var _outfitsReducer = _interopRequireDefault(require("./outfitsReducer.js"));
+
 var rootReducer = (0, _redux.combineReducers)({
   related: _related["default"],
   overviewProductInfo: _overviewProductInfo["default"],
@@ -42,7 +48,10 @@ var rootReducer = (0, _redux.combineReducers)({
   reviews: _reviewsReducer["default"],
   reviewsChangeBarFilter: _reviewsChangeBarFilterReducer["default"],
   qaResultsArr: _QAChangeResultsArrReducer["default"],
-  qaIncrementer: _QAIncrementerReducer["default"]
+  qaIncrementer: _QAIncrementerReducer["default"],
+  reviewsLengthReducer: _reviewsLengthReducer["default"],
+  overviewChangeSize: _overviewChangeSize["default"],
+  outfits: _outfitsReducer["default"]
 });
 var _default = rootReducer;
 exports["default"] = _default;

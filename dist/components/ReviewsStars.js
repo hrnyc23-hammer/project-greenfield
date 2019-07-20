@@ -23,7 +23,11 @@ var ReviewsStars = function ReviewsStars(props) {
     return rating;
   };
 
-  var rating = getRating(props.meta);
+  var rating = getRating(props.meta || {
+    ratings: {
+      0: 0
+    }
+  });
   var width = isNaN(rating) ? '0%' : (rating * 20).toString() + '%';
   return _react["default"].createElement("div", {
     style: {

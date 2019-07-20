@@ -11,9 +11,13 @@ var _react = _interopRequireDefault(require("react"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
+var _Button = _interopRequireDefault(require("@material-ui/core/Button"));
+
+var _system = require("@material-ui/system");
+
 var ReviewList = function ReviewList(props) {
-  return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("h4", null, props.reviews.results.length, " reviews, sorted by relevance"), _react["default"].createElement("div", null, props.reviews.results.map(function (review) {
-    if (props.barFilter.length === 0 || props.barFilter.includes(review.rating)) {
+  return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("h4", null, props.reviews.results.length, " reviews, sorted by relevance"), _react["default"].createElement("div", null, props.reviews.results.map(function (review, index) {
+    if ((props.barFilter.length === 0 || props.barFilter.includes(review.rating)) && index <= props.reviewsLength) {
       return _react["default"].createElement(_react["default"].Fragment, {
         key: review.review_id
       }, _react["default"].createElement("div", {
@@ -40,7 +44,21 @@ var ReviewList = function ReviewList(props) {
           fontSize: 'small',
           "float": 'right'
         }
-      }, review.reviewer_name, "   ", (0, _moment["default"])(review.date).format('ddd, MMM Do YYYY'))), _react["default"].createElement("h3", null, review.summary), _react["default"].createElement("p", null, review.body), _react["default"].createElement("br", null), review.recommend === 1 ? _react["default"].createElement("p", null, "\u2713 I recommend this product") : null, _react["default"].createElement("span", {
+      }, _react["default"].createElement("strong", null, review.reviewer_name), "   ", (0, _moment["default"])(review.date).format('ddd, MMM Do YYYY'))), _react["default"].createElement("h3", null, review.summary), _react["default"].createElement("p", null, review.body), review.photos.map(function (photo) {
+        return _react["default"].createElement("img", {
+          key: photo.id,
+          style: {
+            marginRight: '10px'
+          },
+          src: photo.url
+        });
+      }), review.recommend === 1 ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("p", null, _react["default"].createElement("strong", null, "\u2713"), " I recommend this product")) : null, review.response ? _react["default"].createElement("div", {
+        style: {
+          background: 'lightblue',
+          padding: '10px 20px',
+          borderRadius: '20px'
+        }
+      }, _react["default"].createElement("p", null, _react["default"].createElement("strong", null, "Response:")), _react["default"].createElement("p", null, review.response)) : null, _react["default"].createElement("br", null), _react["default"].createElement("span", {
         style: {
           fontSize: 'small'
         }
@@ -68,7 +86,15 @@ var ReviewList = function ReviewList(props) {
     } else {
       return null;
     }
-  })));
+  })), _react["default"].createElement("span", null, props.reviewsLength < props.reviews.results.length - 1 ? _react["default"].createElement(_Button["default"], {
+    variant: "contained",
+    style: {
+      marginRight: '20px'
+    },
+    onClick: props.handleLengthChange
+  }, "More Reviews") : null, _react["default"].createElement(_Button["default"], {
+    variant: "contained"
+  }, "Add A Review    +")));
 };
 
 var _default = ReviewList;

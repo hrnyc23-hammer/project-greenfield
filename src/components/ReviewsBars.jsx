@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from "@material-ui/core/Button"
 
 const ReviewsBars = (props) => {
     var totalStars = 0
@@ -42,19 +43,64 @@ const ReviewsBars = (props) => {
             <br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(1) }} style={{ textDecoration: 'underline', float: 'left' }}>1 star</span>
-                <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
+                <div style={{ float: 'left', marginTop: '5px', marginLeft: '16px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: `${(oneStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
-            <div>{(props.barFilter.length > 0) ? (
+            <div>{(props.barFilter.length > 0) ? (<div>
                 <span>Filtered by stars:
                 <span>{props.barFilter.map((star, index) => {
-                    return <span key={index}> {star}</span>
+                    if (index !== props.barFilter.length - 1) {
+                        return <span key={index}> <strong>{star},</strong></span>
+                    } else {
+                        return <span key={index}> <strong>{star}</strong></span>
+                    }
                 })}
-                    </span><br /><button onClick={props.handleBarFilterReset}>Reset Filter</button></span>
-            ) : null}
+                    </span><br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
+            </div>) : (<div style={{ visibility: 'hidden' }}>
+                <span>Filtered by stars:
+                <br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
+            </div>)}
             </div>
+            {props.meta.characteristics.Comfort ? <React.Fragment><p>Comfort</p>
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Comfort * 46}px`, marginBottom: '10px' }}>▼</div></div>
+                <br />
+                <p style={{ float: 'left', fontSize: 'x-small' }}>Poor</p>
+                <p style={{ marginLeft: '185px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+            </React.Fragment> : null}
+            <br /><br />
+            {props.meta.characteristics.Fit ? <React.Fragment><p>Fit</p>
+
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Fit * 46}px`, marginBottom: '10px' }}>▼</div></div>
+
+
+                <br />
+                <p style={{ float: 'left', fontSize: 'x-small' }}>Too Small</p>
+                <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <p style={{ marginLeft: '68px', float: 'left', fontSize: 'x-small' }}>Too Big</p>
+            </React.Fragment> : null}
+            <br /><br />
+            {props.meta.characteristics.Length ? <React.Fragment><p>Length</p>
+
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Length * 46}px`, marginBottom: '10px' }}>▼</div></div>
+
+
+                <br />
+                <p style={{ float: 'left', fontSize: 'x-small' }}>Too Short</p>
+                <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <p style={{ marginLeft: '64px', float: 'left', fontSize: 'x-small' }}>Too Long</p>
+            </React.Fragment> : null}
+            <br /><br />
+            {props.meta.characteristics.Quality ? <React.Fragment><p>Quality</p>
+
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Quality * 46}px`, marginBottom: '10px' }}>▼</div></div>
+
+
+                <br />
+                <p style={{ float: 'left', fontSize: 'x-small' }}>Poor</p>
+                <p style={{ marginLeft: '185px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+            </React.Fragment> : null}
         </React.Fragment>
     )
 }

@@ -9,10 +9,8 @@ exports["default"] = void 0;
 
 var _redux = _interopRequireDefault(require("redux"));
 
-var _sampleItemData = require("../data/sampleItemData.js");
-
 var overviewChangeSelectedStyleReducer = function overviewChangeSelectedStyleReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.styles.results[0];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {

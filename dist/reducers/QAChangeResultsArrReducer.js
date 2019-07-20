@@ -11,25 +11,25 @@ var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers
 
 var _redux = _interopRequireDefault(require("redux"));
 
-var _sampleItemData = require("../data/sampleItemData.js");
-
 var QAChangeResultsArrReducer = function QAChangeResultsArrReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _sampleItemData.qa.results.slice(0, 2);
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var temp;
+  var questions;
 
   switch (action.type) {
     case "CHANGE_RESULTS_ARRAY":
-      var temp = JSON.parse(JSON.stringify(_sampleItemData.qa.results[action.entry]));
+      temp = JSON.parse(JSON.stringify(state[action.entry]));
       temp.answerLimit = 2;
       return [].concat((0, _toConsumableArray2["default"])(state), [temp]);
 
     case "ADD_ANSWERS":
-      var questions = (0, _toConsumableArray2["default"])(state);
+      questions = (0, _toConsumableArray2["default"])(state);
       questions[action.index].answerLimit += 2;
       return questions;
 
     default:
-      if (state[0].answerLimit === undefined) {
+      if (state.length > 0 && state[0].answerLimit === undefined) {
         return state.map(function (ele) {
           ele.answerLimit = 2;
           return ele;

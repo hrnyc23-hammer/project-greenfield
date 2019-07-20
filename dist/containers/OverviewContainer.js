@@ -13,11 +13,15 @@ var _Overview = _interopRequireDefault(require("../components/Overview"));
 
 var _changeSelectedStyle = _interopRequireDefault(require("../actions/changeSelectedStyle.js"));
 
+var _changeSize = _interopRequireDefault(require("../actions/changeSize.js"));
+
 var mapStateToProps = function mapStateToProps(store) {
   return {
     info: store.overviewProductInfo,
     styles: store.overviewChangeStyles,
-    selectedStyle: store.overviewChangeSelectedStyles
+    selectedStyle: store.overviewChangeSelectedStyles,
+    meta: store.meta,
+    size: store.overviewChangeSize
   };
 };
 
@@ -25,6 +29,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     handleSelectedStyle: function handleSelectedStyle(selectedStyle) {
       dispatch((0, _changeSelectedStyle["default"])(selectedStyle));
+    },
+    handleSelectedSize: function handleSelectedSize(selectedSize) {
+      dispatch((0, _changeSize["default"])(selectedSize));
     }
   };
 };

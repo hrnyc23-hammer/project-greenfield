@@ -51,11 +51,13 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.2.1",
+    "@material-ui/icons": "^4.2.1",
     "axios": "^0.19.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
+    "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.24.0",
     "puppeteer": "^1.18.1",
     "react": "^16.8.6",
