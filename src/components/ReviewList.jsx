@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import Button from "@material-ui/core/Button"
-import { borderRadius } from '@material-ui/system';
+import ReviewsModal from './ReviewsModal.jsx'
 
 const ReviewList = (props) => {
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const toggleOpen = () => {
+        open ? handleClose() : handleOpen();
+    }
+
     return (
         <React.Fragment>
             <h4>{props.reviews.results.length} reviews, sorted by relevance</h4>
@@ -44,7 +58,8 @@ const ReviewList = (props) => {
                     }
                 })}
             </div>
-            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</Button> : null}<Button variant='contained'>Add A Review    +</Button></span>
+            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</Button> : null}<Button variant='contained' onClick={toggleOpen}>Add A Review    +</Button></span>
+            <ReviewsModal open={open} handleClose={handleClose} />
         </React.Fragment>
     )
 }
