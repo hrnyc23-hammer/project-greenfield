@@ -13,6 +13,14 @@ var QAChangeResultsArrReducer = (state = [], action) => {
       questions[action.index].answerLimit += 2;
 
       return questions;
+    //TODO:
+    case "QA_FILTER_ARR":
+      let filteredQuestions = [...state];
+      let filteredArr = filteredQuestions.filter((name, i) =>
+        name.question_body.includes(action.entry)
+      );
+
+      return filteredArr;
     default:
       if (state.length > 0 && state[0].answerLimit === undefined) {
         return state.map(ele => {
