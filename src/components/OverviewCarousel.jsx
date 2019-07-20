@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
 const Carousel = ({ props }) => {
   const useStyles = makeStyles(theme => ({
-    image: {
-      maxWidth: 450,
-      maxHeight: 450
+    root : {
+      justify:"spaceAround",
+      display:"flex",
+      flex: "noWrap"
     },
-    img: {
+    image: {
+      width: "80%",
+      height: 450
+    },
+    imageContainer: {
       margin: "auto",
       display: "block",
       maxWidth: "100%",
@@ -19,13 +24,16 @@ const Carousel = ({ props }) => {
       visibility: "hidden"
     },
     left: {
-      position: "absolute",
-      top: "50%"
+      position: "relative",
+      top: "50%",
+      left: "5%",
+      zIndex: 1
     },
     right: {
-      position: "absolute",
+      position: "relative",
       top: "50%",
-      left: "50%"
+      left: "75%",
+      zIndex: 1
     }
   }));
 
@@ -35,19 +43,17 @@ const Carousel = ({ props }) => {
 
   const photoLength = props.selectedStyle.photos.length - 1;
   return (
-    <div>
+    <Box className={classes.root}>
       <button onClick={() => setCount(count - 1)} className={count === 0 ? classes.hide : classes.left}>
         -
       </button>
       <button onClick={() => setCount(count + 1)} className={count === photoLength ? classes.hide : classes.right}>
         +
       </button>
-      <div className={classes.img}>
-      <Grid container justifyContent="center">
+      <Box>
         <img className={classes.image} src={props.selectedStyle.photos[count].url} />
-      </Grid>
-        </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
