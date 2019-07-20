@@ -39,9 +39,9 @@ describe('redux', () => {
     });
 
     it('should dispatch related change', () => {
-      store.dispatch(changeRelated([sample.info]));
+      store.dispatch(changeRelated([{foo: 'bar'}]));
       const actions = store.getActions();
-      const expectedPayload = {type: 'CHANGE_RELATED', related: [sample.info]};
+      const expectedPayload = {type: 'CHANGE_RELATED', related: [{foo: 'bar'}]};
       expect(actions).toEqual([expectedPayload]);
     });
 
