@@ -15,7 +15,7 @@ var QAChangeResultsArrReducer = (state = [], action) => {
       return questions;
     case "QA_FILTER_ARR":
       let questions = [...state];
-      let filteredQuestions = questions.filter((questions) =>
+      let filteredQuestions = questions.filter((question) =>
         question.question_body.includes(action.entry)
       );
 
