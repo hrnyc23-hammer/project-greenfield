@@ -7,7 +7,6 @@ import Divider from "@material-ui/core/Divider";
 let QAForum = props => {
   return (
     <div>
-      {console.log(props)}
       <ul>
         {props.qaResultsArr
           .sort((a, b) =>
