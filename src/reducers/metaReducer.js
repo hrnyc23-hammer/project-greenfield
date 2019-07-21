@@ -1,5 +1,4 @@
 import Redux from 'redux';
-import { meta } from '../data/sampleItemData.js';
 
 
 var metaReducer = (state = {}, action) => {

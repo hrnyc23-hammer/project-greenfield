@@ -10,14 +10,23 @@ const bodyParser = require('body-parser');
 const Axios = require('axios');
 const { getProductInfo, getStyles, getRelated, getQA, getReviews, getMeta } = require('./infoFetchers');
 const rootReducer = require("./reducers/main").default;
+const expressStaticGzip = require("express-static-gzip");
 
 
 
 const port = process.env.PORT || 8866;
 
-
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../dist')));
+
+app.use('/', expressStaticGzip(path.join(__dirname, '../dist'), {
+  enableBrotli: true,
+  orderPreference: ['br', 'gz'],
+  setHeaders: function (res, path) {
+     res.setHeader("Cache-Control", "public, max-age=31536000");
+  }
+}));
+
+// app.use(express.static(path.join(__dirname, '../dist')));
 
 const handleRender = (req, res) => {
   let productId = parseInt(req.query.products);
@@ -29,24 +38,6 @@ const handleRender = (req, res) => {
       getReviews(productId), 
       getMeta(productId)])
     .then(Axios.spread((infoResponse, stylesResponse, relatedResponse, qaResponse, reviewsResponse, metaResponse) => {
-      let info = {
-        overviewProductInfo: infoResponse.data
-      };
-      let styles = {
-        overviewChangeStyles: stylesResponse.data
-      };
-      let related = {
-        related: relatedResponse.data
-      };
-      let qa = {
-        qaResultsArr: qaResponse.data.results
-      };
-      let reviews = {
-        reviews: reviewsResponse.data
-      };
-      let meta = {
-        meta: metaResponse.data
-      };
       const store = createStore(
         rootReducer, {
           overviewProductInfo: infoResponse.data,

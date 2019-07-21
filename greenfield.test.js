@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import fetchNewRelated from './src/actions/fetchNewRelated.js';
 import changeRelated from './src/actions/changeRelated.js';
 import changeSelectedStyle from './src/actions/changeSelectedStyle.js';
-import sample from './src/data/sampleItemData.js';
 import changeSize from './src/actions/changeSize.js'
 
 let page;
@@ -34,14 +33,14 @@ describe('redux', () => {
     let store;
 
     beforeEach(() => {
-      const initialState = sample;
+      const initialState = {};
       store = mockStore(initialState);
     });
 
     it('should dispatch related change', () => {
-      store.dispatch(changeRelated([sample.info]));
+      store.dispatch(changeRelated([{foo: 'bar'}]));
       const actions = store.getActions();
-      const expectedPayload = {type: 'CHANGE_RELATED', related: [sample.info]};
+      const expectedPayload = {type: 'CHANGE_RELATED', related: [{foo: 'bar'}]};
       expect(actions).toEqual([expectedPayload]);
     });
 
