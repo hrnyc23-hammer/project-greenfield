@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
+import axios from 'axios'
+import store from '../store/store.js'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
@@ -18,11 +20,36 @@ const ReviewList = (props) => {
         open ? handleClose() : handleOpen();
     }
 
+    var totalReviews = 0
+    for (let key in props.meta.ratings) {
+        totalReviews = totalReviews + props.meta.ratings[key]
+    }
+
+    var page = 1
+
+    const handleMoreReviews = () => {
+        if (props.reviewsLength + 2 > props.loadedReviews.length) {
+            page++
+            axios.get(`http://18.222.40.124/reviews/${props.reviews.product}/list?count=4&page=${page}`)
+                .then(({ data }) => {
+                    props.handleLoadedChange(data.results)
+                })
+                .then(() => {
+                    props.handleLengthChange()
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        } else {
+            props.handleLengthChange()
+        }
+    }
+
     return (
         <React.Fragment>
-            <h4>{props.reviews.results.length} reviews, sorted by relevance</h4>
+            <h4>{totalReviews} reviews, sorted by relevance</h4>
             <div>
-                {props.reviews.results.map((review, index) => {
+                {props.loadedReviews.map((review, index) => {
                     if ((props.barFilter.length === 0 || props.barFilter.includes(review.rating)) && index <= props.reviewsLength) {
                         return (
                             <React.Fragment key={review.review_id}>
@@ -58,7 +85,7 @@ const ReviewList = (props) => {
                     }
                 })}
             </div>
-            <span>{(props.reviewsLength < props.reviews.results.length - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={props.handleLengthChange}>More Reviews</Button> : null}<Button variant='contained' onClick={toggleOpen}>Add A Review    +</Button></span>
+            <span>{(props.reviewsLength < totalReviews - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={handleMoreReviews}>More Reviews</Button> : null}<Button variant='contained' onClick={toggleOpen}>Add A Review    +</Button></span>
             <ReviewsModal open={open} handleClose={handleClose} />
         </React.Fragment>
     )
