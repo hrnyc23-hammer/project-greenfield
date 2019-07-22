@@ -4,7 +4,9 @@ import thunk from 'redux-thunk';
 import fetchNewRelated from './src/actions/fetchNewRelated.js';
 import changeRelated from './src/actions/changeRelated.js';
 import changeSelectedStyle from './src/actions/changeSelectedStyle.js';
-import changeSize from './src/actions/changeSize.js'
+import changeSize from './src/actions/changeSize.js';
+import addToOutfits from './src/actions/addToOutfits';
+import removeFromOutfits from './src/actions/removeFromOutfits.js';
 
 let page;
 let browser;
@@ -44,6 +46,20 @@ describe('redux', () => {
       expect(actions).toEqual([expectedPayload]);
     });
 
+    it('should dispatch to add outfits', () => {
+      store.dispatch(addToOutfits({foo: 'bar'}));
+      const actions = store.getActions();
+      const expectedPayload = {type: 'ADD_TO_OUTFITS', outfits: {foo: 'bar'}};
+      expect(actions).toEqual([expectedPayload]);
+    })
+
+    it('should dispatch to remove from outfits', () => {
+      store.dispatch(removeFromOutfits('foo'));
+      const actions = store.getActions();
+      const expectedPayload = {type: 'REMOVE_FROM_OUTFITS', outfitId: 'foo'};
+      expect(actions).toEqual([expectedPayload]);
+    })
+
     it('should dispatch selected style change', () => {
       store.dispatch(changeSelectedStyle({foo: 'bar'}));
       const action = store.getActions();
@@ -64,7 +80,7 @@ describe('redux', () => {
 // describe('end-to-end tests', () => {
   
 //   beforeEach(async () => {
-//     await page.goto('http://localhost:8888');
+//     await page.goto('http://localhost:8866');
 //   });
 
 //   test('can run e2e tests', async () => {

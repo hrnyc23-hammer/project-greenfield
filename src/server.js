@@ -44,7 +44,8 @@ const handleRender = (req, res) => {
           overviewChangeSelectedStyles: stylesResponse.data.results[0],
           qaResultsArr: qaResponse.data.results,
           reviews: reviewsResponse.data,
-          meta: metaResponse.data
+          meta: metaResponse.data,
+          reviewsLoadedReducer: reviewsResponse.data.results
       });
       const html = renderToString(
         <Provider store={store}>
