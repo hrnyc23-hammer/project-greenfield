@@ -37,7 +37,7 @@ const ReviewList = (props) => {
                     props.handleLengthChange()
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log('API request error')
                 })
         } else {
             props.handleLengthChange()
