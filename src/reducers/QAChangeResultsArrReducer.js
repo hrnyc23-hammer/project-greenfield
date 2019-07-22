@@ -7,9 +7,7 @@ var QAChangeResultsArrReducer = (state = [], action) => {
     case "CHANGE_RESULTS_ARRAY":
       temp = JSON.parse(JSON.stringify(state[action.entry]));
       temp.answerLimit = 2;
-      [...state].forEach(question => {
-        if (question.question_id !== temp.question_id) return [...state, temp];
-      });
+
       return [...state];
     case "ADD_ANSWERS":
       questions = [...state];
