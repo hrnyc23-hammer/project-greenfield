@@ -37,12 +37,38 @@ let QAAddAQuestion = props => {
               props.QAAddQuestionBody(e.target.value);
             }}
           />
-          <button onClick={() => {}}>Submit</button>
+          <input
+            placeholder="photo url"
+            onChange={e => {
+              props.QAUrl(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              if (props.photoUrl.length < 5) {
+                props.QAAddPhotos(props.url);
+              }
+            }}
+          >
+            add photo
+          </button>
+          <br />
+          <React.Fragment>
+            {props.photoUrl.map(photo => {
+              return <img src={photo} width="100" height="60" />;
+            })}
+          </React.Fragment>
           <br />
           <button
             onClick={() => {
-              props.QAAddAQuestionClicked(!props.clickedFlag);
               console.log(props);
+            }}
+          >
+            Submit
+          </button>
+          <button
+            onClick={() => {
+              props.QAAddAQuestionClicked(!props.clickedFlag);
             }}
           >
             exit
