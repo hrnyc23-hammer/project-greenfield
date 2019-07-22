@@ -18,15 +18,15 @@ const port = process.env.PORT || 8866;
 
 app.use(bodyParser.json());
 
-app.use('/', expressStaticGzip(path.join(__dirname, '../dist'), {
-  enableBrotli: true,
-  orderPreference: ['br', 'gz'],
-  setHeaders: function (res, path) {
-     res.setHeader("Cache-Control", "public, max-age=31536000");
-  }
-}));
+// app.use('/', expressStaticGzip(path.join(__dirname, '../dist'), {
+//   enableBrotli: true,
+//   orderPreference: ['br', 'gz'],
+//   setHeaders: function (res, path) {
+//      res.setHeader("Cache-Control", "public, max-age=31536000");
+//   }
+// }));
 
-// app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 const handleRender = (req, res) => {
   let productId = parseInt(req.query.products);
