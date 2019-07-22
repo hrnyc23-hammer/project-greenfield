@@ -52,6 +52,17 @@ const ReviewsModal = (props) => {
     const [summary, setSummary] = useState('Example: Best purchase ever!')
     const [singlePhoto, setSinglePhoto] = useState('Enter photo URL here')
 
+    const reset = () => {
+        setBody('Why did you like the product or not?')
+        setEmail('Your email here')
+        setName('Example: jackson11')
+        setPhotos([])
+        setRating(3)
+        setRecommend(true)
+        setSummary('Example: Best purchase ever!')
+        setSinglePhoto('Enter photo URL here')
+    }
+
     const submitPhoto = () => {
         if (photos.length < 5) {
             photos.push(singlePhoto)
@@ -96,6 +107,7 @@ const ReviewsModal = (props) => {
                 <p><strong>Photos:</strong></p>
                 <textarea style={leftStyle} value={singlePhoto} maxLength="1000" onSubmit={submitPhoto} onChange={(e) => setSinglePhoto(e.target.value)} rows="1" cols="80"></textarea><button onClick={submitPhoto}>Submit URL</button>
                 <button style={submitStyle}>Submit Review</button>
+                <button style={submitStyle} onClick={reset}>Reset Fields</button>
                 {photos.map((pic, index) => {
                     return <div key={index} style={small}>{pic}</div>
                 })}
