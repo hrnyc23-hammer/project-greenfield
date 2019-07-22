@@ -72,6 +72,7 @@ const ComparisonModal = (props) => {
           <tbody>
             <tr>
               <td>{props.currentInfo.name}</td>
+              <td></td>
               <td>{props.compareInfo.name}</td>
             </tr>
             {Object.keys(comparison).map((feature, idx) => {
