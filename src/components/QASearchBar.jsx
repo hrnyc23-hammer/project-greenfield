@@ -21,8 +21,6 @@ let QASearchBar = props => {
           }}
           placeholder={"Have a Question? Search for answers...."}
         />
-
-        <Fab onClick={e => {}}>Go!</Fab>
       </div>
     </React.Fragment>
   );
