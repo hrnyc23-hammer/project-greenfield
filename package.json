@@ -10,8 +10,13 @@
     "test": "jest",
     "start": "nodemon transpile/server.js",
     "build": "webpack -d --watch",
+<<<<<<< HEAD
     "production_build": "webpack -p && npm run babelbuild",
     "travisbuild": "webpack -d",
+=======
+    "production_build": "webpack -p && babel src -d transpile",
+    "travisbuild": "webpack -d --watch",
+>>>>>>> added --watch tag to run travisbuild script in package.json
     "babelbuild": "babel src -d transpile",
     "clean": "eslint src/ && eslint server.js"
   },
