@@ -7,12 +7,13 @@ import qaSearchEntry from "./QAHandleSearchEntryReducer.js";
 import qa from "./QAReducer.js";
 import meta from "./metaReducer.js";
 import reviews from "./reviewsReducer.js";
-import reviewsChangeBarFilter from './reviewsChangeBarFilterReducer.js'
+import reviewsChangeBarFilter from "./reviewsChangeBarFilterReducer.js";
 import qaResultsArr from "./QAChangeResultsArrReducer.js";
 import qaIncrementer from "./QAIncrementerReducer.js";
-import reviewsLengthReducer from './reviewsLengthReducer.js';
+import reviewsLengthReducer from "./reviewsLengthReducer.js";
 import overviewChangeSize from "./overviewChangeSize.js";
 import outfits from "./outfitsReducer.js";
+
 
 const rootReducer = combineReducers({
   related,

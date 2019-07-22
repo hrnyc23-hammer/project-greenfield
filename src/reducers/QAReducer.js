@@ -1,12 +1,11 @@
-import Redux from 'redux';
-
+import Redux from "redux";
 
 var qaReducer = (state = {}, action) => {
   switch (action.type) {
-  case 'CHANGE_QA':
-    return action.qa;
-  default:
-    return state;
+    case "CHANGE_QA":
+      return action.qa;
+    default:
+      return state;
   }
 };
 

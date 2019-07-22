@@ -2,9 +2,7 @@ import { connect } from "react-redux";
 import QA from "./../components/QA";
 
 var mapStateToProps = state => ({
-  qa: state.qa,
-  // initialState: state
-  QASearchEntry: state.qaSearchEntry
+  qa: state.qa
 });
 
 var mapDispatchToProps = dispatch => ({});
