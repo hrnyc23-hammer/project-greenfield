@@ -1,29 +1,18 @@
 import Axios from 'axios';
 import changeRelated from './changeRelated.js';
-const apiUrl = 'http://18.222.40.124/';
+import { getProductInfo, getStyles, getMeta } from '../infoFetchers';
 
 const fetchNewRelated = (relatedIds) => {
   return (dispatch) => {
     Promise.all(relatedIds.map((id) => {
-      return Axios.get(`${apiUrl}products/${id}`)
-      .then((idResponse) => {
-        let relatedResult = {
-          info: idResponse.data
-        };
-        return Axios.get((`${apiUrl}products/${id}/styles`))
-        .then((styleResponse) => {
-          let styleResult = {
-            styles: styleResponse.data.results
-          };
-          return Axios.get((`${apiUrl}reviews/${id}/meta`))
-          .then((metaResponse) => {
-            let metaResult = {
-              meta: metaResponse.data
-            };
-            return Object.assign({}, relatedResult, styleResult, metaResult);
-          });
-        })
-      });
+      return Axios.all([getProductInfo(id), getStyles(id), getMeta(id)])
+      .then(Axios.spread((infoResponse, stylesResponse, metaResponse) => {
+        return {
+          info: infoResponse.data,
+          styles: stylesResponse.data.results,
+          meta: metaResponse.data
+        }
+      }))
     })).then((response) => {
       dispatch(changeRelated(response));
     }).catch(() => {
