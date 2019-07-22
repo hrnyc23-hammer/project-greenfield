@@ -10,7 +10,6 @@ let QAAddAQuestion = props => {
         size="large"
         onClick={() => {
           props.QAAddAQuestionClicked(!props.clickedFlag);
-          console.log(props);
         }}
       >
         Add A Question +
