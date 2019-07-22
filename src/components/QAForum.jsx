@@ -187,6 +187,7 @@ let QAForum = props => {
         variant="contained"
         size="large"
         onClick={() => {
+          console.log('hello');
           if (props.qaCount < props.qaResultsArr.length) {
             props.QAIncrementer(1);
             props.QAChangeResultsArr(props.qaCount);
