@@ -31,39 +31,36 @@ app.use(express.static(path.join(__dirname, '../dist')));
 const handleRender = (req, res) => {
   let productId = parseInt(req.query.products);
   if (productId !== undefined || !isNaN(productId)) {
-    Axios.all([getProductInfo(productId),
-    getStyles(productId),
-    getRelated(productId),
-    getQA(productId),
-    getReviews(productId),
-    getMeta(productId)])
-      .then(Axios.spread((infoResponse, stylesResponse, relatedResponse, qaResponse, reviewsResponse, metaResponse) => {
-        const store = createStore(
-          rootReducer, {
-            overviewProductInfo: infoResponse.data,
-            overviewChangeStyles: stylesResponse.data,
-            overviewChangeSelectedStyles: stylesResponse.data.results[0],
-            related: relatedResponse.data,
-            qaResultsArr: qaResponse.data.results,
-            reviews: reviewsResponse.data,
-            meta: metaResponse.data,
-            reviewsLoadedReducer: reviewsResponse.data.results
-          });
-        const html = renderToString(
-          <Provider store={store}>
-            <App />
-          </Provider>
-        );
-        const finalState = store.getState();
-        res.send(renderFullPage(html, finalState));
-      }))
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500)
-      })
-  } else {
-    res.sendStatus(404);
-  }
+    Axios.all([getProductInfo(productId), 
+      getStyles(productId), 
+      getQA(productId), 
+      getReviews(productId), 
+      getMeta(productId)])
+    .then(Axios.spread((infoResponse, stylesResponse, qaResponse, reviewsResponse, metaResponse) => {
+      const store = createStore(
+        rootReducer, {
+          overviewProductInfo: infoResponse.data,
+          overviewChangeStyles: stylesResponse.data,
+          overviewChangeSelectedStyles: stylesResponse.data.results[0],
+          qaResultsArr: qaResponse.data.results,
+          reviews: reviewsResponse.data,
+          meta: metaResponse.data,
+          reviewsLoadedReducer: reviewsResponse.data.results
+      });
+      const html = renderToString(
+        <Provider store={store}>
+          <App />
+        </Provider>
+      );
+      const finalState = store.getState();
+      res.send(renderFullPage(html, finalState)); 
+    }))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500)})
+    } else {
+      res.sendStatus(404);
+    }
 };
 
 function renderFullPage(html, preloadedState) {

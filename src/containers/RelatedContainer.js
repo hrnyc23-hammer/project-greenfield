@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Related from '../components/Related';
 import fetchNewRelated from '../actions/fetchNewRelated';
+import fetchRelatedIds from '../actions/fetchRelatedIds'
 
 const mapStateToProps = (store) => {
   return ({
@@ -12,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     load: (ids) => {
       dispatch(fetchNewRelated(ids));
+    },
+    fetchRelatedIds: (id) => {
+      dispatch(fetchRelatedIds(id));
     }
   }
 };

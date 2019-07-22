@@ -14,7 +14,9 @@ const Related = (props) => {
   const classes = useStyles();
 
   useEffect(() => {
-    if (typeof props.related[0] === 'number') {
+    if (props.related.length === 0) {
+      props.fetchRelatedIds(props.info.id);
+    } else if (typeof props.related[0] === 'number') {
       props.load(props.related);
     }
   });
@@ -27,13 +29,13 @@ const Related = (props) => {
       alignItems="center"
       spacing={4}
     >
-      {props.related.map((item, idx) => {
+      {props.related.length !== 0 ? props.related.map((item, idx) => {
         return (
           <Grid item key={idx}>
             <RelatedItem item={item} currentItemInfo={props.info} handleRelatedClick={props.handleRelatedClick}/>
           </Grid>
         )
-      })}      
+      }) : null}      
     </Grid>
     </div>
   )
