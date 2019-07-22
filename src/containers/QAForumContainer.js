@@ -5,7 +5,6 @@ import QAIncrementer from "./../actions/QAIncrementer";
 import QAAddAnswers from "./../actions/QAAddAnswers";
 
 var mapStateToProps = state => ({
-  qa: state.qa,
   qaResultsArr: state.qaResultsArr,
   qaCount: state.qaIncrementer,
   qaSearchEntry: state.qaSearchEntry
