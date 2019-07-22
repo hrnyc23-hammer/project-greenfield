@@ -2,6 +2,9 @@ import { connect } from 'react-redux'
 import ReviewList from '../components/ReviewList'
 import reviewsLength from '../actions/reviewsLength.js'
 import reviewsLoaded from '../actions/reviewsLoaded.js'
+import reviewsLengthReset from '../actions/reviewsLengthReset.js'
+import reviewsChange from '../actions/reviewsChange.js'
+import reviewsLoadedReset from '../actions/reviewsLoadedReset.js'
 
 const mapStateToProps = (store) => ({
     reviews: store.reviews,
@@ -13,8 +16,17 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        handleLoadedReset: () => {
+            dispatch(reviewsLoadedReset())
+        },
+        handleReviewsChange: (reviews) => {
+            dispatch(reviewsChange(reviews))
+        },
         handleLengthChange: () => {
             dispatch(reviewsLength())
+        },
+        handleLengthReset: () => {
+            dispatch(reviewsLengthReset())
         },
         handleLoadedChange: (arr) => {
             dispatch(reviewsLoaded(arr))
