@@ -13,9 +13,13 @@ import qaIncrementer from "./QAIncrementerReducer.js";
 import reviewsLengthReducer from "./reviewsLengthReducer.js";
 import overviewChangeSize from "./overviewChangeSize.js";
 import outfits from "./outfitsReducer.js";
-import reviewsLoadedReducer from './reviewsLoadedReducer.js'
-
-
+import reviewsLoadedReducer from "./reviewsLoadedReducer.js";
+import qaQuestionClicked from "./QAAddAQuestionReducer.js";
+import qaQuestionNickname from "./QAQuestionNicknameReducer.js";
+import qaQuestionEmail from "./QAAddEmailReducer.js";
+import qaQuestionBody from "./QAQuestionBodyReducer.js";
+import qaAddPhotos from "./QAAddPhotosReducer.js";
+import qaUrl from "./QAUrlReducer.js";
 
 const rootReducer = combineReducers({
   related,
@@ -32,7 +36,13 @@ const rootReducer = combineReducers({
   reviewsLengthReducer,
   overviewChangeSize,
   outfits,
-  reviewsLoadedReducer
+  reviewsLoadedReducer,
+  qaQuestionClicked,
+  qaQuestionNickname,
+  qaQuestionEmail,
+  qaQuestionBody,
+  qaAddPhotos,
+  qaUrl
 });
 
 export default rootReducer;
