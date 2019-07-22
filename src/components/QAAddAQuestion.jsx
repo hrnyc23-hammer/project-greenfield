@@ -55,7 +55,9 @@ let QAAddAQuestion = props => {
           <br />
           <React.Fragment>
             {props.photoUrl.map(photo => {
-              return <img src={photo} width="100" height="60" />;
+              return (
+                <img src={photo} width="100" height="60" key={Math.random()} />
+              );
             })}
           </React.Fragment>
           <br />
