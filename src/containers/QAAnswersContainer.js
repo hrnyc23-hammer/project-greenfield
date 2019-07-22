@@ -1,9 +1,7 @@
 import { connect } from "react-redux";
 import QAAnswers from "./../components/QAAnswers";
 
-
 var mapStateToProps = state => ({
-  qa: state.qa,
   QASearchEntry: state.QASearchEntry
 });
 

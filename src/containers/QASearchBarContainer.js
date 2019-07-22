@@ -4,7 +4,6 @@ import QAHandleSearchEntry from "./../actions/QAHandleSearchEntry";
 import QAFilterResultsArr from "./../actions/QAFilterResultsArr";
 
 var mapStateToProps = state => ({
-  qa: state.qa,
   qaSearchEntry: state.QASearchEntry
 });
 

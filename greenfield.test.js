@@ -80,7 +80,7 @@ describe('redux', () => {
 // describe('end-to-end tests', () => {
   
 //   beforeEach(async () => {
-//     await page.goto('http://localhost:8888');
+//     await page.goto('http://localhost:8866');
 //   });
 
 //   test('can run e2e tests', async () => {
