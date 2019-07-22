@@ -187,8 +187,7 @@ let QAForum = props => {
         variant="contained"
         size="large"
         onClick={() => {
-          //TODO: make hardcoded 5 into initial qaResultsArr.length
-          if (props.qaCount < 5) {
+          if (props.qaCount < props.qaResultsArr.length) {
             props.QAIncrementer(1);
             props.QAChangeResultsArr(props.qaCount);
           }
