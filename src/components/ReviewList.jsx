@@ -25,11 +25,35 @@ const ReviewList = (props) => {
     }
 
     var page = 1
+    var sort = 'relevant'
+
+    const handleSortChange = (sortOption) => {
+        sort = sortOption
+        page = 1
+        axios.get(`http://18.222.40.124/reviews/${props.reviews.product}/list?count=4&sort=${sort}&page=${page}`)
+            .then(({ data }) => {
+                props.handleReviewsChange(data)
+                return data
+            })
+            .then((data) => {
+                props.handleLoadedReset()
+                return data
+            })
+            .then((data) => {
+                props.handleLoadedChange(data.results)
+            })
+            .then(() => {
+                props.handleLengthReset()
+            })
+            .catch((err) => {
+                console.log('API request error')
+            })
+    }
 
     const handleMoreReviews = () => {
         if (props.reviewsLength + 2 > props.loadedReviews.length) {
             page++
-            axios.get(`http://18.222.40.124/reviews/${props.reviews.product}/list?count=4&page=${page}`)
+            axios.get(`http://18.222.40.124/reviews/${props.reviews.product}/list?count=4&sort=${sort}&page=${page}`)
                 .then(({ data }) => {
                     props.handleLoadedChange(data.results)
                 })
@@ -46,7 +70,11 @@ const ReviewList = (props) => {
 
     return (
         <React.Fragment>
-            <h4>{totalReviews} reviews, sorted by relevance</h4>
+            <h4>{totalReviews} reviews, sorted by <select defaultValue={sort} onChange={(e) => handleSortChange(e.target.value)}>
+                <option value='relevant'>relevance</option>
+                <option value='helpful'>helpfulness</option>
+                <option value='newest'>new</option>
+            </select></h4>
             <div>
                 {props.loadedReviews.map((review, index) => {
                     if ((props.barFilter.length === 0 || props.barFilter.includes(review.rating)) && index <= props.reviewsLength) {
