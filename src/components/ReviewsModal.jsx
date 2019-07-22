@@ -52,16 +52,6 @@ const ReviewsModal = (props) => {
     const [summary, setSummary] = useState('Example: Best purchase ever!')
     const [singlePhoto, setSinglePhoto] = useState('Enter photo URL here')
 
-    const reset = () => {
-        setBody('Why did you like the product or not?')
-        setEmail('Your email here')
-        setName('Example: jackson11')
-        setPhotos([])
-        setRating(3)
-        setRecommend(false)
-        setSummary('Example: Best purchase ever!')
-    }
-
     const submitPhoto = () => {
         if (photos.length < 5) {
             photos.push(singlePhoto)
