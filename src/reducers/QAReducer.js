@@ -5,7 +5,6 @@ var qaReducer = (state = {}, action) => {
     case "CHANGE_QA":
       return action.qa;
     default:
-      state.qaLength = state
       return state;
   }
 };
