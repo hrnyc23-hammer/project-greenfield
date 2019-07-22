@@ -33,17 +33,15 @@ const handleRender = (req, res) => {
   if (productId !== undefined || !isNaN(productId)) {
     Axios.all([getProductInfo(productId), 
       getStyles(productId), 
-      getRelated(productId), 
       getQA(productId), 
       getReviews(productId), 
       getMeta(productId)])
-    .then(Axios.spread((infoResponse, stylesResponse, relatedResponse, qaResponse, reviewsResponse, metaResponse) => {
+    .then(Axios.spread((infoResponse, stylesResponse, qaResponse, reviewsResponse, metaResponse) => {
       const store = createStore(
         rootReducer, {
           overviewProductInfo: infoResponse.data,
           overviewChangeStyles: stylesResponse.data,
           overviewChangeSelectedStyles: stylesResponse.data.results[0],
-          related: relatedResponse.data,
           qaResultsArr: qaResponse.data.results,
           reviews: reviewsResponse.data,
           meta: metaResponse.data
