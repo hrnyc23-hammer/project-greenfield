@@ -3,7 +3,6 @@ import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
 import axios from 'axios'
-import store from '../store/store.js'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
