@@ -90,7 +90,7 @@ const ReviewList = (props) => {
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
                                 {review.photos.map((photo) => {
-                                    return <img key={photo.id} style={{ marginRight: '10px' }} src={photo.url}></img>
+                                    return <img key={photo.id} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
                                 })}
                                 {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
                                 {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
