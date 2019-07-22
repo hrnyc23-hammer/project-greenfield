@@ -7,7 +7,10 @@ var QAChangeResultsArrReducer = (state = [], action) => {
     case "CHANGE_RESULTS_ARRAY":
       temp = JSON.parse(JSON.stringify(state[action.entry]));
       temp.answerLimit = 2;
-      return [...state, temp];
+      [...state].forEach(question => {
+        if (question.question_id !== temp.question_id) return [...state, temp];
+      });
+      return [...state];
     case "ADD_ANSWERS":
       questions = [...state];
       questions[action.index].answerLimit += 2;
@@ -15,7 +18,7 @@ var QAChangeResultsArrReducer = (state = [], action) => {
       return questions;
     case "QA_FILTER_ARR":
       let questions = [...state];
-      let filteredQuestions = questions.filter((question) =>
+      let filteredQuestions = questions.filter(question =>
         question.question_body.includes(action.entry)
       );
 
