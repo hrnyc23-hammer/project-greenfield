@@ -2,7 +2,6 @@
   "name": "greenfield",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true
@@ -11,7 +10,7 @@
     "test": "jest",
     "start": "nodemon transpile/server.js",
     "build": "webpack -d --watch",
-    "production_build": "webpack -p && babel src -d transpile",
+    "production_build": "webpack -p && npm run babelbuild",
     "travisbuild": "webpack -d",
     "babelbuild": "babel src -d transpile",
     "clean": "eslint src/ && eslint server.js"
