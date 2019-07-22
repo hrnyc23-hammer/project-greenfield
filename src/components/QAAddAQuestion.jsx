@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
+import TextField from "@material-ui/core/TextField";
+import Fab from "@material-ui/core/Fab";
 
 let QAAddAQuestion = props => {
   return (
@@ -16,42 +18,65 @@ let QAAddAQuestion = props => {
       </Button>
 
       <Modal open={props.clickedFlag}>
-        <div>
+        <div
+          style={{
+            width: "500px",
+            height: "500px",
+            position: "absolute",
+            left: "35%",
+            top: "25%",
+            background: "white"
+          }}
+        >
+          <Button
+            style={{ float: "right" }}
+            onClick={() => {
+              props.QAAddAQuestionClicked(!props.clickedFlag);
+            }}
+          >
+            x
+          </Button>
           <h3>Ask Your Question</h3>
-          <input
+          <TextField
             placeholder="nickname"
             onChange={e => {
               props.QAQuestionNickname(e.target.value);
             }}
           />
-          <input
+          <br />
+          <TextField
             placeholder="your email"
             onChange={e => {
               props.QAQuestionEmail(e.target.value);
             }}
           />
-          <input
-            placeholder="your question"
-            onChange={e => {
-              props.QAAddQuestionBody(e.target.value);
-            }}
-          />
-          <input
+          <br />
+
+          <TextField
             placeholder="photo url"
             onChange={e => {
               props.QAUrl(e.target.value);
             }}
           />
-          <button
+          <Button
             onClick={() => {
               if (props.photoUrl.length < 5) {
                 props.QAAddPhotos(props.url);
               }
             }}
           >
-            add photo
-          </button>
+            add photos (Up to 5)
+          </Button>
           <br />
+          <TextField
+            placeholder="your question"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            onChange={e => {
+              props.QAAddQuestionBody(e.target.value);
+            }}
+          />
           <React.Fragment>
             {props.photoUrl.map(photo => {
               return (
@@ -60,20 +85,9 @@ let QAAddAQuestion = props => {
             })}
           </React.Fragment>
           <br />
-          <button
-            onClick={() => {
-              console.log(props);
-            }}
-          >
+          <Fab style={{ float: "right" }} onClick={() => {}}>
             Submit
-          </button>
-          <button
-            onClick={() => {
-              props.QAAddAQuestionClicked(!props.clickedFlag);
-            }}
-          >
-            exit
-          </button>
+          </Fab>
         </div>
       </Modal>
     </React.Fragment>
