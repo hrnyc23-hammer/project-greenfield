@@ -15,6 +15,7 @@ import overviewChangeSize from "./overviewChangeSize.js";
 import outfits from "./outfitsReducer.js";
 
 
+
 const rootReducer = combineReducers({
   related,
   overviewProductInfo,
