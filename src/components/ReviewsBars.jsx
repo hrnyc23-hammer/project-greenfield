@@ -11,40 +11,48 @@ const ReviewsBars = (props) => {
     var threeStars = props.meta.ratings[3] || 0
     var twoStars = props.meta.ratings[2] || 0
     var oneStars = props.meta.ratings[1] || 0
+    var fiveWidth = `${(fiveStars / totalStars) * 100}%`
+    var fourWidth = `${(fourStars / totalStars) * 100}%`
+    var threeWidth = `${(threeStars / totalStars) * 100}%`
+    var twoWidth = `${(twoStars / totalStars) * 100}%`
+    var oneWidth = `${(oneStars / totalStars) * 100}%`
+    if (totalStars === 0) {
+        fiveWidth = fourWidth = threeWidth = twoWidth = oneWidth = '0%'
+    }
     return (
         <React.Fragment>
             <div>
                 <span onClick={() => { props.handleBarFilterChange(5) }} style={{ textDecoration: 'underline', float: 'left' }}>5 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
-                    <div style={{ width: `${(fiveStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
+                    <div style={{ width: fiveWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(4) }} style={{ textDecoration: 'underline', float: 'left' }}>4 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
-                    <div style={{ width: `${(fourStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
+                    <div style={{ width: fourWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(3) }} style={{ textDecoration: 'underline', float: 'left' }}>3 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
-                    <div style={{ width: `${(threeStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
+                    <div style={{ width: threeWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(2) }} style={{ textDecoration: 'underline', float: 'left' }}>2 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
-                    <div style={{ width: `${(twoStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
+                    <div style={{ width: twoWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(1) }} style={{ textDecoration: 'underline', float: 'left' }}>1 star</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '16px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
-                    <div style={{ width: `${(oneStars / totalStars) * 100}%`, background: 'green', height: '100%' }}></div>
+                    <div style={{ width: oneWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
