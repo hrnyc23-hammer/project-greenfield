@@ -1,12 +1,12 @@
 import Redux from "redux";
 
-var QAAnswerEmailReducer = (state = "", action) => {
+var QAAnswerBodyReducer = (state = "", action) => {
   switch (action.type) {
-    case "QA_ANSWER_EMAIL":
+    case "QA_ADD_ANSWER_BODY":
       return action.entry;
     default:
       return state;
   }
 };
 
-export default QAAnswerEmailReducer;
+export default QAAnswerBodyReducer;

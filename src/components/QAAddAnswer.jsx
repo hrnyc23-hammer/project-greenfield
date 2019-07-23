@@ -4,18 +4,16 @@ import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 
-let QAAddAQuestion = props => {
+let QAAddAnswer = props => {
   return (
     <React.Fragment>
-      <Button
-        variant="contained"
-        size="large"
+      <span
         onClick={() => {
-          props.QAAddAQuestionClicked(!props.clickedFlag);
+          props.QAAnswerFlagClicked(!props.clickedFlag);
         }}
       >
-        Add A Question +
-      </Button>
+        Add An Answer
+      </span>
 
       <Modal open={props.clickedFlag}>
         <div
@@ -31,23 +29,23 @@ let QAAddAQuestion = props => {
           <Button
             style={{ float: "right" }}
             onClick={() => {
-              props.QAAddAQuestionClicked(!props.clickedFlag);
+              props.QAAnswerFlagClicked(!props.clickedFlag);
             }}
           >
             x
           </Button>
-          <h3>Ask Your Question</h3>
+          <h3>Share Your Answer</h3>
           <TextField
             placeholder="nickname"
             onChange={e => {
-              props.QAQuestionNickname(e.target.value);
+              props.QAAnswerNickname(e.target.value);
             }}
           />
           <br />
           <TextField
             placeholder="your email"
             onChange={e => {
-              props.QAQuestionEmail(e.target.value);
+              props.QAAnswerEmail(e.target.value);
             }}
           />
           <br />
@@ -69,12 +67,12 @@ let QAAddAQuestion = props => {
           </Button>
           <br />
           <TextField
-            placeholder="your question"
+            placeholder="your answer"
             fullWidth
             margin="normal"
             variant="outlined"
             onChange={e => {
-              props.QAAddQuestionBody(e.target.value);
+              props.QAAddAnswerBody(e.target.value);
             }}
           />
           <React.Fragment>
@@ -94,4 +92,4 @@ let QAAddAQuestion = props => {
   );
 };
 
-export default QAAddAQuestion;
+export default QAAddAnswer;
