@@ -39,13 +39,18 @@ const Overview = props => {
       margin: theme.spacing(1)
     }
   }));
-
+  
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <OverviewSearch />
       <Paper className={classes.paper}>
+      {expanded.xs === 12 ? <Grid item xs={expanded.xs}>
+            <Carousel props={props}
+                      setView={toggleExpand}
+                      expanded={expanded}/>
+          </Grid> :
         <Grid container spacing={2}>
           <Grid item xs={expanded.xs}>
             <Carousel props={props}
@@ -76,8 +81,7 @@ const Overview = props => {
           <Grid item xs={12} className={classes.slogan}>
             <Typography variant="h5">{props.info.slogan}</Typography>
           </Grid>
-          <Grid container />
-        </Grid>
+        </Grid>}
       </Paper>
     </div>
   );
