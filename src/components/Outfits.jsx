@@ -3,10 +3,14 @@ import Fab from "@material-ui/core/Fab";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OutfitItem from './OutfitItem';
+import { SvgIcon } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+  },
+  add: {
+    cursor: "pointer"
   }
 }));
 
@@ -26,8 +30,7 @@ const Outfits = (props) => {
 
   
 
-  const addOutfit = (event) => {
-    event.preventDefault();
+  const addOutfit = () => {
     if (outfits[props.info.id] === undefined) {
       let outfitPackage = {
         info: props.info,
@@ -49,7 +52,9 @@ const Outfits = (props) => {
     spacing={4}
     >
       <Grid item>
-        <Fab onClick={e => addOutfit(e)}>+</Fab>
+        <SvgIcon onClick={addOutfit} className={classes.add} color="primary">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </SvgIcon>
       </Grid>
       {Object.keys(props.outfits).map((ele, idx) => {
         return (
