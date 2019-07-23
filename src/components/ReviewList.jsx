@@ -2,21 +2,33 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
+import ReviewsImageModal from './ReviewsImageModal'
 import axios from 'axios'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
+    const [openImage, setOpenImage] = useState(false)
+    const [url, setUrl] = useState(undefined)
 
     const handleOpen = () => {
         setOpen(true);
     };
+    const handleOpenImage = () => {
+        setOpenImage(true)
+    }
 
     const handleClose = () => {
         setOpen(false);
     };
+    const handleCloseImage = () => {
+        setOpenImage(false)
+    }
 
     const toggleOpen = () => {
         open ? handleClose() : handleOpen();
+    }
+    const toggleOpenImage = () => {
+        openImage ? handleCloseImage() : handleOpenImage()
     }
 
     var totalReviews = 0
@@ -26,6 +38,7 @@ const ReviewList = (props) => {
 
     var page = 1
     var sort = 'relevant'
+
 
     const handleSortChange = (sortOption) => {
         sort = sortOption
@@ -90,7 +103,8 @@ const ReviewList = (props) => {
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
                                 {review.photos.map((photo) => {
-                                    return <img key={photo.id} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
+                                    return <React.Fragment key={photo.id}><img onClick={() => { setUrl(photo.url); toggleOpenImage() }} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
+                                        <ReviewsImageModal open={openImage} handleClose={handleCloseImage} url={url} /></React.Fragment>
                                 })}
                                 {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
                                 {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
