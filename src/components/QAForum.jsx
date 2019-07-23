@@ -212,7 +212,7 @@ let QAForum = props => {
         More Answered Questions
       </Button>
 
-      <Modal open={props.qaImageClicked}>
+      <Modal open={props.qaImageClicked} onClose={() => {props.QAImageClicked(!props.qaImageClicked)}}>
         <React.Fragment>
           <Button
             style={{ float: "right" }}
