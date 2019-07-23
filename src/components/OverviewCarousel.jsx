@@ -1,59 +1,86 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
+import React, { useState, useEffect } from "react";
+import Icon from "@material-ui/core/Icon";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import Avatar from "@material-ui/core/Avatar";
 
 const Carousel = ({ props }) => {
-  const useStyles = makeStyles(theme => ({
-    root : {
-      justify:"spaceAround",
-      display:"flex",
-      flex: "noWrap"
-    },
-    image: {
-      width: "80%",
-      height: 450
-    },
-    imageContainer: {
-      margin: "auto",
-      display: "block",
-      maxWidth: "100%",
-      maxHeight: "100%",
-      objectFit: "cover"
-    },
-    hide: {
-      visibility: "hidden"
-    },
-    left: {
-      position: "relative",
-      top: "50%",
-      left: "5%",
-      zIndex: 1
-    },
-    right: {
-      position: "relative",
-      top: "50%",
-      left: "75%",
-      zIndex: 1
-    }
-  }));
-
-  const classes = useStyles();
+  const noImgAvailableURL = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
 
   const [count, setCount] = useState(0);
+  const [thumbCount, setThumbCount] = useState(0);
 
   const photoLength = props.selectedStyle.photos.length - 1;
+  const thumbnailsShown = props.selectedStyle.photos.slice(thumbCount, thumbCount + 7);
+
+  const slider = {
+    position: "relative",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flex:"noWrap",
+    alignItems : "center"
+  };
+
+  const showArrow = { color: "red", height:20, width:20 }
+
+  const hideArrow = { color: "red", height:20, width:20, visibility:'hidden' }
+
+  const [imageSlider, setImageSlider] = useState({});
+
+  const backgroundImageStyle = {
+    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '50% 60%',
+    height:"100%",
+    width:"100%",
+    transition: "all 1s linear"
+  };
+
+  useEffect(() => {
+    let styleDefault;
+    for (let i = 0; i < props.styles.results.length; i++) {
+      if (props.styles.results[i]["default?"] === 1) {
+        styleDefault = i;
+      }
+    }
+    if (JSON.stringify(props.selectedStyle) === "{}") {
+      props.handleSelectedStyle(props.styles.results[styleDefault]);
+    }
+
+    if (imageSlider.backgroundImage !== `url("${props.selectedStyle.photos[count].url}")`) {
+      setImageSlider(backgroundImageStyle)
+    }
+
+
+  });
+
+
   return (
-    <Box className={classes.root}>
-      <button onClick={() => setCount(count - 1)} className={count === 0 ? classes.hide : classes.left}>
-        -
-      </button>
-      <button onClick={() => setCount(count + 1)} className={count === photoLength ? classes.hide : classes.right}>
-        +
-      </button>
-      <Box>
-        <img className={classes.image} src={props.selectedStyle.photos[count].url} />
-      </Box>
-    </Box>
+    <div style={slider}>
+      <div style={count === 0 ? hideArrow : showArrow} onClick={() => setCount(count === 0 ? 0 : count - 1)}>
+        <ChevronLeftIcon/>
+      </div>
+      <div style={{ height: "inherit", width: "inherit", position: "relative", background: "gray", flex: 1 }}>
+        <div style={imageSlider}></div>
+      </div>
+      <div style={count === photoLength ? hideArrow : showArrow} onClick={() => setCount(Math.min(count + 1, photoLength))}>
+        <ChevronRightIcon />
+      </div>
+      {/* <GridList cellHeight={100} cols={Math.min(photoLength + 1, 7)}>
+          {thumbnailsShown.map((photo, i) => (
+            <GridListTile key={photo.thumbnail_url}>
+              <ButtonBase onClick={() => setCount(thumbCount + i)}>
+                <Avatar src={photo.thumbnail_url || noImgAvailableURL} />
+              </ButtonBase>
+            </GridListTile>
+          ))}
+        </GridList> */}
+    </div>
   );
 };
 
