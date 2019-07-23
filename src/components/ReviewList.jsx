@@ -3,7 +3,7 @@ import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
 import ReviewsImageModal from './ReviewsImageModal'
-import { putReport, getSortedReviews, putHelpful } from '../infoFetchers.js'
+import { putReport, getSortedReviews, putHelpful, postReview, getMeta } from '../infoFetchers.js'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
@@ -99,6 +99,45 @@ const ReviewList = (props) => {
             })
     }
 
+    const handleSubmitReview = (rating, summary, body, recommend, name, email, photos) => {
+        postReview(props.reviews.product, rating.toString(), summary, body, recommend, name, email, photos)
+            // .then((results) => {
+            //     console.log(results)
+            // })
+            .then(() => {
+                getSortedReviews(props.reviews.product, sort, page)
+                    .then(({ data }) => {
+                        props.handleReviewsChange(data)
+                        return data
+                    })
+                    .then((data) => {
+                        props.handleLoadedReset()
+                        return data
+                    })
+                    .then((data) => {
+                        props.handleLoadedChange(data.results)
+                    })
+                    .then(() => {
+                        props.handleLengthReset()
+                    })
+                    .then(() => {
+                        getMeta(props.reviews.product)
+                            .then(({ data }) => {
+                                props.handleMetaChange(data)
+                            })
+                            .catch((err) => {
+                                console.log('API request error')
+                            })
+                    })
+                    .catch((err) => {
+                        console.log('API request error')
+                    })
+            })
+            .catch((err) => {
+                console.log('API request error')
+            })
+    }
+
     const handleMoreReviews = () => {
         if (props.reviewsLength + 2 > props.loadedReviews.length) {
             page++
@@ -140,7 +179,7 @@ const ReviewList = (props) => {
                                 <p>{review.body}</p>
                                 {review.photos.map((photo) => {
                                     return <React.Fragment key={photo.id}><img onClick={() => { setUrl(photo.url); toggleOpenImage() }} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
-                                        <ReviewsImageModal open={openImage} handleClose={handleCloseImage} url={url} /></React.Fragment>
+                                        <ReviewsImageModal product={props.reviews.product} open={openImage} handleClose={handleCloseImage} url={url} /></React.Fragment>
                                 })}
                                 {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
                                 {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
@@ -163,7 +202,7 @@ const ReviewList = (props) => {
                 })}
             </div>
             <span>{(props.reviewsLength < totalReviews - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={handleMoreReviews}>More Reviews</Button> : null}<Button variant='contained' onClick={toggleOpen}>Add A Review    +</Button></span>
-            <ReviewsModal open={open} handleClose={handleClose} />
+            <ReviewsModal handleSubmitReview={handleSubmitReview} open={open} handleClose={handleClose} />
         </React.Fragment>
     )
 }
