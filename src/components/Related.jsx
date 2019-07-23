@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  add: {
+  shift: {
     cursor: "pointer"
   }
 }));
