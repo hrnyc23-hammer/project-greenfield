@@ -5,6 +5,7 @@ import reviewsLoaded from '../actions/reviewsLoaded.js'
 import reviewsLengthReset from '../actions/reviewsLengthReset.js'
 import reviewsChange from '../actions/reviewsChange.js'
 import reviewsLoadedReset from '../actions/reviewsLoadedReset.js'
+import changeMeta from '../actions/changeMeta.js'
 
 const mapStateToProps = (store) => ({
     reviews: store.reviews,
@@ -30,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleLoadedChange: (arr) => {
             dispatch(reviewsLoaded(arr))
+        },
+        handleMetaChange: (meta) => {
+            dispatch(changeMeta(meta))
         }
     }
 }

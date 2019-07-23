@@ -287,8 +287,9 @@ const ReviewsModal = props => {
           cols="80"
         />
         <button onClick={submitPhoto}>Submit URL</button>
-        <button style={submitStyle}>Submit Review</button>
-        {/* <button style={submitStyle} onClick={reset}>
+        <button onClick={() => props.handleSubmitReview(rating, summary, body, recommend, name, email, photos)} style={submitStyle}>Submit Review</button>
+        {/*<button style={submitStyle} onClick={reset}>
+
           Reset Fields
         </button> */}
         {/* {photos.map((pic, index) => {

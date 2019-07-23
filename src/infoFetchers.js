@@ -25,13 +25,24 @@ module.exports = {
   getMeta: (productId) => {
     return Axios.get(`${apiUrl}/reviews/${productId}/meta`);
   },
-  putReport: (id) => {
-    return Axios.put(`${apiUrl}/reviews/report/${id}`)
+  putReport: (reviewId) => {
+    return Axios.put(`${apiUrl}/reviews/report/${reviewId}`)
   },
   getSortedReviews: (productId, sort, page) => {
     return Axios.get(`${apiUrl}/reviews/${productId}/list?count=4&sort=${sort}&page=${page}`)
   },
-  putHelpful: (id) => {
-    return Axios.put(`${apiUrl}/reviews/helpful/${id}`)
+  putHelpful: (reviewId) => {
+    return Axios.put(`${apiUrl}/reviews/helpful/${reviewId}`)
+  },
+  postReview: (productId, rating, summary, body, recommend, name, email, photos) => {
+    return Axios.post(`${apiUrl}/reviews/${productId}`, {
+      rating: rating,
+      summary: summary,
+      body: body,
+      recommend: recommend,
+      name: name,
+      email: email,
+      photos: photos
+    })
   }
 }

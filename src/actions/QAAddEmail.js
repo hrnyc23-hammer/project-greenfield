@@ -1,5 +1,5 @@
 var QAAddEmail = entry => ({
-  type: "QA_QUESTION_EMAIL",
+  type: "QA_ANSWER_EMAIL",
   entry: entry
 });
 

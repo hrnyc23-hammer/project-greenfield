@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect}  from "react";
 import ReviewsStars from "./ReviewsStars";
 import OverviewSearch from "./OverviewSearch";
 import Carousel from "./OverviewCarousel";
@@ -13,6 +13,17 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 const Overview = props => {
+
+  const [expanded, setExpanded] = useState({xs:8})
+
+  const toggleExpand = () => {
+    if (expanded.xs === 8) {
+      setExpanded({xs: 12})
+    } else {
+      setExpanded({xs: 8});
+    }
+  };
+
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1
@@ -28,16 +39,23 @@ const Overview = props => {
       margin: theme.spacing(1)
     }
   }));
-
+  
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <OverviewSearch />
       <Paper className={classes.paper}>
+      {expanded.xs === 12 ? <Grid item xs={expanded.xs}>
+            <Carousel props={props}
+                      setView={toggleExpand}
+                      expanded={expanded}/>
+          </Grid> :
         <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Carousel props={props} />
+          <Grid item xs={expanded.xs}>
+            <Carousel props={props}
+                      setView={toggleExpand}
+                      expanded={expanded}/>
           </Grid>
           <Grid item xs={4} container direction="column">
             <Grid item>
@@ -63,8 +81,7 @@ const Overview = props => {
           <Grid item xs={12} className={classes.slogan}>
             <Typography variant="h5">{props.info.slogan}</Typography>
           </Grid>
-          <Grid container />
-        </Grid>
+        </Grid>}
       </Paper>
     </div>
   );
