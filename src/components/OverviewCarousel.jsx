@@ -25,9 +25,9 @@ const Carousel = ({ props }) => {
     alignItems : "center"
   };
 
-  const showArrow = { color: "red", height:20, width:20 }
+  const showArrow = { color: "red", height:20, width:20, position:"aboslute", top: 150,zIndex:1 }
 
-  const hideArrow = { color: "red", height:20, width:20, visibility:'hidden' }
+  const hideArrow = { color: "red", height:20, width:20, visibility:'hidden', zIndex:1 }
 
   const [imageSlider, setImageSlider] = useState({});
 
@@ -61,17 +61,21 @@ const Carousel = ({ props }) => {
 
 
   return (
-    <div style={slider}>
+        <div style={imageSlider}>
       <div style={count === 0 ? hideArrow : showArrow} onClick={() => setCount(count === 0 ? 0 : count - 1)}>
         <ChevronLeftIcon/>
-      </div>
-      <div style={{ height: "inherit", width: "inherit", position: "relative", background: "gray", flex: 1 }}>
-        <div style={imageSlider}></div>
       </div>
       <div style={count === photoLength ? hideArrow : showArrow} onClick={() => setCount(Math.min(count + 1, photoLength))}>
         <ChevronRightIcon />
       </div>
-      {/* <GridList cellHeight={100} cols={Math.min(photoLength + 1, 7)}>
+    <div style={{zIndex:2, position:'relative', top:"75%"}}>
+    <div style={thumbCount === 0 ? hideArrow : showArrow} onClick={() => setThumbCount(thumbCount === 0 ? 0 : thumbCount - 1)}>
+        <ChevronLeftIcon/>
+      </div>
+        <div style={thumbCount === photoLength ? hideArrow : showArrow} onClick={() => setThumbCount(Math.min(thumbCount + 1, photoLength))}>
+        <ChevronRightIcon />
+      </div>
+      <GridList cellHeight={100} cols={Math.min(photoLength + 1, 7)}>
           {thumbnailsShown.map((photo, i) => (
             <GridListTile key={photo.thumbnail_url}>
               <ButtonBase onClick={() => setCount(thumbCount + i)}>
@@ -79,8 +83,9 @@ const Carousel = ({ props }) => {
               </ButtonBase>
             </GridListTile>
           ))}
-        </GridList> */}
-    </div>
+        </GridList>
+        </div>
+              </div>
   );
 };
 
