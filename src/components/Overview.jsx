@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect}  from "react";
 import ReviewsStars from "./ReviewsStars";
 import OverviewSearch from "./OverviewSearch";
 import Carousel from "./OverviewCarousel";
@@ -13,6 +13,17 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 const Overview = props => {
+
+  const [expanded, setExpanded] = useState({xs:8})
+
+  const toggleExpand = () => {
+    if (expanded.xs === 8) {
+      setExpanded({xs: 12})
+    } else {
+      setExpanded({xs: 8});
+    }
+  };
+
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1
@@ -36,8 +47,10 @@ const Overview = props => {
       <OverviewSearch />
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Carousel props={props} />
+          <Grid item xs={expanded.xs}>
+            <Carousel props={props}
+                      setView={toggleExpand}
+                      expanded={expanded}/>
           </Grid>
           <Grid item xs={4} container direction="column">
             <Grid item>
