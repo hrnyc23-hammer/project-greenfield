@@ -203,11 +203,7 @@ let QAForum = props => {
       </Button>
       <QAAddAQuestionContainer />
       <Modal open={props.qaImageClicked}>
-        <div
-          style={{
-            position: "absolute"
-          }}
-        >
+        <React.Fragment>
           <Button
             style={{ float: "right" }}
             onClick={() => {
@@ -216,8 +212,17 @@ let QAForum = props => {
           >
             x
           </Button>
-          <img src={props.qaImageUrl} />
-        </div>
+          <img
+            src={props.qaImageUrl}
+            style={{
+              maxWidth: "800px",
+              maxHeight: "800px",
+              position: "absolute",
+              left: "25%",
+              top: "25%"
+            }}
+          />
+        </React.Fragment>
       </Modal>
     </div>
   );
