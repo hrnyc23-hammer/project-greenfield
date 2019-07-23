@@ -3,8 +3,7 @@ import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
 import ReviewsImageModal from './ReviewsImageModal'
-import axios from 'axios'
-import { putReport } from '../infoFetchers.js'
+import { putReport, getSortedReviews, putHelpful } from '../infoFetchers.js'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
@@ -40,11 +39,10 @@ const ReviewList = (props) => {
     var page = 1
     var sort = 'relevant'
 
-
     const handleSortChange = (sortOption) => {
         sort = sortOption
         page = 1
-        axios.get(`http://18.222.40.124/reviews/${props.reviews.product}/list?count=4&sort=${sort}&page=${page}`)
+        getSortedReviews(props.reviews.product, sort, page)
             .then(({ data }) => {
                 props.handleReviewsChange(data)
                 return data
@@ -64,20 +62,47 @@ const ReviewList = (props) => {
             })
     }
 
-    const handleReport = (id) => {
+    const handleReport = id => {
         putReport(id)
             .then(() => {
                 alert('Review reported. It will no longer show up on future page loads.')
             })
             .catch((err) => {
-                console.log('API PUT request error')
+                console.log('API request error')
+            })
+    }
+
+    const handleHelpful = id => {
+        putHelpful(id)
+            .then(() => {
+                getSortedReviews(props.reviews.product, sort, page)
+                    .then(({ data }) => {
+                        props.handleReviewsChange(data)
+                        return data
+                    })
+                    .then((data) => {
+                        props.handleLoadedReset()
+                        return data
+                    })
+                    .then((data) => {
+                        props.handleLoadedChange(data.results)
+                    })
+                    .then(() => {
+                        props.handleLengthReset()
+                    })
+                    .catch((err) => {
+                        console.log('API request error')
+                    })
+            })
+            .catch((err) => {
+                console.log('API request error')
             })
     }
 
     const handleMoreReviews = () => {
         if (props.reviewsLength + 2 > props.loadedReviews.length) {
             page++
-            axios.get(`http://18.222.40.124/reviews/${props.reviews.product}/list?count=4&sort=${sort}&page=${page}`)
+            getSortedReviews(props.reviews.product, sort, page)
                 .then(({ data }) => {
                     props.handleLoadedChange(data.results)
                 })
@@ -124,7 +149,7 @@ const ReviewList = (props) => {
                                 </div> : null}
                                 <br />
                                 <span style={{ fontSize: 'small' }}>Was this review helpful?   </span>
-                                <span style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
+                                <span onClick={() => handleHelpful(review.review_id)} style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
                                 <span style={{ fontSize: 'small', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
                                 <span onClick={() => handleReport(review.review_id)} style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>

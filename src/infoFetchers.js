@@ -27,5 +27,11 @@ module.exports = {
   },
   putReport: (id) => {
     return Axios.put(`${apiUrl}/reviews/report/${id}`)
+  },
+  getSortedReviews: (productId, sort, page) => {
+    return Axios.get(`${apiUrl}/reviews/${productId}/list?count=4&sort=${sort}&page=${page}`)
+  },
+  putHelpful: (id) => {
+    return Axios.put(`${apiUrl}/reviews/helpful/${id}`)
   }
 }
