@@ -60,6 +60,10 @@ const RelatedItem = props => {
     }
   });
 
+  const fitTextToSingleLine = (text) => {
+
+  }
+
   const classes = useStyles();
   const itemUnavailable = "Information unavailable";
 
@@ -79,7 +83,7 @@ const RelatedItem = props => {
           <Typography variant="subtitle2" color="textSecondary" component="p">
             {props.item.info ? props.item.info.category : itemUnavailable}
           </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="body1" component="p">
             {props.item.info ? props.item.info.name : itemUnavailable}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
