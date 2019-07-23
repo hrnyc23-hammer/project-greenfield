@@ -15,7 +15,7 @@ const Carousel = ({ props, setView, expanded }) => {
   const [thumbCount, setThumbCount] = useState(0);
 
   const photoLength = props.selectedStyle.photos.length - 1;
-  const thumbnailsShown = props.selectedStyle.photos.slice(thumbCount, thumbCount + 7);
+  const thumbnailsShown = props.selectedStyle.photos.slice(Math.min(thumbCount,photoLength-1), Math.min(thumbCount + 7,photoLength));
 
   const slider = {
     position: "relative",
@@ -28,8 +28,8 @@ const Carousel = ({ props, setView, expanded }) => {
   const defaultView ={height : 500};
   const showLeftArrow = { color: "red", height: 20, width: 20, position: "relative", top: "50%", zIndex: 1, cursor: "pointer" };
   const showRightArrow = { color: "red", height: 20, width: 20, position: "relative", top: "50%", left: "95%", zIndex: 1, cursor: "pointer" };
-  const showLeftThumbArrow = { color: "blue", height: 20, width: 20, position: "absolute", top: "50%", zIndex: 1, cursor: "pointer" };
-  const showRightThumbArrow = { color: "blue", height: 20, width: 20, position: "absolute", top: "50%", left:"65%", zIndex: 1, cursor: "pointer" };
+  const showLeftThumbArrow = { color: "blue", height: 20, width: 20, position: "relative", top: "50%", zIndex: 1, cursor: "pointer" };
+  const showRightThumbArrow = { color: "blue", height: 20, width: 20, position: "relative", top: "50%", left:"95%", zIndex: 1, cursor: "pointer" };
   const hideArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1 };
   const selectedThumbnail = { border: "3px solid lightGreen" };
 
@@ -84,11 +84,11 @@ const Carousel = ({ props, setView, expanded }) => {
         <div style={count === photoLength ? hideArrow : showRightArrow} onClick={() => setCount(Math.min(count + 1, photoLength))}>
           <ChevronRightIcon />
         </div>
-        <div style={{ zIndex: 2, position: "absolute", top: "70%" }}>
+        <div style={{ zIndex: 2, position: "relative", top: "70%" }}>
           <div style={thumbCount === 0 ? hideArrow : showLeftThumbArrow} onClick={() => setThumbCount(thumbCount === 0 ? 0 : thumbCount - 1)}>
             <ChevronLeftIcon />
           </div>
-          <div style={thumbCount === photoLength ? hideArrow : showRightThumbArrow} onClick={() => setThumbCount(Math.min(thumbCount + 1, photoLength))}>
+          <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={() => setThumbCount(Math.min(thumbCount + 1, photoLength))}>
             <ChevronRightIcon />
           </div>
           <GridList cellHeight={100} cols={Math.min(photoLength + 1, 7)}>
