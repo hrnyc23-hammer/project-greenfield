@@ -15,7 +15,7 @@ let QAAddAnswer = props => {
         Add An Answer
       </span>
 
-      <Modal open={props.clickedFlag}>
+      <Modal open={props.clickedFlag} onClose={() => {props.QAAnswerFlagClicked(!props.clickedFlag)}}>
         <div
           style={{
             width: "500px",
