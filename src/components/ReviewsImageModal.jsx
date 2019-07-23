@@ -9,10 +9,6 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         width: "700px",
         height: "700px",
-        //backgroundColor: 'transparent', //theme.palette.background.paper,
-        //border: "2px solid #000",
-        //boxShadow: theme.shadows[5],
-        //padding: theme.spacing(2, 4, 4),
         outline: "none"
     }
 }));
