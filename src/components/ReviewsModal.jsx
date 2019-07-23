@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
     width: "740px",
-    height: "600px",
+    height: "680px",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
@@ -41,7 +41,7 @@ const ReviewsModal = props => {
   const [submitStyle] = useState({
     float: "right",
     fontSize: "large",
-    marginTop: "125px"
+    marginTop: "40px"
   });
   const [body, setBody] = useState("Why did you like the product or not?");
   const [email, setEmail] = useState("Your email here");
@@ -51,6 +51,13 @@ const ReviewsModal = props => {
   const [recommend, setRecommend] = useState(true);
   const [summary, setSummary] = useState("Example: Best purchase ever!");
   const [singlePhoto, setSinglePhoto] = useState("Enter photo URL here");
+  const [size, setSize] = useState(0)
+  const [width, setWidth] = useState(0)
+  const [comfort, setComfort] = useState(0)
+  const [length, setLength] = useState(0)
+  const [fit, setFit] = useState(0)
+  const [quality, setQuality] = useState(0)
+
 
   const reset = () => {
     setBody("Why did you like the product or not?");
@@ -140,8 +147,8 @@ const ReviewsModal = props => {
             Minimum required characters left: {50 - body.length}
           </div>
         ) : (
-          <div style={minimumStyle}>Minimum reached</div>
-        )}
+            <div style={minimumStyle}>Minimum reached</div>
+          )}
         <br />
         <br />
         <span>
@@ -169,6 +176,104 @@ const ReviewsModal = props => {
         <p style={minimumStyle}>
           For authentication reasons, you will not be emailed
         </p>
+        <p><strong>*Characteristics:</strong></p>
+
+
+        <div style={small}>
+          {props.meta.characteristics.Size ?
+            <React.Fragment>
+              <label style={leftStyle}><strong>Size: </strong></label>
+              <input onClick={() => { setSize(1) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>A size too small</label>
+              <input onClick={() => { setSize(2) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>½ a size too small</label>
+              <input onClick={() => { setSize(3) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>Perfect</label>
+              <input onClick={() => { setSize(4) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>½ a size too big</label>
+              <input onClick={() => { setSize(5) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>A size too wide</label>
+              <br /><br />
+            </React.Fragment> : null}
+          {props.meta.characteristics.Width ?
+            <React.Fragment>
+              <label style={leftStyle}><strong>Width: </strong></label>
+              <input onClick={() => { setWidth(1) }} style={leftStyle} type="radio" name="width" />
+              <label style={leftStyle}>Too narrow</label>
+              <input onClick={() => { setWidth(2) }} style={leftStyle} type="radio" name="width" />
+              <label style={leftStyle}>Slightly narrow</label>
+              <input onClick={() => { setWidth(3) }} style={leftStyle} type="radio" name="width" />
+              <label style={leftStyle}>Perfect</label>
+              <input onClick={() => { setWidth(4) }} style={leftStyle} type="radio" name="width" />
+              <label style={leftStyle}>Slightly wide</label>
+              <input onClick={() => { setWidth(5) }} style={leftStyle} type="radio" name="width" />
+              <label style={leftStyle}>Too wide</label>
+              <br /><br />
+            </React.Fragment> : null}
+          {props.meta.characteristics.Comfort ?
+            <React.Fragment>
+              <label style={leftStyle}><strong>Comfort: </strong></label>
+              <input onClick={() => { setComfort(1) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>Uncomfortable</label>
+              <input onClick={() => { setComfort(2) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>Slightly uncomfortable</label>
+              <input onClick={() => { setComfort(3) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>Ok</label>
+              <input onClick={() => { setComfort(4) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>Comfortable</label>
+              <input onClick={() => { setComfort(5) }} style={leftStyle} type="radio" name="comfort" />
+              <label style={leftStyle}>Perfect</label>
+              <br /><br />
+            </React.Fragment> : null}
+          {props.meta.characteristics.Quality ?
+            <React.Fragment>
+              <label style={leftStyle}><strong>Quality: </strong></label>
+              <input onClick={() => { setQuality(1) }} style={leftStyle} type="radio" name="quality" />
+              <label style={leftStyle}>Poor</label>
+              <input onClick={() => { setQuality(2) }} style={leftStyle} type="radio" name="quality" />
+              <label style={leftStyle}>Below average</label>
+              <input onClick={() => { setQuality(3) }} style={leftStyle} type="radio" name="quality" />
+              <label style={leftStyle}>What I expected</label>
+              <input onClick={() => { setQuality(4) }} style={leftStyle} type="radio" name="quality" />
+              <label style={leftStyle}>Pretty great</label>
+              <input onClick={() => { setQuality(5) }} style={leftStyle} type="radio" name="quality" />
+              <label style={leftStyle}>Perfect</label>
+              <br /><br />
+            </React.Fragment> : null}
+          {props.meta.characteristics.Length ?
+            <React.Fragment>
+              <label style={leftStyle}><strong>Length: </strong></label>
+              <input onClick={() => { setLength(1) }} style={leftStyle} type="radio" name="length" />
+              <label style={leftStyle}>Runs short</label>
+              <input onClick={() => { setLength(2) }} style={leftStyle} type="radio" name="length" />
+              <label style={leftStyle}>Runs slightly short</label>
+              <input onClick={() => { setLength(3) }} style={leftStyle} type="radio" name="length" />
+              <label style={leftStyle}>Perfect</label>
+              <input onClick={() => { setLength(4) }} style={leftStyle} type="radio" name="length" />
+              <label style={leftStyle}>Runs slightly long</label>
+              <input onClick={() => { setLength(5) }} style={leftStyle} type="radio" name="length" />
+              <label style={leftStyle}>Runs long</label>
+              <br /><br />
+            </React.Fragment> : null}
+          {props.meta.characteristics.Fit ?
+            <React.Fragment>
+              <label style={leftStyle}><strong>Fit: </strong></label>
+              <input onClick={() => { setFit(1) }} style={leftStyle} type="radio" name="fit" />
+              <label style={leftStyle}>Runs tight</label>
+              <input onClick={() => { setFit(2) }} style={leftStyle} type="radio" name="fit" />
+              <label style={leftStyle}>Runs slightly tight</label>
+              <input onClick={() => { setFit(3) }} style={leftStyle} type="radio" name="fit" />
+              <label style={leftStyle}>Perfect</label>
+              <input onClick={() => { setFit(4) }} style={leftStyle} type="radio" name="fit" />
+              <label style={leftStyle}>Runs slightly loose</label>
+              <input onClick={() => { setFit(5) }} style={leftStyle} type="radio" name="fit" />
+              <label style={leftStyle}>Runs loose</label>
+              <br /><br />
+            </React.Fragment> : null}
+        </div>
+
+
+        <br />
         <p>
           <strong>Photos:</strong>
         </p>
@@ -183,16 +288,17 @@ const ReviewsModal = props => {
         />
         <button onClick={submitPhoto}>Submit URL</button>
         <button onClick={() => props.handleSubmitReview(rating, summary, body, recommend, name, email, photos)} style={submitStyle}>Submit Review</button>
-        <button style={submitStyle} onClick={reset}>
+        {/*<button style={submitStyle} onClick={reset}>
+
           Reset Fields
-        </button>
-        {photos.map((pic, index) => {
+        </button> */}
+        {/* {photos.map((pic, index) => {
           return (
             <div key={index} style={small}>
               {pic}
             </div>
           );
-        })}
+        })} */}
       </div>
     </Modal>
   );
