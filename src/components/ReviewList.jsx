@@ -202,7 +202,7 @@ const ReviewList = (props) => {
                 })}
             </div>
             <span>{(props.reviewsLength < totalReviews - 1) ? <Button variant='contained' style={{ marginRight: '20px' }} onClick={handleMoreReviews}>More Reviews</Button> : null}<Button variant='contained' onClick={toggleOpen}>Add A Review    +</Button></span>
-        <ReviewsModal handleSubmitReview={handleSubmitReview} open={open} handleClose={handleClose} />
+            <ReviewsModal meta={props.meta} handleSubmitReview={handleSubmitReview} open={open} handleClose={handleClose} />
 
         </React.Fragment>
     )
