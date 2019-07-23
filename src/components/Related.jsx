@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import RelatedItem from './RelatedItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Fab from "@material-ui/core/Fab";
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+  },
+  add: {
+    cursor: "pointer"
   }
 }));
 
@@ -43,7 +46,9 @@ const Related = (props) => {
       spacing={4}
     >
       {lowerLimit !== 0 ? <Grid item>
-        <Fab onClick={reduceLimit}>{"<"}</Fab>
+        <SvgIcon color="primary" onClick={reduceLimit} className={classes.shift}>
+          <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
+        </SvgIcon>
       </Grid> : <div></div>}
       {props.related.length !== 0 ? props.related.map((item, idx) => {
         if (idx >= lowerLimit && idx < lowerLimit + 4) {
@@ -54,7 +59,9 @@ const Related = (props) => {
         )}
       }) : null}
       {lowerLimit + 4 < props.related.length ? <Grid item>
-        <Fab onClick={increaseLimit}>{">"}</Fab>
+        <SvgIcon color="primary" onClick={increaseLimit} className={classes.shift}>
+          <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
+        </SvgIcon>
         </Grid> : <div></div>}
     </Grid>
     </div>
