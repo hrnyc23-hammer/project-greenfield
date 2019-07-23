@@ -34,7 +34,7 @@ let QAAddAnswer = props => {
           >
             x
           </Button>
-          <h3>Ask Your Answer</h3>
+          <h3>Share Your Answer</h3>
           <TextField
             placeholder="nickname"
             onChange={e => {
