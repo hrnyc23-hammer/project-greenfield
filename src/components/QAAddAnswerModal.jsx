@@ -4,16 +4,18 @@ import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 
-let QAAddAQuestion = props => {
+let QAAddAnswerModal = props => {
   return (
     <React.Fragment>
       <span
+       
         onClick={() => {
-          props.QAAddAQuestionClicked(!props.clickedFlag);
+          props.QAAddAnswerModalClicked(!props.clickedFlag);
         }}
       >
-        Add An Answer
+        Add Answer
       </span>
+  
 
       <Modal open={props.clickedFlag}>
         <div
@@ -29,33 +31,18 @@ let QAAddAQuestion = props => {
           <Button
             style={{ float: "right" }}
             onClick={() => {
-              props.QAAddAQuestionClicked(!props.clickedFlag);
+              console.log("exit");
             }}
           >
             x
           </Button>
-          <h3>Ask Your Answer</h3>
-          <TextField
-            placeholder="nickname"
-            onChange={e => {
-              props.QAQuestionNickname(e.target.value);
-            }}
-          />
+          <h3>Ask Your Question</h3>
+          <TextField placeholder="nickname" />
           <br />
-          <TextField
-            placeholder="your email"
-            onChange={e => {
-              props.QAQuestionEmail(e.target.value);
-            }}
-          />
+          <TextField placeholder="your email" />
           <br />
 
-          <TextField
-            placeholder="photo url"
-            onChange={e => {
-              props.QAUrl(e.target.value);
-            }}
-          />
+          <TextField placeholder="photo url" />
           <Button
             onClick={() => {
               if (props.photoUrl.length < 5) {
@@ -67,7 +54,7 @@ let QAAddAQuestion = props => {
           </Button>
           <br />
           <TextField
-            placeholder="your answer"
+            placeholder="your question"
             fullWidth
             margin="normal"
             variant="outlined"
@@ -92,4 +79,4 @@ let QAAddAQuestion = props => {
   );
 };
 
-export default QAAddAQuestion;
+export default QAAddAnswerModal;

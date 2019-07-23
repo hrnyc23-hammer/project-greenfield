@@ -5,6 +5,8 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import QAAddAQuestionContainer from "./../containers/QAAddAQuestionContainer";
 import Modal from "@material-ui/core/Modal";
+import Fab from "@material-ui/core/Fab";
+import TextField from "@material-ui/core/TextField";
 
 let QAForum = props => {
   return (
@@ -36,12 +38,16 @@ let QAForum = props => {
 
                 <span
                   style={{
+                    textDecoration: "underline",
                     fontSize: "small",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
                     float: "right",
-                    textDecoration: "underline"
+                    cursor: "pointer"
                   }}
                 >
-                  Add Answer
+                  {" "}
+                  <QAAddAQuestionContainer />
                 </span>
 
                 <span
@@ -70,7 +76,8 @@ let QAForum = props => {
                     fontSize: "small",
                     float: "right",
                     textDecoration: "underline",
-                    paddingLeft: "5px"
+                    paddingLeft: "5px",
+                    cursor: "pointer"
                   }}
                 >
                   {" "}
@@ -132,7 +139,8 @@ let QAForum = props => {
                               style={{
                                 fontSize: "small",
                                 textDecoration: "underline",
-                                paddingRight: "5px"
+                                paddingRight: "5px",
+                                cursor: "pointer"
                               }}
                             >
                               Yes
@@ -154,10 +162,12 @@ let QAForum = props => {
                             >
                               |
                             </span>
+
                             <span
                               style={{
                                 fontSize: "small",
-                                textDecoration: "underline"
+                                textDecoration: "underline",
+                                cursor: "pointer"
                               }}
                             >
                               Report
@@ -201,7 +211,7 @@ let QAForum = props => {
       >
         More Answered Questions
       </Button>
-      <QAAddAQuestionContainer />
+
       <Modal open={props.qaImageClicked}>
         <React.Fragment>
           <Button
