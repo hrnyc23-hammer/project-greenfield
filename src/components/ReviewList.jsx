@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
 import ReviewsImageModal from './ReviewsImageModal'
 import axios from 'axios'
+import { putReport } from '../infoFetchers.js'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
@@ -63,6 +64,16 @@ const ReviewList = (props) => {
             })
     }
 
+    const handleReport = (id) => {
+        putReport(id)
+            .then(() => {
+                alert('Review reported. It will no longer show up on future page loads.')
+            })
+            .catch((err) => {
+                console.log('API PUT request error')
+            })
+    }
+
     const handleMoreReviews = () => {
         if (props.reviewsLength + 2 > props.loadedReviews.length) {
             page++
@@ -116,7 +127,7 @@ const ReviewList = (props) => {
                                 <span style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
                                 <span style={{ fontSize: 'small', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
-                                <span style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>
+                                <span onClick={() => handleReport(review.review_id)} style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>
                                 <hr />
                                 <br />
                             </React.Fragment>
