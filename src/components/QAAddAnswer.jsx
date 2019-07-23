@@ -83,12 +83,7 @@ let QAAddAnswer = props => {
             })}
           </React.Fragment>
           <br />
-          <Fab
-            style={{ float: "right" }}
-            onClick={() => {
-              console.log(props);
-            }}
-          >
+          <Fab style={{ float: "right" }} onClick={() => {}}>
             Submit
           </Fab>
         </div>
