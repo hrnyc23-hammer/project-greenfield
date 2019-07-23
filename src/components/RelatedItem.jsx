@@ -61,10 +61,6 @@ const RelatedItem = props => {
     }
   });
 
-  const fitTextToSingleLine = (text) => {
-
-  }
-
   const classes = useStyles();
   const itemUnavailable = "Information unavailable";
 
