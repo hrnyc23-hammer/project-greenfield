@@ -20,6 +20,8 @@ import qaQuestionEmail from "./QAAddEmailReducer.js";
 import qaQuestionBody from "./QAQuestionBodyReducer.js";
 import qaAddPhotos from "./QAAddPhotosReducer.js";
 import qaUrl from "./QAUrlReducer.js";
+import qaImageClicked from "./QAImageClickedReducer.js";
+import qaImageUrl from "./QAClickedImageUrlReducer.js";
 
 const rootReducer = combineReducers({
   related,
@@ -42,7 +44,9 @@ const rootReducer = combineReducers({
   qaQuestionEmail,
   qaQuestionBody,
   qaAddPhotos,
-  qaUrl
+  qaUrl,
+  qaImageClicked,
+  qaImageUrl
 });
 
 export default rootReducer;

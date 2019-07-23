@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import QAAddAQuestionContainer from "./../containers/QAAddAQuestionContainer";
+import Modal from "@material-ui/core/Modal";
 
 let QAForum = props => {
   return (
@@ -101,10 +102,14 @@ let QAForum = props => {
                             {answer.photos.map(photo => {
                               return (
                                 <img
-                                  onClick={() => {}}
+                                  onClick={() => {
+                                    props.QAClickedImageUrl(photo);
+                                    props.QAImageClicked(!props.qaImageClicked);
+                                  }}
                                   src={photo}
                                   width="100"
                                   height="60"
+                                  style={{ cursor: "pointer" }}
                                   key={Math.random()}
                                 />
                               );
@@ -197,6 +202,28 @@ let QAForum = props => {
         More Answered Questions
       </Button>
       <QAAddAQuestionContainer />
+      <Modal open={props.qaImageClicked}>
+        <React.Fragment>
+          <Button
+            style={{ float: "right" }}
+            onClick={() => {
+              props.QAImageClicked(!props.qaImageClicked);
+            }}
+          >
+            x
+          </Button>
+          <img
+            src={props.qaImageUrl}
+            style={{
+              maxWidth: "800px",
+              maxHeight: "800px",
+              position: "absolute",
+              left: "25%",
+              top: "25%"
+            }}
+          />
+        </React.Fragment>
+      </Modal>
     </div>
   );
 };
