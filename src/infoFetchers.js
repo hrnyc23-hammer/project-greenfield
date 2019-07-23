@@ -24,5 +24,8 @@ module.exports = {
 
   getMeta: (productId) => {
     return Axios.get(`${apiUrl}/reviews/${productId}/meta`);
+  },
+  putReport: (id) => {
+    return Axios.put(`${apiUrl}/reviews/report/${id}`)
   }
 }
