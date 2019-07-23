@@ -5,15 +5,13 @@ import QAIncrementer from "./../actions/QAIncrementer";
 import QAAddAnswers from "./../actions/QAAddAnswers";
 import QAImageClicked from "./../actions/QAImageClicked";
 import QAClickedImageUrl from "./../actions/QAClickedImageUrl";
-import QAAnswerFlagChanger from "./../actions/QAAnswerFlag";
 
 var mapStateToProps = state => ({
   qaResultsArr: state.qaResultsArr,
   qaCount: state.qaIncrementer,
   qaSearchEntry: state.qaSearchEntry,
   qaImageClicked: state.qaImageClicked,
-  qaImageUrl: state.qaImageUrl,
-  qaAnswerFlag: state.qaAnswerFlag
+  qaImageUrl: state.qaImageUrl
 });
 
 var mapDispatchToProps = dispatch => ({
@@ -31,9 +29,6 @@ var mapDispatchToProps = dispatch => ({
   },
   QAClickedImageUrl: clicked => {
     dispatch(QAClickedImageUrl(clicked));
-  },
-  QAAnswerFlagChanger: clicked => {
-    dispatch(QAAnswerFlagChanger(clicked));
   }
 });
 

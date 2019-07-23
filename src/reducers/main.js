@@ -14,15 +14,14 @@ import reviewsLengthReducer from "./reviewsLengthReducer.js";
 import overviewChangeSize from "./overviewChangeSize.js";
 import outfits from "./outfitsReducer.js";
 import reviewsLoadedReducer from "./reviewsLoadedReducer.js";
-import qaQuestionClicked from "./QAAddAQuestionReducer.js";
-import qaQuestionNickname from "./QAQuestionNicknameReducer.js";
-import qaQuestionEmail from "./QAAddEmailReducer.js";
-import qaQuestionBody from "./QAQuestionBodyReducer.js";
+import qaAnswerClicked from "./QAAnswerFlagChangerReducer.js";
+import qaAnswerNickname from "./QAAnswerNicknameReducer.js";
+import qaAnswerEmail from "./QAAddEmailReducer.js";
+import qaAnswerBody from "./QAAnswerBodyReducer.js";
 import qaAddPhotos from "./QAAddPhotosReducer.js";
 import qaUrl from "./QAUrlReducer.js";
 import qaImageClicked from "./QAImageClickedReducer.js";
 import qaImageUrl from "./QAClickedImageUrlReducer.js";
-import qaAnswerFlag from "./QAAnswerFlagReducer.js";
 
 const rootReducer = combineReducers({
   related,
@@ -40,15 +39,14 @@ const rootReducer = combineReducers({
   overviewChangeSize,
   outfits,
   reviewsLoadedReducer,
-  qaQuestionClicked,
-  qaQuestionNickname,
-  qaQuestionEmail,
-  qaQuestionBody,
+  qaAnswerClicked,
+  qaAnswerNickname,
+  qaAnswerEmail,
+  qaAnswerBody,
   qaAddPhotos,
   qaUrl,
   qaImageClicked,
-  qaImageUrl,
-  qaAnswerFlag
+  qaImageUrl
 });
 
 export default rootReducer;

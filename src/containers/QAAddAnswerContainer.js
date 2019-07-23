@@ -1,33 +1,33 @@
 import { connect } from "react-redux";
-import QAAddAQuestion from "./../components/QAAddAQuestion";
-import QAAddAQuestionClicked from "./../actions/QAAddAQuestionClicked";
-import QAQuestionNickname from "./../actions/QAQuestionNickname";
-import QAQuestionEmail from "./../actions/QAAddEmail";
-import QAAddQuestionBody from "./../actions/QAAddQuestionBody";
+import QAAddAnswer from "./../components/QAAddAnswer";
+import QAAnswerFlagClicked from "./../actions/QAAnswerFlagClicked";
+import QAAnswerNickname from "./../actions/QAAnswerNickname";
+import QAAnswerEmail from "./../actions/QAAddEmail";
+import QAAddAnswerBody from "./../actions/QAAddAnswerBody";
 import QAAddPhotos from "./../actions/QAAddPhotos";
 import QAUrl from "./../actions/QAUrl";
 
 var mapStateToProps = state => ({
-  clickedFlag: state.qaQuestionClicked,
-  nickname: state.qaQuestionNickname,
-  email: state.qaQuestionEmail,
-  questionBody: state.qaQuestionBody,
+  clickedFlag: state.qaAnswerClicked,
+  nickname: state.qaAnswerNickname,
+  email: state.qaAnswerEmail,
+  answerBody: state.qaAnswerBody,
   url: state.qaUrl,
   photoUrl: state.qaAddPhotos
 });
 
 var mapDispatchToProps = dispatch => ({
-  QAAddAQuestionClicked: clicked => {
-    dispatch(QAAddAQuestionClicked(clicked));
+  QAAnswerFlagClicked: clicked => {
+    dispatch(QAAnswerFlagClicked(clicked));
   },
-  QAQuestionNickname: entry => {
-    dispatch(QAQuestionNickname(entry));
+  QAAnswerNickname: entry => {
+    dispatch(QAAnswerNickname(entry));
   },
-  QAQuestionEmail: entry => {
-    dispatch(QAQuestionEmail(entry));
+  QAAnswerEmail: entry => {
+    dispatch(QAAnswerEmail(entry));
   },
-  QAAddQuestionBody: entry => {
-    dispatch(QAAddQuestionBody(entry));
+  QAAddAnswerBody: entry => {
+    dispatch(QAAddAnswerBody(entry));
   },
   QAUrl: url => {
     dispatch(QAUrl(url));
@@ -37,9 +37,9 @@ var mapDispatchToProps = dispatch => ({
   }
 });
 
-var QAAddAQuestionContainer = connect(
+var QAAddAnswerContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(QAAddAQuestion);
+)(QAAddAnswer);
 
-export default QAAddAQuestionContainer;
+export default QAAddAnswerContainer;

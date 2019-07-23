@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
-import QAAddAQuestionContainer from "./../containers/QAAddAQuestionContainer";
+import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import Modal from "@material-ui/core/Modal";
 import Fab from "@material-ui/core/Fab";
 import TextField from "@material-ui/core/TextField";
@@ -47,7 +47,7 @@ let QAForum = props => {
                   }}
                 >
                   {" "}
-                  <QAAddAQuestionContainer />
+                  <QAAddAnswerContainer />
                 </span>
 
                 <span
