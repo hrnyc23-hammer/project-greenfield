@@ -68,7 +68,7 @@ const OutfitItem = props => {
             {props.item.info ? props.item.info.category : itemUnavailable}
           </Typography>
           <Typography gutterBottom variant="body1" component="p">
-            {props.item.info ? props.item.info.name : itemUnavailable}
+            <strong>{props.item.info ? props.item.info.name : itemUnavailable}</strong>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             ${price}
