@@ -11,8 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import ShareIcon from "@material-ui/icons/Share";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Box from "@material-ui/core/Box";
 
 const Overview = props => {
   const [expanded, setExpanded] = useState({ xs: 8 });
@@ -71,15 +71,11 @@ const Overview = props => {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid container justify="space-evenly">
+              <Grid container justify="center">
                 <Button variant="contained" className={classes.button}>
                   <ShoppingCartIcon/>
                 </Button>
-                {/* social media component here */}
                 <Share />
-                {/* <Button variant="contained" className={classes.button}>
-                <ShareIcon />
-                </Button> */}
               </Grid>
             </Grid>
             <Grid item xs={12} className={classes.slogan}>

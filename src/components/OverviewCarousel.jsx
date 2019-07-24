@@ -30,23 +30,25 @@ const Carousel = ({ props, setView, expanded }) => {
 
   const backgroundImageStyle = {
     backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
-    backgroundSize: "cover",
+    backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     height: "100%",
     width: "100%",
     transition: "all 1s linear",
     cursor: "zoom-in",
+    backgroundColor : 'lightGray'
   };
   const backgroundImageStyleExpanded = {
     backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
-    backgroundSize: "cover",
+    backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     height: "100%",
     width: "100%",
     transition: "all 1s linear",
     cursor: "crosshair",
+    backgroundColor : 'lightGray'
   };
 
   useEffect(() => {
