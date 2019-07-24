@@ -13,7 +13,8 @@ var mapStateToProps = state => ({
   email: state.qaAnswerEmail,
   answerBody: state.qaAnswerBody,
   url: state.qaUrl,
-  photoUrl: state.qaAddPhotos
+  photoUrl: state.qaAddPhotos,
+  qaResultsArr: state.qaResultsArr
 });
 
 var mapDispatchToProps = dispatch => ({

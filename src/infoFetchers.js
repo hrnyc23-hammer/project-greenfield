@@ -44,5 +44,13 @@ module.exports = {
       email: email,
       photos: photos
     })
+  },
+  postAnswer: (questionId, body, name, email, photos) => {
+    return Axios.post(`${apiUrl}/qa/${questionId}/answers`, {
+      body: body,
+      name: name,
+      email: email,
+      photos: photos
+    })
   }
 }

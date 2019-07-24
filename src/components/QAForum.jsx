@@ -5,12 +5,11 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import Modal from "@material-ui/core/Modal";
-import Fab from "@material-ui/core/Fab";
-import TextField from "@material-ui/core/TextField";
 
 let QAForum = props => {
   return (
     <div>
+      {console.log(props)}
       <ul>
         {props.qaResultsArr
           .sort((a, b) =>
@@ -24,6 +23,7 @@ let QAForum = props => {
           .map((question, i) => {
             return (
               <React.Fragment key={Math.random()}>
+                {/* {console.log(question)} */}
                 <strong>
                   <span
                     key={Math.random()}
@@ -47,6 +47,14 @@ let QAForum = props => {
                   }}
                 >
                   {" "}
+                  <span
+                    onClick={() => {
+                      console.log(question.question_id)
+                      props.QAAnswerFlagClicked(!props.clickedFlag);
+                    }}
+                  >
+                    Add An Answer
+                  </span>
                   <QAAddAnswerContainer />
                 </span>
 
@@ -212,7 +220,12 @@ let QAForum = props => {
         More Answered Questions
       </Button>
 
-      <Modal open={props.qaImageClicked} onClose={() => {props.QAImageClicked(!props.qaImageClicked)}}>
+      <Modal
+        open={props.qaImageClicked}
+        onClose={() => {
+          props.QAImageClicked(!props.qaImageClicked);
+        }}
+      >
         <React.Fragment>
           <Button
             style={{ float: "right" }}

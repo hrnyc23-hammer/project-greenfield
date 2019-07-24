@@ -3,19 +3,19 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
+import { postAnswer } from "../infoFetchers.js";
 
 let QAAddAnswer = props => {
   return (
     <React.Fragment>
-      <span
-        onClick={() => {
+      {console.log(props)}
+
+      <Modal
+        open={props.clickedFlag}
+        onClose={() => {
           props.QAAnswerFlagClicked(!props.clickedFlag);
         }}
       >
-        Add An Answer
-      </span>
-
-      <Modal open={props.clickedFlag} onClose={() => {props.QAAnswerFlagClicked(!props.clickedFlag)}}>
         <div
           style={{
             width: "500px",
