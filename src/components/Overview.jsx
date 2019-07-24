@@ -6,7 +6,7 @@ import ProductInfo from "./OverviewProductInfo";
 import Styles from "./OverviewStyles";
 import Cart from "./OverviewCart";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import Share from "./OverviewShare";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -75,9 +75,11 @@ const Overview = props => {
                 <Button variant="contained" className={classes.button}>
                   <ShoppingCartIcon/>
                 </Button>
-                <Button variant="contained" className={classes.button}>
+                {/* social media component here */}
+                <Share />
+                {/* <Button variant="contained" className={classes.button}>
                 <ShareIcon />
-                </Button>
+                </Button> */}
               </Grid>
             </Grid>
             <Grid item xs={12} className={classes.slogan}>
