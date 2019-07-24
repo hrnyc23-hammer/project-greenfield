@@ -58,7 +58,8 @@ const Carousel = ({ props, setView, expanded }) => {
     backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
     backgroundPosition: position,
     height:'100%',
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    cursor:"zoom-out"
   };
 
   useEffect(() => {
@@ -102,7 +103,6 @@ const Carousel = ({ props, setView, expanded }) => {
 
   return (
     <div style={defaultView}>
-    {console.log(zoom)}
     {expanded.xs===8 ?
       <div
         className={expanded.xs===12 ? classes.zoom : null}
