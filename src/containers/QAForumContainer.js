@@ -7,6 +7,7 @@ import QAImageClicked from "./../actions/QAImageClicked";
 import QAClickedImageUrl from "./../actions/QAClickedImageUrl";
 import QAAnswerFlagClicked from "./../actions/QAAnswerFlagClicked";
 import QACurrentQuestion from "./../actions/QACurrentQuestion";
+import QAQuestionFlagClicked from "./../actions/QAQuestionFlagClicked";
 
 var mapStateToProps = state => ({
   qaResultsArr: state.qaResultsArr,
@@ -14,7 +15,8 @@ var mapStateToProps = state => ({
   qaSearchEntry: state.qaSearchEntry,
   qaImageClicked: state.qaImageClicked,
   qaImageUrl: state.qaImageUrl,
-  clickedFlag: state.qaAnswerClicked
+  answerClickedFlag: state.qaAnswerClicked,
+  questionClickedFlag: state.qaQuestionClicked
 });
 
 var mapDispatchToProps = dispatch => ({
@@ -38,6 +40,9 @@ var mapDispatchToProps = dispatch => ({
   },
   QACurrentQuestion: id => {
     dispatch(QACurrentQuestion(id));
+  },
+  QAQuestionFlagClicked: clicked => {
+    dispatch(QAQuestionFlagClicked(clicked));
   }
 });
 

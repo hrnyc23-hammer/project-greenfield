@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
+import QAAddQuestionContainer from "./../containers/QAAddQuestionContainer";
 import Modal from "@material-ui/core/Modal";
 import {
   putAnswerReport,
@@ -52,7 +53,7 @@ let QAForum = props => {
                   <span
                     onClick={() => {
                       props.QACurrentQuestion(question.question_id);
-                      props.QAAnswerFlagClicked(!props.clickedFlag);
+                      props.QAAnswerFlagClicked(!props.answerClickedFlag);
                     }}
                   >
                     Add An Answer
@@ -239,7 +240,16 @@ let QAForum = props => {
       >
         More Answered Questions
       </Button>
-
+      <Button
+        variant="contained"
+        size="large"
+        onClick={() => {
+          props.QAQuestionFlagClicked(!props.questionClickedFlag);
+        }}
+      >
+        Add A Question
+      </Button>
+      <QAAddQuestionContainer />
       <Modal
         open={props.qaImageClicked}
         onClose={() => {

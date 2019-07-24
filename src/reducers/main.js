@@ -23,6 +23,7 @@ import qaUrl from "./QAUrlReducer.js";
 import qaImageClicked from "./QAImageClickedReducer.js";
 import qaImageUrl from "./QAClickedImageUrlReducer.js";
 import qaCurrentQuestion from "./QACurrentQuestionReducer";
+import qaQuestionClicked from "./QAQuestionFlagChangerReducer";
 
 const rootReducer = combineReducers({
   related,
@@ -48,7 +49,8 @@ const rootReducer = combineReducers({
   qaUrl,
   qaImageClicked,
   qaImageUrl,
-  qaCurrentQuestion
+  qaCurrentQuestion,
+  qaQuestionClicked
 });
 
 export default rootReducer;
