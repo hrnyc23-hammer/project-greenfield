@@ -26,10 +26,9 @@ let QAForum = props => {
           .slice(0, props.qaCount)
           .map((question, i) => {
             return (
-              <React.Fragment key={Math.random()}>
+              <React.Fragment key={i}>
                 <strong>
                   <span
-                    key={Math.random()}
                     style={{
                       fontSize: "large",
                       padding: "0px 0px 0px 55px"
@@ -85,7 +84,7 @@ let QAForum = props => {
                 <span
                   onClick={() => {
                     putQuestionHelpful(question.question_id).catch(err => {
-                      console.log(err);
+                      console.log('API request error');
                     });
                     alert("Thank you for your feedback!");
                   }}
@@ -115,14 +114,14 @@ let QAForum = props => {
                         : 0
                     )
                     .slice(0, question.answerLimit)
-                    .map(answer => {
+                    .map((answer, i) => {
                       return (
-                        <List key={Math.random()}>
-                          <ListItem alignItems="flex-start" key={Math.random()}>
-                            <p key={Math.random()}>A: {answer.body}</p>
+                        <List key={i}>
+                          <ListItem alignItems="flex-start" >
+                            <p >A: {answer.body}</p>
                           </ListItem>
 
-                          <ListItem key={Math.random()}>
+                          <ListItem >
                             {answer.photos.map(photo => {
                               return (
                                 <img
@@ -134,15 +133,15 @@ let QAForum = props => {
                                   width="100"
                                   height="60"
                                   style={{ cursor: "pointer" }}
-                                  key={Math.random()}
+                                 
                                 />
                               );
                             })}
                           </ListItem>
 
-                          <ListItem key={Math.random()}>
+                          <ListItem >
                             <span
-                              key={Math.random()}
+                             
                               style={{
                                 fontSize: "small",
                                 spanadding: "0px 0px 0px 0px",
@@ -155,7 +154,7 @@ let QAForum = props => {
                             <span
                               onClick={() => {
                                 putAnswerHelpful(answer.id).catch(err => {
-                                  console.log(err);
+                                  console.log('API request error');
                                 });
                                 alert("Thank you for your feedback!");
                               }}
@@ -188,9 +187,8 @@ let QAForum = props => {
 
                             <span
                               onClick={() => {
-                                console.log(answer.id);
                                 putAnswerReport(answer.id).catch(err => {
-                                  console.log(err);
+                                  console.log('API request error');
                                 });
                                 alert(
                                   "Answer reported. It will no longer show up on future page loads."

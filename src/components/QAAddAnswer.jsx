@@ -91,7 +91,7 @@ let QAAddAnswer = props => {
                 props.email,
                 props.photoUrl
               ).catch(err => {
-                console.log(err);
+                console.log('API request error');
               });
               alert("Submitted!");
             }}
