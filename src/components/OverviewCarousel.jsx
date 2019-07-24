@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Icon from "@material-ui/core/Icon";
+import { makeStyles } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -18,8 +18,8 @@ const Carousel = ({ props, setView, expanded }) => {
   const thumbnailsShown = props.selectedStyle.photos.length <= 7 ? props.selectedStyle.photos : props.selectedStyle.photos.slice(thumbCount, Math.min(thumbCount + 7,photoLength));
 
   const defaultView ={height : 500};
-  const showLeftArrow = { color: "red", height: 20, width: 20, position: "relative", zIndex: 1, cursor: "pointer" };
-  const showRightArrow = { color: "red", height: 20, width: 20, position: "relative", left: "95%", zIndex: 1, cursor: "pointer" };
+  const showLeftArrow = { color: "red", height: 40, width: 20, position: "relative", zIndex: 1, cursor: "pointer" };
+  const showRightArrow = { color: "red", height: 40, width: 20, position: "relative", left: "95%", zIndex: 1, cursor: "pointer" };
   const showLeftThumbArrow = { color: "red", height: 20, width: 20, position: "relative", zIndex: 1, cursor: "pointer" };
   const showRightThumbArrow = { color: "red", height: 20, width: 20, position: "relative", zIndex: 1, cursor: "pointer"};
   const hideArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1 };
@@ -65,10 +65,18 @@ const Carousel = ({ props, setView, expanded }) => {
     }
   });
 
+
+  const useStyles = makeStyles(theme => ({
+    root: {
+      justifyContent: 'space-around'
+    }
+  }))
+  const classes = useStyles();
+
   return (
     <div style={defaultView}>
       <div style={expanded.xs === 8 ? imageSlider : backgroundImageStyleExpanded} >
-        <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color:"lightGray", cursor:"pointer" }} onClick={setView} />
+        <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color:"gray", cursor:"pointer" }} onClick={setView} />
         <div style={{display:'flex', position:'relative', top:'50%'}}>
         <div style={count === 0 ? hideArrow : showLeftArrow} onClick={() => setCount(count === 0 ? 0 : count - 1)}>
           <ChevronLeftIcon />
@@ -77,8 +85,8 @@ const Carousel = ({ props, setView, expanded }) => {
           <ChevronRightIcon />
         </div>
         </div>
-        <div style={{ zIndex: 2, position: "relative", top: "75%", left:'10%', display:'block'}}>
-          <GridList cellHeight={100} cols={9}>
+        <div style={{ zIndex: 2, position: "relative", top: "75%", display:'block'}}>
+          <GridList cellHeight={100} cols={9} className={classes.root}>
           <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={() => setThumbCount(thumbCount === 0 ? 0 : thumbCount - 1)}>
             <ChevronLeftIcon />
           </div>
