@@ -72,42 +72,69 @@ const ReviewsBars = (props) => {
             </div>)}
             </div>
             {props.meta.characteristics.Comfort ? <React.Fragment><p>Comfort</p>
-                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Comfort * 46}px`, marginBottom: '10px' }}>▼</div></div>
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Comfort.value * 46}px`, marginBottom: '10px' }}>▼</div></div>
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Poor</p>
                 <p style={{ marginLeft: '185px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <br /><br />
             </React.Fragment> : null}
-            <br /><br />
+
             {props.meta.characteristics.Fit ? <React.Fragment><p>Fit</p>
 
-                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Fit * 46}px`, marginBottom: '10px' }}>▼</div></div>
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Fit.value * 46}px`, marginBottom: '10px' }}>▼</div></div>
 
 
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Too Small</p>
                 <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
                 <p style={{ marginLeft: '68px', float: 'left', fontSize: 'x-small' }}>Too Big</p>
+                <br /><br />
             </React.Fragment> : null}
-            <br /><br />
+
             {props.meta.characteristics.Length ? <React.Fragment><p>Length</p>
 
-                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Length * 46}px`, marginBottom: '10px' }}>▼</div></div>
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Length.value * 46}px`, marginBottom: '10px' }}>▼</div></div>
 
 
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Too Short</p>
                 <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
                 <p style={{ marginLeft: '64px', float: 'left', fontSize: 'x-small' }}>Too Long</p>
+                <br /><br />
             </React.Fragment> : null}
-            <br /><br />
+
             {props.meta.characteristics.Quality ? <React.Fragment><p>Quality</p>
 
-                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Quality * 46}px`, marginBottom: '10px' }}>▼</div></div>
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Quality.value * 46}px`, marginBottom: '10px' }}>▼</div></div>
 
 
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Poor</p>
                 <p style={{ marginLeft: '185px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <br /><br />
+            </React.Fragment> : null}
+
+            {props.meta.characteristics.Size ? <React.Fragment><p>Size</p>
+
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Size.value * 46}px`, marginBottom: '10px' }}>▼</div></div>
+
+
+                <br />
+                <p style={{ float: 'left', fontSize: 'x-small' }}>Too Small</p>
+                <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <p style={{ marginLeft: '64px', float: 'left', fontSize: 'x-small' }}>Too Large</p>
+                <br /><br />
+            </React.Fragment> : null}
+
+            {props.meta.characteristics.Width ? <React.Fragment><p>Width</p>
+
+                <div style={{ float: 'left', position: 'relative', height: '10px', width: '235px', background: 'lightgrey' }}><div style={{ fontSize: 'x-small', position: 'relative', marginLeft: `${props.meta.characteristics.Width.value * 46}px`, marginBottom: '10px' }}>▼</div></div>
+
+
+                <br />
+                <p style={{ float: 'left', fontSize: 'x-small' }}>Too Narrow</p>
+                <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <p style={{ marginLeft: '64px', float: 'left', fontSize: 'x-small' }}>Too Wide</p>
             </React.Fragment> : null}
         </React.Fragment>
     )
