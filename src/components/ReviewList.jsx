@@ -3,7 +3,7 @@ import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
 import ReviewsImageModal from './ReviewsImageModal'
-import { putReport, getSortedReviews, putHelpful, postReview, getMeta } from '../infoFetchers.js'
+import { putReport, getSortedReviews, putHelpful, postReview, getMeta, clickTracker } from '../infoFetchers.js'
 
 const ReviewList = (props) => {
     const [open, setOpen] = useState(false);
@@ -246,7 +246,7 @@ const ReviewList = (props) => {
 
     return (
         <React.Fragment>
-            <h4>{totalReviews} reviews, sorted by <select defaultValue={sort} onChange={(e) => handleSortChange(e.target.value)}>
+            <h4>{totalReviews} reviews, sorted by <select defaultValue={sort} onChange={(e) => handleSortChange(e.target.value)} onClick={() => clickTracker('review sort', 'reviews')}>
                 <option value='relevant'>relevance</option>
                 <option value='helpful'>helpfulness</option>
                 <option value='newest'>new</option>
@@ -266,7 +266,7 @@ const ReviewList = (props) => {
                                 <h3>{review.summary}</h3>
                                 <p>{review.body}</p>
                                 {review.photos.map((photo) => {
-                                    return <React.Fragment key={photo.id}><img onClick={() => { setUrl(photo.url); toggleOpenImage() }} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
+                                    return <React.Fragment key={photo.id}><img onClick={() => { setUrl(photo.url); toggleOpenImage(); clickTracker('epxand review image', 'reviews') }} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
                                         <ReviewsImageModal product={props.reviews.product} open={openImage} handleClose={handleCloseImage} url={url} /></React.Fragment>
                                 })}
                                 {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
@@ -276,10 +276,10 @@ const ReviewList = (props) => {
                                 </div> : null}
                                 <br />
                                 <span style={{ fontSize: 'small' }}>Was this review helpful?   </span>
-                                <span onClick={() => handleHelpful(review.review_id)} style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
+                                <span onClick={() => {handleHelpful(review.review_id); clickTracker('helpful review', 'reviews')}} style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
                                 <span style={{ fontSize: 'small', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
-                                <span onClick={() => handleReport(review.review_id)} style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>
+                                <span onClick={() => {handleReport(review.review_id); clickTracker('report review', 'reviews')}} style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>
                                 <hr />
                                 <br />
                             </React.Fragment>

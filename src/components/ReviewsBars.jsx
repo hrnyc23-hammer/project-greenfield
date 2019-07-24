@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from "@material-ui/core/Button"
+import { clickTracker } from '../infoFetchers.js'
 
 const ReviewsBars = (props) => {
     var totalStars = 0
@@ -22,35 +23,35 @@ const ReviewsBars = (props) => {
     return (
         <React.Fragment>
             <div>
-                <span onClick={() => { props.handleBarFilterChange(5) }} style={{ textDecoration: 'underline', float: 'left' }}>5 stars</span>
+                <span onClick={() => { props.handleBarFilterChange(5); clickTracker('review bars filter', 'reviews') }} style={{ textDecoration: 'underline', float: 'left' }}>5 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: fiveWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
-                <span onClick={() => { props.handleBarFilterChange(4) }} style={{ textDecoration: 'underline', float: 'left' }}>4 stars</span>
+                <span onClick={() => { props.handleBarFilterChange(4); clickTracker('review bars filter', 'reviews') }} style={{ textDecoration: 'underline', float: 'left' }}>4 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: fourWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
-                <span onClick={() => { props.handleBarFilterChange(3) }} style={{ textDecoration: 'underline', float: 'left' }}>3 stars</span>
+                <span onClick={() => { props.handleBarFilterChange(3); clickTracker('review bars filter', 'reviews') }} style={{ textDecoration: 'underline', float: 'left' }}>3 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: threeWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
-                <span onClick={() => { props.handleBarFilterChange(2) }} style={{ textDecoration: 'underline', float: 'left' }}>2 stars</span>
+                <span onClick={() => { props.handleBarFilterChange(2); clickTracker('review bars filter', 'reviews') }} style={{ textDecoration: 'underline', float: 'left' }}>2 stars</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '10px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: twoWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
             <br />
             <div>
-                <span onClick={() => { props.handleBarFilterChange(1) }} style={{ textDecoration: 'underline', float: 'left' }}>1 star</span>
+                <span onClick={() => { props.handleBarFilterChange(1); clickTracker('review bars filter', 'reviews') }} style={{ textDecoration: 'underline', float: 'left' }}>1 star</span>
                 <div style={{ float: 'left', marginTop: '5px', marginLeft: '16px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: oneWidth, background: 'green', height: '100%' }}></div>
                 </div>
@@ -65,10 +66,10 @@ const ReviewsBars = (props) => {
                         return <span key={index}> <strong>{star}</strong></span>
                     }
                 })}
-                    </span><br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
+                    </span><br /><Button variant='contained' size='small' onClick={() => { props.handleBarFilterReset(); clickTracker('review bars filter', 'reviews') }}>Reset Filter</Button></span>
             </div>) : (<div style={{ visibility: 'hidden' }}>
                 <span>Filtered by stars:
-                <br /><Button variant='contained' size='small' onClick={props.handleBarFilterReset}>Reset Filter</Button></span>
+                <br /><Button variant='contained' size='small'>Reset Filter</Button></span>
             </div>)}
             </div>
             {props.meta.characteristics.Comfort ? <React.Fragment><p>Comfort</p>
