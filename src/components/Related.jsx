@@ -3,6 +3,7 @@ import RelatedItem from './RelatedItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -10,6 +11,12 @@ const useStyles = makeStyles(theme => ({
   },
   shift: {
     cursor: "pointer"
+  },
+  invisible: {
+    visibility: "hidden"
+  },
+  visible: {
+    visibility: "visible"
   }
 }));
 
@@ -38,33 +45,34 @@ const Related = (props) => {
   };
 
   return (
-    <div>
-    <Grid container className={classes.root}
-      direction="row"
-      justify="flex-start"
-      alignItems="center"
-      spacing={4}
-    >
-      {lowerLimit !== 0 ? <Grid item>
-        <SvgIcon color="primary" onClick={reduceLimit} className={classes.shift}>
-          <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
-        </SvgIcon>
-      </Grid> : <div></div>}
-      {props.related.length !== 0 ? props.related.map((item, idx) => {
-        if (idx >= lowerLimit && idx < lowerLimit + 4) {
-          return (
-          <Grid item key={idx}>
-            <RelatedItem item={item} currentItemInfo={props.info} handleRelatedClick={props.handleRelatedClick}/>
+    <React.Fragment>
+      <Typography variant="h5">Related Products</Typography>
+      <Grid container className={classes.root}
+        direction="row"
+        justify="flex-start"
+        alignItems="center"
+        spacing={4}
+      >
+        <Grid item className={lowerLimit !== 0 ? classes.visible : classes.invisible}>
+          <SvgIcon color="primary" onClick={reduceLimit} className={classes.shift}>
+            <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
+          </SvgIcon>
+        </Grid>
+        {props.related.length !== 0 ? props.related.map((item, idx) => {
+          if (idx >= lowerLimit && idx < lowerLimit + 4) {
+            return (
+            <Grid item key={idx}>
+              <RelatedItem item={item} currentItemInfo={props.info} handleRelatedClick={props.handleRelatedClick}/>
+            </Grid>
+          )}
+        }) : null}
+        <Grid item className={lowerLimit + 4 < props.related.length ? classes.visible : classes.invisible}>
+          <SvgIcon color="primary" onClick={increaseLimit} className={classes.shift}>
+            <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
+          </SvgIcon>
           </Grid>
-        )}
-      }) : null}
-      {lowerLimit + 4 < props.related.length ? <Grid item>
-        <SvgIcon color="primary" onClick={increaseLimit} className={classes.shift}>
-          <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
-        </SvgIcon>
-        </Grid> : <div></div>}
-    </Grid>
-    </div>
+      </Grid>
+    </React.Fragment>
   )
 };
 

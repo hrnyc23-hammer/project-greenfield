@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { isNull } from 'util';
+import { SvgIcon } from '@material-ui/core';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 4),
-    outline: 'none',
-  },
-}));
 
 const makeComparison = (originalFeatures, compareToFeatures) => {
   let obj = {};
@@ -51,43 +32,58 @@ const makeComparison = (originalFeatures, compareToFeatures) => {
   }
   
   return obj;
-}
+};
+
+const useStyles = makeStyles(theme => ({
+  compareItem: {
+    width: "33%"
+  }
+}));
 
 const ComparisonModal = (props) => {
 
-  const [modalStyle] = useState(getModalStyle);
   const classes = useStyles();
+
   const comparison = makeComparison(props.currentInfo.features, props.compareInfo.features);
 
+  const displayItemValue = (item) => {
+    if (item === undefined || item === 'false' || item === 'null') {
+      return <ListItemText className={classes.compareItem}></ListItemText>
+    } else if (item === 'true') {
+      return <ListItemIcon className={classes.compareItem}>
+        <SvgIcon>
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </SvgIcon>
+      </ListItemIcon>
+    } else {
+      return <ListItemText className={classes.compareItem}>{item}</ListItemText>
+    }
+  };
+
   return (
-    <Modal
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
-      open={props.open}
-      onClose={props.handleClose}
-    >
-      <div style={modalStyle} className={classes.paper}>
-        <h5 id="modal-title">Comparing</h5>
-        <table>
-          <tbody>
-            <tr>
-              <td>{props.currentInfo.name}</td>
-              <td></td>
-              <td>{props.compareInfo.name}</td>
-            </tr>
-            {Object.keys(comparison).map((feature, idx) => {
+    <Dialog onClose={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open} maxWidth="sm" fullWidth={true}>
+      <DialogTitle id="simple-dialog-title">Comparing</DialogTitle>
+      <List>
+        <ListItem divider={true}>
+            <ListItemText className={classes.compareItem}>{props.currentInfo.name}</ListItemText>
+              <ListItemText className={classes.compareItem}></ListItemText>
+              <ListItemText className={classes.compareItem}>{props.compareInfo.name}</ListItemText>
+        </ListItem>
+        {Object.keys(comparison).map((feature, idx) => {
+          let original = comparison[feature].original;
+          let compare = comparison[feature].compare;
+          if ((original !== undefined && original !== 'false' && original !== 'null') || 
+          (compare !== undefined && compare !== 'false' && compare !== 'null')) {
               return (
-                <tr key={idx}>
-                  <td>{comparison[feature].original}</td>
-                  <td>{feature}</td>
-                  <td>{comparison[feature].compare}</td>
-                </tr>
+                <ListItem divider={true} key={idx}>
+                  {displayItemValue(original)}
+                  <ListItemText className={classes.compareItem}>{feature}</ListItemText>
+                  {displayItemValue(compare)}
+                </ListItem>
               )
-            })}
-          </tbody>
-        </table>
-      </div>
-    </Modal>
+            }})}
+      </List>
+    </Dialog>
   );
 }
 
