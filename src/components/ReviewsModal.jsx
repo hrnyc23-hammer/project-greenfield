@@ -43,14 +43,14 @@ const ReviewsModal = props => {
     fontSize: "large",
     marginTop: "40px"
   });
-  const [body, setBody] = useState("Why did you like the product or not?");
-  const [email, setEmail] = useState("Your email here");
-  const [name, setName] = useState("Example: jackson11");
+  const [body, setBody] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [photos, setPhotos] = useState([]);
   const [rating, setRating] = useState(3);
   const [recommend, setRecommend] = useState(true);
-  const [summary, setSummary] = useState("Example: Best purchase ever!");
-  const [singlePhoto, setSinglePhoto] = useState("Enter photo URL here");
+  const [summary, setSummary] = useState('');
+  const [singlePhoto, setSinglePhoto] = useState('');
   const [size, setSize] = useState(0)
   const [width, setWidth] = useState(0)
   const [comfort, setComfort] = useState(0)
@@ -113,6 +113,7 @@ const ReviewsModal = props => {
           <strong>*Summary:</strong>
         </p>
         <textarea
+          placeholder="Example: Best purchase ever!"
           value={summary}
           maxLength="60"
           onChange={e => setSummary(e.target.value)}
@@ -124,6 +125,7 @@ const ReviewsModal = props => {
           <strong>*Body:</strong>
         </p>
         <textarea
+          placeholder="Why did you like the product or not?"
           value={body}
           maxLength="1000"
           onChange={e => setBody(e.target.value)}
@@ -147,6 +149,7 @@ const ReviewsModal = props => {
         </span>
         <br />
         <textarea
+          placeholder="Example: jackson11"
           value={name}
           maxLength="60"
           onChange={e => setName(e.target.value)}
@@ -154,6 +157,7 @@ const ReviewsModal = props => {
           cols="40"
         />
         <textarea
+          placeholder="example@aol.com"
           style={rightStyle}
           value={email}
           maxLength="60"
@@ -266,6 +270,7 @@ const ReviewsModal = props => {
           <strong>Photos:</strong>
         </p>
         <textarea
+          placeholder="Enter photo URL here"
           style={leftStyle}
           value={singlePhoto}
           maxLength="1000"
@@ -275,7 +280,7 @@ const ReviewsModal = props => {
           cols="80"
         />
         <button onClick={submitPhoto}>Submit URL</button>
-        <button onClick={() => props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality)} style={submitStyle}>Submit Review</button>
+        <button onClick={() => { props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality); props.handleClose() }} style={submitStyle}>Submit Review</button>
         {/* {photos.map((pic, index) => {
           return (
             <div key={index} style={small}>
