@@ -64,5 +64,12 @@ module.exports = {
   },
   putQuestionHelpful: questionId => {
     return Axios.put(`${apiUrl}/qa/question/${questionId}/helpful`);
+  },
+  clickTracker: (element, widget) => {
+    Axios.post(`${apiUrl}/interactions`, {
+      element: element,
+      widget: widget,
+      time: Date.now().toString()
+    });
   }
 };

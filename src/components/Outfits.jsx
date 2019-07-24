@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OutfitItem from './OutfitItem';
 import { SvgIcon, Typography } from '@material-ui/core';
+import { clickTracker } from '../infoFetchers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,7 +54,10 @@ const Outfits = (props) => {
       spacing={4}
       >
         <Grid item>
-          <SvgIcon onClick={addOutfit} className={classes.add} color="primary">
+          <SvgIcon onClick={() => {
+            addOutfit();
+            clickTracker("outfit", "compare");
+          }} className={classes.add} color="primary">
             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
           </SvgIcon>
         </Grid>
