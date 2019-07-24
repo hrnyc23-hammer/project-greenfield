@@ -1,17 +1,17 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
-import { postAnswer } from "../infoFetchers.js";
+import { postQuestion } from "../infoFetchers.js";
 
-let QAAddAnswer = props => {
+let QAAddQuestion = props => {
   return (
     <React.Fragment>
       <Modal
         open={props.clickedFlag}
         onClose={() => {
-          props.QAAnswerFlagClicked(!props.clickedFlag);
+          props.QAQuestionFlagClicked(!props.clickedFlag);
         }}
       >
         <div
@@ -27,67 +27,44 @@ let QAAddAnswer = props => {
           <Button
             style={{ float: "right" }}
             onClick={() => {
-              props.QAAnswerFlagClicked(!props.clickedFlag);
+              props.QAQuestionFlagClicked(!props.clickedFlag);
             }}
           >
             x
           </Button>
-          <h3>Share Your Answer</h3>
+          <h3>Add a Question</h3>
           <TextField
             placeholder="nickname"
             onChange={e => {
-              props.QAAnswerNickname(e.target.value);
+              props.QAQuestionNickname(e.target.value);
             }}
           />
           <br />
           <TextField
             placeholder="your email"
             onChange={e => {
-              props.QAAnswerEmail(e.target.value);
+              props.QAQuestionEmail(e.target.value);
             }}
           />
           <br />
-
-          <TextField
-            placeholder="photo url"
-            onChange={e => {
-              props.QAUrl(e.target.value);
-            }}
-          />
-          <Button
-            onClick={() => {
-              if (props.photoUrl.length < 5) {
-                props.QAAddPhotos(props.url);
-              }
-            }}
-          >
-            add photos (Up to 5)
-          </Button>
           <br />
           <TextField
-            placeholder="your answer"
             fullWidth
             margin="normal"
             variant="outlined"
+            placeholder="your question"
             onChange={e => {
-              props.QAAddAnswerBody(e.target.value);
+              props.QAQuestionBody(e.target.value);
             }}
           />
-          <React.Fragment>
-            {props.photoUrl.map((photo, i) => {
-              return <img src={photo} width="100" height="60" key={i} />;
-            })}
-          </React.Fragment>
-          <br />
           <Fab
             style={{ float: "right" }}
             onClick={() => {
-              postAnswer(
-                props.qaCurrentQuestion,
-                props.answerBody,
+              postQuestion(
+                props.productId,
+                props.body,
                 props.nickname,
-                props.email,
-                props.photoUrl
+                props.email
               ).catch(err => {
                 console.error("API request error");
               });
@@ -102,4 +79,4 @@ let QAAddAnswer = props => {
   );
 };
 
-export default QAAddAnswer;
+export default QAAddQuestion;

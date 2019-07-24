@@ -65,6 +65,13 @@ module.exports = {
   putQuestionHelpful: questionId => {
     return Axios.put(`${apiUrl}/qa/question/${questionId}/helpful`);
   },
+  postQuestion: (productId, body, name, email) => {
+    return Axios.post(`${apiUrl}/qa/${productId}`, {
+      body: body,
+      name: name,
+      email: email
+    });
+  }, 
   clickTracker: (element, widget) => {
     Axios.post(`${apiUrl}/interactions`, {
       element: element,
