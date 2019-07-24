@@ -84,7 +84,7 @@ let QAForum = props => {
                 <span
                   onClick={() => {
                     putQuestionHelpful(question.question_id).catch(err => {
-                      console.log('API request error');
+                      console.log("API request error");
                     });
                     alert("Thank you for your feedback!");
                   }}
@@ -117,11 +117,11 @@ let QAForum = props => {
                     .map((answer, i) => {
                       return (
                         <List key={i}>
-                          <ListItem alignItems="flex-start" >
-                            <p >A: {answer.body}</p>
+                          <ListItem alignItems="flex-start">
+                            <p>A: {answer.body}</p>
                           </ListItem>
 
-                          <ListItem >
+                          <ListItem>
                             {answer.photos.map(photo => {
                               return (
                                 <img
@@ -133,15 +133,13 @@ let QAForum = props => {
                                   width="100"
                                   height="60"
                                   style={{ cursor: "pointer" }}
-                                 
                                 />
                               );
                             })}
                           </ListItem>
 
-                          <ListItem >
+                          <ListItem>
                             <span
-                             
                               style={{
                                 fontSize: "small",
                                 spanadding: "0px 0px 0px 0px",
@@ -154,7 +152,7 @@ let QAForum = props => {
                             <span
                               onClick={() => {
                                 putAnswerHelpful(answer.id).catch(err => {
-                                  console.log('API request error');
+                                  console.log("API request error");
                                 });
                                 alert("Thank you for your feedback!");
                               }}
@@ -188,7 +186,7 @@ let QAForum = props => {
                             <span
                               onClick={() => {
                                 putAnswerReport(answer.id).catch(err => {
-                                  console.log('API request error');
+                                  console.log("API request error");
                                 });
                                 alert(
                                   "Answer reported. It will no longer show up on future page loads."
