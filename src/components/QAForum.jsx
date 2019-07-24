@@ -123,9 +123,10 @@ let QAForum = props => {
                           </ListItem>
 
                           <ListItem>
-                            {answer.photos.map(photo => {
+                            {answer.photos.map((photo, i) => {
                               return (
                                 <img
+                                  key={i}
                                   onClick={() => {
                                     props.QAClickedImageUrl(photo);
                                     props.QAImageClicked(!props.qaImageClicked);
