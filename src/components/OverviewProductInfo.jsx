@@ -19,7 +19,8 @@ const ProductInfo = ({ props }) => {
 
   return (
     <React.Fragment>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom>{props.info.name}</Typography>
+      <Typography variant="subtitle2" gutterBottom>
         {props.info.category}
       </Typography>
       <Typography

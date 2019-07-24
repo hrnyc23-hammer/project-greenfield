@@ -66,6 +66,8 @@ const Overview = props => {
             <Grid item xs={4} container direction="column">
               <Grid item>
                 {props.meta ? <ReviewsStars meta={props.meta} /> : null}
+                <a onClick={()=>alert('clicked')}>READ ALL REVIEWS</a>
+                {/* this onclick needs to scroll to reviews */}
                 <ProductInfo props={props} />
               </Grid>
               <Grid item>
