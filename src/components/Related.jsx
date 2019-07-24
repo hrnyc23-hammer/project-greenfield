@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { Typography } from '@material-ui/core';
+import { clickTracker } from '../infoFetchers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,13 +35,11 @@ const Related = (props) => {
 
   const [lowerLimit, setLowerLimit] = useState(0);
 
-  const reduceLimit = (event) => {
-    event.preventDefault();
+  const reduceLimit = () => {
     setLowerLimit(lowerLimit - 1);
   };
 
-  const increaseLimit = (event) => {
-    event.preventDefault();
+  const increaseLimit = () => {
     setLowerLimit(lowerLimit + 1);
   };
 
@@ -54,7 +53,10 @@ const Related = (props) => {
         spacing={4}
       >
         <Grid item className={lowerLimit !== 0 ? classes.visible : classes.invisible}>
-          <SvgIcon color="primary" onClick={reduceLimit} className={classes.shift}>
+          <SvgIcon color="primary" onClick={() => {
+            reduceLimit();
+            clickTracker("related-products", "compare");
+          }} className={classes.shift}>
             <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
           </SvgIcon>
         </Grid>
@@ -67,7 +69,10 @@ const Related = (props) => {
           )}
         }) : null}
         <Grid item className={lowerLimit + 4 < props.related.length ? classes.visible : classes.invisible}>
-          <SvgIcon color="primary" onClick={increaseLimit} className={classes.shift}>
+          <SvgIcon color="primary" onClick={() => {
+            increaseLimit();
+            clickTracker("related-products", "compare");
+          }} className={classes.shift}>
             <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
           </SvgIcon>
           </Grid>

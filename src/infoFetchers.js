@@ -71,5 +71,12 @@ module.exports = {
       name: name,
       email: email
     });
+  }, 
+  clickTracker: (element, widget) => {
+    Axios.post(`${apiUrl}/interactions`, {
+      element: element,
+      widget: widget,
+      time: Date.now().toString()
+    });
   }
 };
