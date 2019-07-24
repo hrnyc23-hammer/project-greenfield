@@ -58,18 +58,6 @@ const ReviewsModal = props => {
   const [fit, setFit] = useState(0)
   const [quality, setQuality] = useState(0)
 
-
-  const reset = () => {
-    setBody("Why did you like the product or not?");
-    setEmail("Your email here");
-    setName("Example: jackson11");
-    setPhotos([]);
-    setRating(3);
-    setRecommend(true);
-    setSummary("Example: Best purchase ever!");
-    setSinglePhoto("Enter photo URL here");
-  };
-
   const submitPhoto = () => {
     if (photos.length < 5) {
       photos.push(singlePhoto);
@@ -287,11 +275,7 @@ const ReviewsModal = props => {
           cols="80"
         />
         <button onClick={submitPhoto}>Submit URL</button>
-        <button onClick={() => props.handleSubmitReview(rating, summary, body, recommend, name, email, photos)} style={submitStyle}>Submit Review</button>
-        {/*<button style={submitStyle} onClick={reset}>
-
-          Reset Fields
-        </button> */}
+        <button onClick={() => props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality)} style={submitStyle}>Submit Review</button>
         {/* {photos.map((pic, index) => {
           return (
             <div key={index} style={small}>

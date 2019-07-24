@@ -36,16 +36,7 @@ module.exports = {
   putHelpful: reviewId => {
     return Axios.put(`${apiUrl}/reviews/helpful/${reviewId}`);
   },
-  postReview: (
-    productId,
-    rating,
-    summary,
-    body,
-    recommend,
-    name,
-    email,
-    photos
-  ) => {
+  postReview: (productId, rating, summary, body, recommend, name, email, photos, characteristics) => {
     return Axios.post(`${apiUrl}/reviews/${productId}`, {
       rating: rating,
       summary: summary,
@@ -53,7 +44,8 @@ module.exports = {
       recommend: recommend,
       name: name,
       email: email,
-      photos: photos
+      photos: photos,
+      characteristics: characteristics
     });
   },
   postAnswer: (questionId, body, name, email, photos) => {
