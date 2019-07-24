@@ -85,7 +85,7 @@ let QAForum = props => {
                 <span
                   onClick={() => {
                     putQuestionHelpful(question.question_id).catch(err => {
-                      console.error(err);
+                      console.error("API request error");
                     });
                     alert("Thank you for your feedback!");
                   }}
@@ -154,7 +154,7 @@ let QAForum = props => {
                             <span
                               onClick={() => {
                                 putAnswerHelpful(answer.id).catch(err => {
-                                  console.error(err);
+                                  console.error("API request error");
                                 });
                                 alert("Thank you for your feedback!");
                               }}
@@ -188,7 +188,7 @@ let QAForum = props => {
                             <span
                               onClick={() => {
                                 putAnswerReport(answer.id).catch(err => {
-                                  console.error(err);
+                                  console.error("API request error");
                                 });
                                 alert(
                                   "Answer reported. It will no longer show up on future page loads."
