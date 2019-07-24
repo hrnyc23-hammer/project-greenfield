@@ -37,7 +37,14 @@ const Overview = props => {
       textAlign: "center"
     },
     button: {
-      margin: theme.spacing(1)
+      margin: theme.spacing(1),
+      width:'75%'
+    },
+    shawdow : {
+
+      '&:hover': {
+        opacity: 0.5
+    }
     }
   }));
 
@@ -72,11 +79,15 @@ const Overview = props => {
                 </Grid>
               </Grid>
               <Grid container justify="center">
+                <Grid item xs={6}>
                 <Button variant="contained" className={classes.button}>
                   <ShoppingCartIcon/>
                 </Button>
+                </Grid>
+                <Grid item xs={6} className={classes.shawdow} >
                 <Share />
-              </Grid>
+                </Grid>
+                </Grid>
             </Grid>
             <Grid item xs={12} className={classes.slogan}>
               <Typography variant="h5">{props.info.slogan}</Typography>
