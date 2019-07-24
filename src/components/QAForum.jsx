@@ -217,7 +217,7 @@ let QAForum = props => {
                     size="small"
                     style={{ marginRight: "20px" }}
                     onClick={() => {
-                      props.QAAddAnswers(i);
+                      props.QAAddAnswers(questionIndex);
                     }}
                   >
                     load more answers
