@@ -8,7 +8,9 @@ const Reviews = (props) => {
     if (!props.meta.recommended[1]) {
         recommended = '0%'
     } else {
-        recommended = ((props.meta.recommended[1] / (props.meta.recommended[0] + props.meta.recommended[1])) * 100).toFixed().toString() + '%'
+        console.log('1: ', props.meta.recommended[1])
+        console.log('0: ', props.meta.recommended[0])
+        recommended = (((props.meta.recommended[1] || 0) / ((props.meta.recommended[0] || 0) + (props.meta.recommended[1] || 0))) * 100).toFixed().toString() + '%'
     }
     return (
         <React.Fragment>
