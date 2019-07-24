@@ -43,6 +43,10 @@ const ReviewsModal = props => {
     fontSize: "large",
     marginTop: "40px"
   });
+  const [imgStyle] = useState({
+    maxHeight: '50px',
+    marginRight: '10px'
+  })
   const [body, setBody] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -65,7 +69,7 @@ const ReviewsModal = props => {
     } else {
       alert("You may only post five pictures.");
     }
-    setSinglePhoto("Enter photo URL here");
+    setSinglePhoto('');
   };
 
   const classes = useStyles();
@@ -281,13 +285,12 @@ const ReviewsModal = props => {
         />
         <button onClick={submitPhoto}>Submit URL</button>
         <button onClick={() => { props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality); props.handleClose() }} style={submitStyle}>Submit Review</button>
-        {/* {photos.map((pic, index) => {
+        <br />
+        {photos.map((pic, index) => {
           return (
-            <div key={index} style={small}>
-              {pic}
-            </div>
+            <img key={index} style={imgStyle} src={pic} />
           );
-        })} */}
+        })}
       </div>
     </Modal>
   );
