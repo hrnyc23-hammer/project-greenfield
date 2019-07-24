@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ComparisonModal from './ComparisonModal';
 import Button from '@material-ui/core/Button';
+import { clickTracker } from '../infoFetchers';
 
 const RelatedItem = props => {
   const noImgAvailableURL =
@@ -66,7 +67,10 @@ const RelatedItem = props => {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={toggleOpen}>
+      <CardActionArea onClick={() => {
+        toggleOpen();
+        clickTracker("related-products", "compare");
+      }}>
         <CardMedia
           className={classes.media}
           image={imgSrc}
@@ -90,7 +94,9 @@ const RelatedItem = props => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => {
+          clickTracker("related-products", "compare");
+        }}>
           <a href={props.item.info ? `/?products=${props.item.info.id}` : "#"}
             style={{textDecoration: "none"}}>See Product</a>
         </Button>
