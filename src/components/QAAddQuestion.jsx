@@ -66,7 +66,7 @@ let QAAddQuestion = props => {
                 props.nickname,
                 props.email
               ).catch(err => {
-                console.log("API request error");
+                console.error(err);
               });
               alert("Submitted!");
             }}

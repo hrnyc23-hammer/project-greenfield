@@ -74,9 +74,9 @@ let QAAddAnswer = props => {
             }}
           />
           <React.Fragment>
-            {props.photoUrl.map(photo => {
+            {props.photoUrl.map((photo, i) => {
               return (
-                <img src={photo} width="100" height="60" key={Math.random()} />
+                <img src={photo} width="100" height="60" key={i} />
               );
             })}
           </React.Fragment>
@@ -91,7 +91,7 @@ let QAAddAnswer = props => {
                 props.email,
                 props.photoUrl
               ).catch(err => {
-                console.log("API request error");
+                console.error(err);
               });
               alert("Submitted!");
             }}
