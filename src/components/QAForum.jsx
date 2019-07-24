@@ -5,8 +5,11 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import Modal from "@material-ui/core/Modal";
-import Fab from "@material-ui/core/Fab";
-import TextField from "@material-ui/core/TextField";
+import {
+  putAnswerReport,
+  putAnswerHelpful,
+  putQuestionHelpful
+} from "../infoFetchers.js";
 
 let QAForum = props => {
   return (
@@ -23,10 +26,9 @@ let QAForum = props => {
           .slice(0, props.qaCount)
           .map((question, i) => {
             return (
-              <React.Fragment key={Math.random()}>
+              <React.Fragment key={i}>
                 <strong>
                   <span
-                    key={Math.random()}
                     style={{
                       fontSize: "large",
                       padding: "0px 0px 0px 55px"
@@ -47,6 +49,14 @@ let QAForum = props => {
                   }}
                 >
                   {" "}
+                  <span
+                    onClick={() => {
+                      props.QACurrentQuestion(question.question_id);
+                      props.QAAnswerFlagClicked(!props.clickedFlag);
+                    }}
+                  >
+                    Add An Answer
+                  </span>
                   <QAAddAnswerContainer />
                 </span>
 
@@ -72,6 +82,12 @@ let QAForum = props => {
                   ({question.question_helpfulness}){" "}
                 </span>
                 <span
+                  onClick={() => {
+                    putQuestionHelpful(question.question_id).catch(err => {
+                      console.log("API request error");
+                    });
+                    alert("Thank you for your feedback!");
+                  }}
                   style={{
                     fontSize: "small",
                     float: "right",
@@ -98,14 +114,14 @@ let QAForum = props => {
                         : 0
                     )
                     .slice(0, question.answerLimit)
-                    .map(answer => {
+                    .map((answer, i) => {
                       return (
-                        <List key={Math.random()}>
-                          <ListItem alignItems="flex-start" key={Math.random()}>
-                            <p key={Math.random()}>A: {answer.body}</p>
+                        <List key={i}>
+                          <ListItem alignItems="flex-start">
+                            <p>A: {answer.body}</p>
                           </ListItem>
 
-                          <ListItem key={Math.random()}>
+                          <ListItem>
                             {answer.photos.map(photo => {
                               return (
                                 <img
@@ -117,15 +133,13 @@ let QAForum = props => {
                                   width="100"
                                   height="60"
                                   style={{ cursor: "pointer" }}
-                                  key={Math.random()}
                                 />
                               );
                             })}
                           </ListItem>
 
-                          <ListItem key={Math.random()}>
+                          <ListItem>
                             <span
-                              key={Math.random()}
                               style={{
                                 fontSize: "small",
                                 spanadding: "0px 0px 0px 0px",
@@ -136,6 +150,12 @@ let QAForum = props => {
                               {answer.date.split("T")[0]} | Helpful?
                             </span>
                             <span
+                              onClick={() => {
+                                putAnswerHelpful(answer.id).catch(err => {
+                                  console.log("API request error");
+                                });
+                                alert("Thank you for your feedback!");
+                              }}
                               style={{
                                 fontSize: "small",
                                 textDecoration: "underline",
@@ -164,6 +184,14 @@ let QAForum = props => {
                             </span>
 
                             <span
+                              onClick={() => {
+                                putAnswerReport(answer.id).catch(err => {
+                                  console.log("API request error");
+                                });
+                                alert(
+                                  "Answer reported. It will no longer show up on future page loads."
+                                );
+                              }}
                               style={{
                                 fontSize: "small",
                                 textDecoration: "underline",
@@ -212,7 +240,12 @@ let QAForum = props => {
         More Answered Questions
       </Button>
 
-      <Modal open={props.qaImageClicked} onClose={() => {props.QAImageClicked(!props.qaImageClicked)}}>
+      <Modal
+        open={props.qaImageClicked}
+        onClose={() => {
+          props.QAImageClicked(!props.qaImageClicked);
+        }}
+      >
         <React.Fragment>
           <Button
             style={{ float: "right" }}

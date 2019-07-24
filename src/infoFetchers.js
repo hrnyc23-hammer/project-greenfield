@@ -1,38 +1,40 @@
-const apiUrl = 'http://18.222.40.124';
-const Axios = require('axios');
+const apiUrl = "http://18.222.40.124";
+const Axios = require("axios");
 
 module.exports = {
-  getProductInfo: (productId) => {
+  getProductInfo: productId => {
     return Axios.get(`${apiUrl}/products/${productId}`);
   },
 
-  getStyles: (productId) => {
+  getStyles: productId => {
     return Axios.get(`${apiUrl}/products/${productId}/styles`);
   },
 
-  getRelated: (productId) => {
+  getRelated: productId => {
     return Axios.get(`${apiUrl}/products/${productId}/related`);
   },
 
-  getQA: (productId) => {
+  getQA: productId => {
     return Axios.get(`${apiUrl}/qa/${productId}`);
   },
 
-  getReviews: (productId) => {
+  getReviews: productId => {
     return Axios.get(`${apiUrl}/reviews/${productId}/list?count=4`);
   },
 
-  getMeta: (productId) => {
+  getMeta: productId => {
     return Axios.get(`${apiUrl}/reviews/${productId}/meta`);
   },
-  putReport: (reviewId) => {
-    return Axios.put(`${apiUrl}/reviews/report/${reviewId}`)
+  putReport: reviewId => {
+    return Axios.put(`${apiUrl}/reviews/report/${reviewId}`);
   },
   getSortedReviews: (productId, sort, page) => {
-    return Axios.get(`${apiUrl}/reviews/${productId}/list?count=4&sort=${sort}&page=${page}`)
+    return Axios.get(
+      `${apiUrl}/reviews/${productId}/list?count=4&sort=${sort}&page=${page}`
+    );
   },
-  putHelpful: (reviewId) => {
-    return Axios.put(`${apiUrl}/reviews/helpful/${reviewId}`)
+  putHelpful: reviewId => {
+    return Axios.put(`${apiUrl}/reviews/helpful/${reviewId}`);
   },
   postReview: (productId, rating, summary, body, recommend, name, email, photos, characteristics) => {
     return Axios.post(`${apiUrl}/reviews/${productId}`, {
@@ -44,6 +46,23 @@ module.exports = {
       email: email,
       photos: photos,
       characteristics: characteristics
-    })
+    });
+  },
+  postAnswer: (questionId, body, name, email, photos) => {
+    return Axios.post(`${apiUrl}/qa/${questionId}/answers`, {
+      body: body,
+      name: name,
+      email: email,
+      photos: photos
+    });
+  },
+  putAnswerReport: answerId => {
+    return Axios.put(`${apiUrl}/qa/answer/${answerId}/report`);
+  },
+  putAnswerHelpful: answerId => {
+    return Axios.put(`${apiUrl}/qa/answer/${answerId}/helpful`);
+  },
+  putQuestionHelpful: questionId => {
+    return Axios.put(`${apiUrl}/qa/question/${questionId}/helpful`);
   }
-}
+};

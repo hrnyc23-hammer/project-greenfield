@@ -13,7 +13,9 @@ var mapStateToProps = state => ({
   email: state.qaAnswerEmail,
   answerBody: state.qaAnswerBody,
   url: state.qaUrl,
-  photoUrl: state.qaAddPhotos
+  photoUrl: state.qaAddPhotos,
+  qaResultsArr: state.qaResultsArr,
+  qaCurrentQuestion: state.qaCurrentQuestion
 });
 
 var mapDispatchToProps = dispatch => ({
