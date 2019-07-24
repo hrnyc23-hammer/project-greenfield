@@ -5,11 +5,15 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import Modal from "@material-ui/core/Modal";
+import {
+  putAnswerReport,
+  putAnswerHelpful,
+  putQuestionHelpful
+} from "../infoFetchers.js";
 
 let QAForum = props => {
   return (
     <div>
-      {console.log(props)}
       <ul>
         {props.qaResultsArr
           .sort((a, b) =>
@@ -23,7 +27,6 @@ let QAForum = props => {
           .map((question, i) => {
             return (
               <React.Fragment key={Math.random()}>
-                {/* {console.log(question)} */}
                 <strong>
                   <span
                     key={Math.random()}
@@ -49,7 +52,7 @@ let QAForum = props => {
                   {" "}
                   <span
                     onClick={() => {
-                      console.log(question.question_id)
+                      props.QACurrentQuestion(question.question_id);
                       props.QAAnswerFlagClicked(!props.clickedFlag);
                     }}
                   >
@@ -80,6 +83,12 @@ let QAForum = props => {
                   ({question.question_helpfulness}){" "}
                 </span>
                 <span
+                  onClick={() => {
+                    putQuestionHelpful(question.question_id).catch(err => {
+                      console.log(err);
+                    });
+                    alert("Thank you for your feedback!");
+                  }}
                   style={{
                     fontSize: "small",
                     float: "right",
@@ -144,6 +153,12 @@ let QAForum = props => {
                               {answer.date.split("T")[0]} | Helpful?
                             </span>
                             <span
+                              onClick={() => {
+                                putAnswerHelpful(answer.id).catch(err => {
+                                  console.log(err);
+                                });
+                                alert("Thank you for your feedback!");
+                              }}
                               style={{
                                 fontSize: "small",
                                 textDecoration: "underline",
@@ -172,6 +187,15 @@ let QAForum = props => {
                             </span>
 
                             <span
+                              onClick={() => {
+                                console.log(answer.id);
+                                putAnswerReport(answer.id).catch(err => {
+                                  console.log(err);
+                                });
+                                alert(
+                                  "Answer reported. It will no longer show up on future page loads."
+                                );
+                              }}
                               style={{
                                 fontSize: "small",
                                 textDecoration: "underline",

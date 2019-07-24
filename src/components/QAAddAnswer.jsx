@@ -8,8 +8,6 @@ import { postAnswer } from "../infoFetchers.js";
 let QAAddAnswer = props => {
   return (
     <React.Fragment>
-      {console.log(props)}
-
       <Modal
         open={props.clickedFlag}
         onClose={() => {
@@ -83,7 +81,21 @@ let QAAddAnswer = props => {
             })}
           </React.Fragment>
           <br />
-          <Fab style={{ float: "right" }} onClick={() => {}}>
+          <Fab
+            style={{ float: "right" }}
+            onClick={() => {
+              postAnswer(
+                props.qaCurrentQuestion,
+                props.answerBody,
+                props.nickname,
+                props.email,
+                props.photoUrl
+              ).catch(err => {
+                console.log(err);
+              });
+              alert("Submitted!");
+            }}
+          >
             Submit
           </Fab>
         </div>
