@@ -4,7 +4,7 @@ import QAHandleSearchEntry from "./../actions/QAHandleSearchEntry";
 import QAFilterResultsArr from "./../actions/QAFilterResultsArr";
 
 var mapStateToProps = state => ({
-  qaSearchEntry: state.QASearchEntry
+  qaSearchEntry: state.qaSearchEntry
 });
 
 var mapDispatchToProps = dispatch => ({

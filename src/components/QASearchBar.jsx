@@ -17,7 +17,9 @@ let QASearchBar = props => {
           }}
           onChange={e => {
             props.QAHandleSearchEntry(e.target.value);
-            props.QAFilterResultsArr(e.target.value);
+            if (props.qaSearchEntry.length >= 3) {
+              props.QAFilterResultsArr(e.target.value);
+            }
           }}
           placeholder={"Have a Question? Search for answers...."}
         />

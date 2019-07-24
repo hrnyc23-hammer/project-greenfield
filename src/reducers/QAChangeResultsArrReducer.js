@@ -16,11 +16,13 @@ var QAChangeResultsArrReducer = (state = [], action) => {
       return questions;
     case "QA_FILTER_ARR":
       let questions = [...state];
-      let filteredQuestions = questions.filter(question =>
-        question.question_body.includes(action.entry)
+
+      return questions.filter(question =>
+        question.question_body
+          .toLowerCase()
+          .includes(action.entry.toLowerCase())
       );
 
-      return filteredQuestions;
     default:
       if (state.length > 0 && state[0].answerLimit === undefined) {
         return state.map(ele => {
