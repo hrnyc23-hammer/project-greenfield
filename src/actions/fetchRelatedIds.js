@@ -4,7 +4,7 @@ import changeRelated from './changeRelated';
 const fetchRelatedIds = (id) => {
   return (dispatch) => {
     getRelated(id).then(({ data }) => {
-      dispatch(changeRelated(data))
+      dispatch(changeRelated([...new Set(data)]))
     })
     .catch(() => {
       console.error('Could not fetch related items');
