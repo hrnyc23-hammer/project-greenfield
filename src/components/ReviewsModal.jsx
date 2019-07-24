@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import { clickTracker } from '../infoFetchers.js'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -80,6 +81,7 @@ const ReviewsModal = props => {
           style={leftStyle}
           defaultValue="3"
           onChange={e => setRating(e.target.value)}
+          onClick={() => clickTracker('post review form', 'reviews')}
         >
           <option value="1">1 star: "Poor</option>
           <option value="2">2 stars: "Fair"</option>
@@ -91,6 +93,7 @@ const ReviewsModal = props => {
           defaultChecked="true"
           onClick={() => {
             setRecommend(true);
+            clickTracker('post review form', 'reviews')
           }}
           style={leftMarginStyle}
           type="radio"
@@ -101,6 +104,7 @@ const ReviewsModal = props => {
         <input
           onClick={() => {
             setRecommend(false);
+            clickTracker('post review form', 'reviews')
           }}
           style={leftStyle}
           type="radio"
@@ -117,6 +121,7 @@ const ReviewsModal = props => {
           value={summary}
           maxLength="60"
           onChange={e => setSummary(e.target.value)}
+          onClick={() => clickTracker('post review form', 'reviews')}
           rows="2"
           cols="100"
         />
@@ -129,6 +134,7 @@ const ReviewsModal = props => {
           value={body}
           maxLength="1000"
           onChange={e => setBody(e.target.value)}
+          onClick={() => clickTracker('post review form', 'reviews')}
           rows="6"
           cols="100"
         />
@@ -153,6 +159,7 @@ const ReviewsModal = props => {
           value={name}
           maxLength="60"
           onChange={e => setName(e.target.value)}
+          onClick={() => clickTracker('post review form', 'reviews')}
           rows="1"
           cols="40"
         />
@@ -161,6 +168,7 @@ const ReviewsModal = props => {
           style={rightStyle}
           value={email}
           maxLength="60"
+          onClick={() => clickTracker('post review form', 'reviews')}
           onChange={e => setEmail(e.target.value)}
           rows="1"
           cols="40"
@@ -175,90 +183,90 @@ const ReviewsModal = props => {
           {props.meta.characteristics.Size ?
             <React.Fragment>
               <label style={leftStyle}><strong>Size: </strong></label>
-              <input onClick={() => { setSize(1) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setSize(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>A size too small</label>
-              <input onClick={() => { setSize(2) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setSize(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>½ a size too small</label>
-              <input onClick={() => { setSize(3) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setSize(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>Perfect</label>
-              <input onClick={() => { setSize(4) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setSize(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>½ a size too big</label>
-              <input onClick={() => { setSize(5) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setSize(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>A size too wide</label>
               <br /><br />
             </React.Fragment> : null}
           {props.meta.characteristics.Width ?
             <React.Fragment>
               <label style={leftStyle}><strong>Width: </strong></label>
-              <input onClick={() => { setWidth(1) }} style={leftStyle} type="radio" name="width" />
+              <input onClick={() => { setWidth(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="width" />
               <label style={leftStyle}>Too narrow</label>
-              <input onClick={() => { setWidth(2) }} style={leftStyle} type="radio" name="width" />
+              <input onClick={() => { setWidth(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="width" />
               <label style={leftStyle}>Slightly narrow</label>
-              <input onClick={() => { setWidth(3) }} style={leftStyle} type="radio" name="width" />
+              <input onClick={() => { setWidth(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="width" />
               <label style={leftStyle}>Perfect</label>
-              <input onClick={() => { setWidth(4) }} style={leftStyle} type="radio" name="width" />
+              <input onClick={() => { setWidth(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="width" />
               <label style={leftStyle}>Slightly wide</label>
-              <input onClick={() => { setWidth(5) }} style={leftStyle} type="radio" name="width" />
+              <input onClick={() => { setWidth(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="width" />
               <label style={leftStyle}>Too wide</label>
               <br /><br />
             </React.Fragment> : null}
           {props.meta.characteristics.Comfort ?
             <React.Fragment>
               <label style={leftStyle}><strong>Comfort: </strong></label>
-              <input onClick={() => { setComfort(1) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setComfort(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>Uncomfortable</label>
-              <input onClick={() => { setComfort(2) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setComfort(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>Slightly uncomfortable</label>
-              <input onClick={() => { setComfort(3) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setComfort(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>Ok</label>
-              <input onClick={() => { setComfort(4) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setComfort(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>Comfortable</label>
-              <input onClick={() => { setComfort(5) }} style={leftStyle} type="radio" name="comfort" />
+              <input onClick={() => { setComfort(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
               <label style={leftStyle}>Perfect</label>
               <br /><br />
             </React.Fragment> : null}
           {props.meta.characteristics.Quality ?
             <React.Fragment>
               <label style={leftStyle}><strong>Quality: </strong></label>
-              <input onClick={() => { setQuality(1) }} style={leftStyle} type="radio" name="quality" />
+              <input onClick={() => { setQuality(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="quality" />
               <label style={leftStyle}>Poor</label>
-              <input onClick={() => { setQuality(2) }} style={leftStyle} type="radio" name="quality" />
+              <input onClick={() => { setQuality(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="quality" />
               <label style={leftStyle}>Below average</label>
-              <input onClick={() => { setQuality(3) }} style={leftStyle} type="radio" name="quality" />
+              <input onClick={() => { setQuality(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="quality" />
               <label style={leftStyle}>What I expected</label>
-              <input onClick={() => { setQuality(4) }} style={leftStyle} type="radio" name="quality" />
+              <input onClick={() => { setQuality(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="quality" />
               <label style={leftStyle}>Pretty great</label>
-              <input onClick={() => { setQuality(5) }} style={leftStyle} type="radio" name="quality" />
+              <input onClick={() => { setQuality(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="quality" />
               <label style={leftStyle}>Perfect</label>
               <br /><br />
             </React.Fragment> : null}
           {props.meta.characteristics.Length ?
             <React.Fragment>
               <label style={leftStyle}><strong>Length: </strong></label>
-              <input onClick={() => { setLength(1) }} style={leftStyle} type="radio" name="length" />
+              <input onClick={() => { setLength(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="length" />
               <label style={leftStyle}>Runs short</label>
-              <input onClick={() => { setLength(2) }} style={leftStyle} type="radio" name="length" />
+              <input onClick={() => { setLength(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="length" />
               <label style={leftStyle}>Runs slightly short</label>
-              <input onClick={() => { setLength(3) }} style={leftStyle} type="radio" name="length" />
+              <input onClick={() => { setLength(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="length" />
               <label style={leftStyle}>Perfect</label>
-              <input onClick={() => { setLength(4) }} style={leftStyle} type="radio" name="length" />
+              <input onClick={() => { setLength(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="length" />
               <label style={leftStyle}>Runs slightly long</label>
-              <input onClick={() => { setLength(5) }} style={leftStyle} type="radio" name="length" />
+              <input onClick={() => { setLength(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="length" />
               <label style={leftStyle}>Runs long</label>
               <br /><br />
             </React.Fragment> : null}
           {props.meta.characteristics.Fit ?
             <React.Fragment>
               <label style={leftStyle}><strong>Fit: </strong></label>
-              <input onClick={() => { setFit(1) }} style={leftStyle} type="radio" name="fit" />
+              <input onClick={() => { setFit(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="fit" />
               <label style={leftStyle}>Runs tight</label>
-              <input onClick={() => { setFit(2) }} style={leftStyle} type="radio" name="fit" />
+              <input onClick={() => { setFit(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="fit" />
               <label style={leftStyle}>Runs slightly tight</label>
-              <input onClick={() => { setFit(3) }} style={leftStyle} type="radio" name="fit" />
+              <input onClick={() => { setFit(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="fit" />
               <label style={leftStyle}>Perfect</label>
-              <input onClick={() => { setFit(4) }} style={leftStyle} type="radio" name="fit" />
+              <input onClick={() => { setFit(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="fit" />
               <label style={leftStyle}>Runs slightly loose</label>
-              <input onClick={() => { setFit(5) }} style={leftStyle} type="radio" name="fit" />
+              <input onClick={() => { setFit(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="fit" />
               <label style={leftStyle}>Runs loose</label>
               <br /><br />
             </React.Fragment> : null}
@@ -276,11 +284,12 @@ const ReviewsModal = props => {
           maxLength="1000"
           onSubmit={submitPhoto}
           onChange={e => setSinglePhoto(e.target.value)}
+          onClick={() => clickTracker('post review form', 'reviews')}
           rows="1"
           cols="80"
         />
-        <button onClick={submitPhoto}>Submit URL</button>
-        <button onClick={() => { props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality); props.handleClose() }} style={submitStyle}>Submit Review</button>
+        <button onClick={() => { submitPhoto(); clickTracker('post review form', 'reviews') }}>Submit URL</button>
+        <button onClick={() => { props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality); clickTracker('post review form', 'reviews'); props.handleClose() }} style={submitStyle}>Submit Review</button>
         {/* {photos.map((pic, index) => {
           return (
             <div key={index} style={small}>
