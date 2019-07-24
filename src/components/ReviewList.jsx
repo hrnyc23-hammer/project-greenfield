@@ -99,43 +99,131 @@ const ReviewList = (props) => {
             })
     }
 
-    const handleSubmitReview = (rating, summary, body, recommend, name, email, photos) => {
-        postReview(props.reviews.product, rating.toString(), summary, body, recommend, name, email, photos)
-            // .then((results) => {
-            //     console.log(results)
-            // })
-            .then(() => {
-                getSortedReviews(props.reviews.product, sort, page)
-                    .then(({ data }) => {
-                        props.handleReviewsChange(data)
-                        return data
-                    })
-                    .then((data) => {
-                        props.handleLoadedReset()
-                        return data
-                    })
-                    .then((data) => {
-                        props.handleLoadedChange(data.results)
-                    })
-                    .then(() => {
-                        props.handleLengthReset()
-                    })
-                    .then(() => {
-                        getMeta(props.reviews.product)
-                            .then(({ data }) => {
-                                props.handleMetaChange(data)
-                            })
-                            .catch((err) => {
-                                console.log('API request error')
-                            })
-                    })
-                    .catch((err) => {
-                        console.log('API request error')
-                    })
-            })
-            .catch((err) => {
-                console.log('API request error')
-            })
+    const handleSubmitReview = (rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality) => {
+        if (rating === 0) {
+            alert('Rating is required')
+        } else if (summary === '') {
+            alert('Summary is required')
+        } else if (body.length < 50) {
+            alert('Body must be at least 50 characters')
+        } else if (name === '') {
+            alert('Name is required')
+        } else if (email === '' || !email.split('').includes('@')) {
+            alert('Please enter a valid email')
+        } else if (props.meta.characteristics.Size && size === 0) {
+            alert('Size is required')
+        } else if (props.meta.characteristics.Width && width === 0) {
+            alert('Width is required')
+        } else if (props.meta.characteristics.Comfort && comfort === 0) {
+            alert('Comfort is required')
+        } else if (props.meta.characteristics.Length && length === 0) {
+            alert('Length is required')
+        } else if (props.meta.characteristics.Fit && fit === 0) {
+            alert('Fit is required')
+        } else if (props.meta.characteristics.Quality && quality === 0) {
+            alert('Quality is required')
+        } else {
+            var characteristics = {}
+            if (props.meta.characteristics.Size) {
+                characteristics.Size = {
+                    id: props.meta.characteristics.Size.id,
+                    value: size.toString()
+                }
+            }
+            if (props.meta.characteristics.Width) {
+                characteristics.Width = {
+                    id: props.meta.characteristics.Width.id,
+                    value: width.toString()
+                }
+            }
+            if (props.meta.characteristics.Comfort) {
+                characteristics.Comfort = {
+                    id: props.meta.characteristics.Comfort.id,
+                    value: comfort.toString()
+                }
+            }
+            if (props.meta.characteristics.Length) {
+                characteristics.Length = {
+                    id: props.meta.characteristics.Length.id,
+                    value: length.toString()
+                }
+            }
+            if (props.meta.characteristics.Fit) {
+                characteristics.Fit = {
+                    id: props.meta.characteristics.Fit.id,
+                    value: fit.toString()
+                }
+            }
+            if (props.meta.characteristics.Quality) {
+                characteristics.Quality = {
+                    id: props.meta.characteristics.Quality.id,
+                    value: quality.toString()
+                }
+            }
+            postReview(props.reviews.product, rating.toString(), summary, body, recommend, name, email, photos, characteristics)
+                // .then((results) => {
+                //     console.log(results)
+                // })
+                .then(() => {
+                    getSortedReviews(props.reviews.product, sort, page)
+                        .then(({ data }) => {
+                            props.handleReviewsChange(data)
+                            return data
+                        })
+                        .then((data) => {
+                            props.handleLoadedReset()
+                            return data
+                        })
+                        .then((data) => {
+                            props.handleLoadedChange(data.results)
+                        })
+                        .then(() => {
+                            props.handleLengthReset()
+                        })
+                        .then(() => {
+                            getMeta(props.reviews.product)
+                                .then(({ data }) => {
+                                    props.handleMetaChange(data)
+                                })
+                                .catch((err) => {
+                                    console.log('API request error')
+                                })
+                        })
+                        .catch((err) => {
+                            console.log('API request error')
+                        })
+                })
+                .catch((err) => {
+                    console.log('API request error')
+                    getSortedReviews(props.reviews.product, sort, page)
+                        .then(({ data }) => {
+                            props.handleReviewsChange(data)
+                            return data
+                        })
+                        .then((data) => {
+                            props.handleLoadedReset()
+                            return data
+                        })
+                        .then((data) => {
+                            props.handleLoadedChange(data.results)
+                        })
+                        .then(() => {
+                            props.handleLengthReset()
+                        })
+                        .then(() => {
+                            getMeta(props.reviews.product)
+                                .then(({ data }) => {
+                                    props.handleMetaChange(data)
+                                })
+                                .catch((err) => {
+                                    console.log('API request error')
+                                })
+                        })
+                        .catch((err) => {
+                            console.log('API request error')
+                        })
+                })
+        }
     }
 
     const handleMoreReviews = () => {
