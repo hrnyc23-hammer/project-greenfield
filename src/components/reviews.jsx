@@ -13,8 +13,9 @@ const Reviews = (props) => {
     }
     return (
         <React.Fragment>
-            <div style={{ float: 'left' }}>
+            <div id="reviews" style={{ float: 'left' }}>
                 <h3><Typography>Rating &amp; Reviews</Typography></h3>
+
                 <div><ReviewsScoresContainer /></div>
                 <div><Typography>{recommended} of reviews recommend this product</Typography></div>
                 <div><ReviewsBarsContainer /></div>
