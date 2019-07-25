@@ -7,6 +7,7 @@ import OutfitsContainer from '../containers/OutfitsContainer';
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 
 const App = (props) => {
 
@@ -27,12 +28,15 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Box px={8}>
-      <Paper className={classes.paper}>
-      <OverviewContainer />
-      <RelatedContainer />
-      <OutfitsContainer />
-      <QAContainer /> 
-      <ReviewsContainer />
+      <Paper className={classes.paper} divider={true}>
+        <OverviewContainer />
+        <Divider light={true} variant="middle"/>
+        <RelatedContainer />
+        <OutfitsContainer />
+        <Divider light={true} variant="middle"/>
+        <QAContainer />
+        <Divider light={true} variant="middle"/> 
+        <ReviewsContainer />
       </Paper>
       </Box>
     </React.Fragment>

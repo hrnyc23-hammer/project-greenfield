@@ -74,7 +74,7 @@ const RelatedItem = props => {
           image={imgSrc}
           title={props.item.info ? props.item.info.name : itemUnavailable}
         >
-          <SvgIcon color="primary" onClick={(event) => {
+          <SvgIcon color="primary" style={{margin: "5px 0px 0px 5px"}} onClick={(event) => {
             toggleOpen();
             clickTracker("compare-products", "compare");
             event.stopImmediatePropagation()

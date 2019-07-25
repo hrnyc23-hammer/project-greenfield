@@ -3,7 +3,7 @@ import RelatedItem from './RelatedItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { Typography } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { clickTracker } from '../infoFetchers';
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +45,9 @@ const Related = (props) => {
 
   return (
     <React.Fragment>
-      <Typography variant="h5">Related Products</Typography>
+      <Box style={{textAlign: "center", margin: "16px 0px 12px 0px"}}>
+        <Typography variant="h5">Related Products</Typography>
+      </Box>
       <Grid container className={classes.root}
         direction="row"
         justify="flex-start"
