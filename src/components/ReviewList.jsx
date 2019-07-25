@@ -299,7 +299,7 @@ const ReviewList = (props) => {
                                     <p style={{ fontFamily: 'roboto' }}>{review.response}</p>
                                 </div> : null}
                                 <br />
-                                <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>Was this review helpful?   </span 
+                                <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>Was this review helpful?   </span>
                                 <span onClick={() => { handleHelpfulClick(review.review_id); clickTracker('helpful review', 'reviews') }} style={{ fontSize: 'small', fontFamily: 'roboto', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>({review.helpfulness})</span>
                                 <span style={{ fontSize: 'small', fontFamily: 'roboto', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
