@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { clickTracker } from '../infoFetchers';
+import { SvgIcon } from '@material-ui/core';
 
 const OutfitItem = props => {
   const noImgAvailableURL =
@@ -58,15 +59,19 @@ const OutfitItem = props => {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={() => {
-        removeOutfit();
-        clickTracker("outfit", "compare");
-      }}>
+      <CardActionArea>
         <CardMedia
           className={classes.media}
           image={imgSrc}
           title={props.item.info ? props.item.info.name : itemUnavailable}
-        />
+        >
+          <SvgIcon color="primary" onClick={() => {
+            removeOutfit();
+            clickTracker("remove-outfit", "compare");
+          }}>
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </SvgIcon>
+        </CardMedia>
         <CardContent>
           <Typography variant="subtitle2" color="textSecondary" component="p">
             {props.item.info ? props.item.info.category : itemUnavailable}
