@@ -20,7 +20,8 @@ const ReviewsModal = props => {
   const [modalStyle] = useState({
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -50%)"
+    transform: "translate(-50%, -50%)",
+    fontFamily: 'roboto'
   });
   const [minimumStyle] = useState({
     fontSize: "small",
@@ -37,7 +38,7 @@ const ReviewsModal = props => {
   });
   const [leftMarginStyle] = useState({
     float: "left",
-    marginLeft: "350px"
+    marginLeft: "327px"
   });
   const [submitStyle] = useState({
     float: "right",

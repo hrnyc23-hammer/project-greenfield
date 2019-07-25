@@ -270,7 +270,7 @@ const ReviewList = (props) => {
 
     return (
         <React.Fragment>
-            <h4>{totalReviews} reviews, sorted by <select defaultValue={sort} onChange={(e) => handleSortChange(e.target.value)} onClick={() => clickTracker('review sort', 'reviews')}>
+            <h4 style={{ fontFamily: 'roboto' }}>{totalReviews} reviews, sorted by <select style={{ fontFamily: 'roboto' }} defaultValue={sort} onChange={(e) => handleSortChange(e.target.value)} onClick={() => clickTracker('review sort', 'reviews')}>
                 <option value='relevant'>relevance</option>
                 <option value='helpful'>helpfulness</option>
                 <option value='newest'>new</option>
@@ -285,25 +285,25 @@ const ReviewList = (props) => {
                                     </span>
                                 </div >
                                 <div>
-                                    <span style={{ fontSize: 'small', float: 'right' }}><strong>{review.reviewer_name}</strong>   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
+                                    <span style={{ fontFamily: 'roboto', fontSize: 'small', float: 'right' }}><strong>{review.reviewer_name}</strong>   {moment(review.date).format('ddd, MMM Do YYYY')}</span>
                                 </div>
-                                <h3>{review.summary}</h3>
-                                <p>{review.body}</p>
+                                <h3 style={{ fontFamily: 'roboto' }}>{review.summary}</h3>
+                                <p style={{ fontFamily: 'roboto' }}>{review.body}</p>
                                 {review.photos.map((photo) => {
                                     return <React.Fragment key={photo.id}><img onClick={() => { setUrl(photo.url); toggleOpenImage(); clickTracker('epxand review image', 'reviews') }} style={{ maxHeight: '100px', marginRight: '10px' }} src={photo.url}></img>
                                         <ReviewsImageModal product={props.reviews.product} open={openImage} handleClose={handleCloseImage} url={url} /></React.Fragment>
                                 })}
-                                {(review.recommend === 1) ? <React.Fragment><p><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
+                                {(review.recommend === 1) ? <React.Fragment><p style={{ fontFamily: 'roboto' }}><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
                                 {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
-                                    <p><strong>Response:</strong></p>
-                                    <p>{review.response}</p>
+                                    <p style={{ fontFamily: 'roboto' }}><strong>Response:</strong></p>
+                                    <p style={{ fontFamily: 'roboto' }}>{review.response}</p>
                                 </div> : null}
                                 <br />
-                                <span style={{ fontSize: 'small' }}>Was this review helpful?   </span>
-                                <span onClick={() => { handleHelpfulClick(review.review_id); clickTracker('helpful review', 'reviews') }} style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
-                                <span style={{ fontSize: 'small' }}>({review.helpfulness})</span>
-                                <span style={{ fontSize: 'small', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
-                                <span onClick={() => { handleReport(review.review_id); clickTracker('report review', 'reviews') }} style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>
+                                <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>Was this review helpful?   </span 
+                                <span onClick={() => { handleHelpfulClick(review.review_id); clickTracker('helpful review', 'reviews') }} style={{ fontSize: 'small', fontFamily: 'roboto', textDecoration: 'underline' }}>Yes</span>
+                                <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>({review.helpfulness})</span>
+                                <span style={{ fontSize: 'small', fontFamily: 'roboto', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
+                                <span onClick={() => { handleReport(review.review_id); clickTracker('report review', 'reviews') }} style={{ fontSize: 'small', fontFamily: 'roboto', textDecoration: 'underline' }}>Report</span>
                                 <hr />
                                 <br />
                             </React.Fragment>

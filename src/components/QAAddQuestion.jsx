@@ -33,7 +33,10 @@ let QAAddQuestion = props => {
           >
             x
           </Button>
-          <Typography variant="h6" gutterBottom> Add a Question</Typography>
+          <Typography variant="h6" gutterBottom>
+            {" "}
+            Add a Question
+          </Typography>
 
           <TextField
             placeholder="nickname"

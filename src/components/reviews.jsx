@@ -2,7 +2,6 @@ import React from 'react'
 import ReviewsScoresContainer from '../containers/ReviewsScoresContainer.js'
 import ReviewsBarsContainer from '../containers/ReviewsBarsContainer.js';
 import ReviewListContainer from '../containers/ReviewListContainer.js'
-import Typography from '@material-ui/core/Typography'
 
 const Reviews = (props) => {
     var recommended;
@@ -14,10 +13,12 @@ const Reviews = (props) => {
     return (
         <React.Fragment>
             <div id="reviews" style={{ float: 'left' }}>
-                <h3><Typography>Rating &amp; Reviews</Typography></h3>
+                <h3 style={{ fontFamily: 'roboto' }}>Rating &amp; Reviews</h3>
 
                 <div><ReviewsScoresContainer /></div>
-                <div><Typography>{recommended} of reviews recommend this product</Typography></div>
+                <br/>
+                <div style={{ fontFamily: 'roboto', fontSize: 'small' }}>{recommended} of reviews recommend this product</div>
+                <br />
                 <div><ReviewsBarsContainer /></div>
             </div>
             <div style={{ marginLeft: '350px' }}><ReviewListContainer /></div>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from "@material-ui/core/Button"
 import { clickTracker } from '../infoFetchers.js'
-import Typography from '@material-ui/core/Typography'
 
 const ReviewsBars = (props) => {
     var totalStars = 0
@@ -53,7 +52,7 @@ const ReviewsBars = (props) => {
             <br /><br />
             <div>
                 <span onClick={() => { props.handleBarFilterChange(1); clickTracker('review bars filter', 'reviews') }} style={{ textDecoration: 'underline', float: 'left', fontFamily: 'roboto' }}>1 star</span>
-                <div style={{ float: 'left', marginTop: '5px', marginLeft: '16px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
+                <div style={{ float: 'left', marginTop: '5px', marginLeft: '19px', position: 'relative', height: '10px', width: '200px', background: 'grey' }}>
                     <div style={{ width: oneWidth, background: 'green', height: '100%' }}></div>
                 </div>
             </div>
@@ -123,8 +122,8 @@ const ReviewsBars = (props) => {
 
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Too Small</p>
-                <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
-                <p style={{ marginLeft: '64px', float: 'left', fontSize: 'x-small' }}>Too Large</p>
+                <p style={{ marginLeft: '62px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <p style={{ marginLeft: '61px', float: 'left', fontSize: 'x-small' }}>Too Large</p>
                 <br /><br />
             </React.Fragment> : null}
 
@@ -135,7 +134,7 @@ const ReviewsBars = (props) => {
 
                 <br />
                 <p style={{ float: 'left', fontSize: 'x-small' }}>Too Narrow</p>
-                <p style={{ marginLeft: '63px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
+                <p style={{ marginLeft: '54px', float: 'left', fontSize: 'x-small' }}>Perfect</p>
                 <p style={{ marginLeft: '64px', float: 'left', fontSize: 'x-small' }}>Too Wide</p>
             </React.Fragment> : null}
         </React.Fragment>

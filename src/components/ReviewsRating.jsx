@@ -14,7 +14,7 @@ const ReviewsRating = (props) => {
 
   let rating = getRating(props.meta);
 
-  return <span style={{ fontSize: 'large', margin: '0px 10px 0px 0px', float: 'left' }}>{isNaN(rating) ? 0.0 : rating}</span>
+  return <span style={{ fontSize: 'large', margin: '0px 10px 0px 0px', float: 'left', fontFamily: 'roboto' }}><strong>{isNaN(rating) ? 0.0 : rating}</strong></span>
 }
 
 export default ReviewsRating;
