@@ -154,7 +154,7 @@ const handleThumbRightArrow = e => {
             </div>
             {thumbnailsShown.map((photo, i) => (
               <GridListTile key={photo.thumbnail_url}>
-                <ButtonBase onClick={()=>setCount(thumbCount + i)}>
+                <ButtonBase onClick={(e)=>{setCount(thumbCount + i); e.stopPropagation()}}>
                   <Avatar
                     src={photo.thumbnail_url || noImgAvailableURL}
                     style={photo.thumbnail_url === props.selectedStyle.photos[count].thumbnail_url ? selectedThumbnail : thumbnail}
@@ -191,7 +191,7 @@ const handleThumbRightArrow = e => {
             </div>
             {thumbnailsShown.map((photo, i) => (
               <GridListTile key={photo.thumbnail_url}>
-                <ButtonBase onClick={()=>setCount(thumbCount + i)}>
+                <ButtonBase onClick={(e)=>{setCount(thumbCount + i);e.stopPropagation()}}>
                   <Avatar
                     src={photo.thumbnail_url || noImgAvailableURL}
                     style={photo.thumbnail_url === props.selectedStyle.photos[count].thumbnail_url ? selectedThumbnail : thumbnail}
