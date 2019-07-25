@@ -309,7 +309,7 @@ let QAForum = props => {
           );
         }}
       >
-        Reset
+        Collapse
       </Button>
     </div>
   );
