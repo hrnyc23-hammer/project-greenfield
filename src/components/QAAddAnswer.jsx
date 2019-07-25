@@ -22,7 +22,9 @@ let QAAddAnswer = props => {
             position: "absolute",
             left: "35%",
             top: "25%",
-            background: "white"
+            background: "white",
+            margin: '20px',
+            padding:'20px'
           }}
         >
           <Button
@@ -33,7 +35,10 @@ let QAAddAnswer = props => {
           >
             x
           </Button>
-          <Typography variant="h6" gutterBottom> Share Your Answer</Typography>
+          <Typography variant="h6" gutterBottom>
+            {" "}
+            Share Your Answer
+          </Typography>
           <TextField
             placeholder="nickname"
             onChange={e => {
