@@ -78,5 +78,11 @@ module.exports = {
       widget: widget,
       time: Date.now().toString()
     });
+  },
+  postToCart: (productId, sessionId) => {
+    return Axios.post(`${apiUrl}/cart`, {
+      user_session: parseInt(sessionId),
+      product_id: parseInt(productId)
+    });
   }
 };
