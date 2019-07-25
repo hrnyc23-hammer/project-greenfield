@@ -6,20 +6,28 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleWare from 'redux-thunk';
 import rootReducer from './reducers/main.js';
 
+import WebFont from 'webfontloader';
+
+WebFont.load({
+    google: {
+        families: ['Roboto:300,400,500']
+    }
+});
+
 const preloadedState = window.__PRELOADED_STATE__;
 
 delete window.__PRELOADED_STATE__;
 
 const store = createStore(
-    rootReducer, 
+    rootReducer,
     preloadedState,
     applyMiddleware(thunkMiddleWare)
-  );
+);
 
 hydrate(
     <Provider store={store}>
         <App />
-    </Provider>, 
+    </Provider>,
     document.getElementById('app')
 );
 
