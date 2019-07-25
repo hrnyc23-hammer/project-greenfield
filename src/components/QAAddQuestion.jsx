@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 import { postQuestion } from "../infoFetchers.js";
+import { Typography } from "@material-ui/core";
 
 let QAAddQuestion = props => {
   return (
@@ -32,7 +33,8 @@ let QAAddQuestion = props => {
           >
             x
           </Button>
-          <h3>Add a Question</h3>
+          <Typography variant="h6" gutterBottom> Add a Question</Typography>
+
           <TextField
             placeholder="nickname"
             onChange={e => {
