@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import FreeBreakfastIcon from "@material-ui/icons/FreeBreakfastOutlined"
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,16 +21,16 @@ const useStyles = makeStyles(theme => ({
     }
 }}));
 
-export default function SearchAppBar() {
+const OverviewSearch = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-
+          <FreeBreakfastIcon/>
           <Typography className={classes.title} variant="h6" noWrap>
-            GreenField
+            Adamantium
           </Typography>
  
         </Toolbar>
@@ -37,3 +38,5 @@ export default function SearchAppBar() {
     </div>
   );
 }
+
+export default OverviewSearch;
