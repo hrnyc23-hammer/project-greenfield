@@ -8,7 +8,7 @@ import QAIncrementer from "./../actions/QAIncrementer";
 var mapStateToProps = state => ({
   qaSearchEntry: state.qaSearchEntry,
   productId: state.meta.product_id,
-  
+
   qaCount: state.qaIncrementer
 });
 
@@ -19,7 +19,7 @@ var mapDispatchToProps = dispatch => ({
   QAFilterResultsArr: entry => {
     dispatch(QAFilterResultsArr(entry));
   },
-  
+
   QAResetResultsArray: array => {
     dispatch(QAResetResultsArray(array));
   },
