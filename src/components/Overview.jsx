@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { postToCart } from '../infoFetchers';
 
 const Overview = props => {
   const [expanded, setExpanded] = useState({ xs: 8 });
@@ -53,6 +54,42 @@ const Overview = props => {
     document.getElementById("reviews").scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  let sessionId;
+
+  const [size, setSize] = useState(undefined);
+  const [qty, setQty] = useState(undefined);
+  const [status, setStatus] = useState(undefined);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+
+  const handleOpen = () => {
+    setOpen(true);  
+  }
+
+  const selectSize = (newSize) => {
+    setSize(newSize);
+  };
+
+  const selectQty = (newQty) => {
+    setQty(newQty);
+  };
+
+  useEffect(() => {
+    sessionId = sessionStorage.getItem("greenfieldSession");
+    if (sessionId === null) {
+      sessionId = Math.floor(Math.random() * Math.pow(10, 9));
+      sessionStorage.setItem("greenfieldSession", sessionId);
+    }
+  })
+
+  const addToCart = (event) => {
+    event.preventDefault();
+    return postToCart(props.info.id, sessionId);
+  }
+
   return (
     <div className={classes.root}>
       <OverviewSearch />
@@ -78,13 +115,27 @@ const Overview = props => {
               <Grid item>
                 <Grid container>
                   <Grid item xs={12}>
-                    <Cart props={props} />
+                    <Cart props={props} selectSize={selectSize} selectQty={selectQty}/>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid container justify="center">
                 <Grid item xs={6}>
-                <Button variant="contained" className={classes.button}>
+                <Button variant="contained" className={classes.button} onClick={(event) => {
+                  if (size !== undefined && qty !== undefined) {
+                    addToCart(event)
+                    .then(() => {
+                      setStatus("success");
+                      handleOpen();
+                    })
+                    .catch(() => {
+                      setStatus("fail");
+                      handleOpen(true);
+                    });
+                  } else {
+                    setStatus("incomplete");
+                    handleOpen(true);
+                  }}}>
                   <ShoppingCartIcon/>
                 </Button>
                 </Grid>
