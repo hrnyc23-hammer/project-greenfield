@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 import { postAnswer } from "../infoFetchers.js";
+import { Typography } from "@material-ui/core";
 
 let QAAddAnswer = props => {
   return (
@@ -32,7 +33,7 @@ let QAAddAnswer = props => {
           >
             x
           </Button>
-          <h3>Share Your Answer</h3>
+          <Typography variant="h6" gutterBottom> Share Your Answer</Typography>
           <TextField
             placeholder="nickname"
             onChange={e => {
