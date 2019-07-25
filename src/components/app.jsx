@@ -24,11 +24,11 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Paper className={classes.paper}>
-      <OverviewContainer />
-      <RelatedContainer />
-      <OutfitsContainer />
-      <QAContainer /> 
-      <ReviewsContainer />
+        <OverviewContainer />
+        <RelatedContainer />
+        <OutfitsContainer />
+        <QAContainer /> 
+        <ReviewsContainer />
       </Paper>
     </React.Fragment>
   )
