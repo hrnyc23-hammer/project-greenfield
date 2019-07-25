@@ -12,8 +12,9 @@ const Reviews = (props) => {
     }
     return (
         <React.Fragment>
-            <div style={{ float: 'left' }}>
+            <div id="reviews" style={{ float: 'left' }}>
                 <h3 style={{ fontFamily: 'roboto' }}>Rating &amp; Reviews</h3>
+
                 <div><ReviewsScoresContainer /></div>
                 <br/>
                 <div style={{ fontFamily: 'roboto', fontSize: 'small' }}>{recommended} of reviews recommend this product</div>
