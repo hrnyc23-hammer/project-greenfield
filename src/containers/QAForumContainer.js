@@ -8,6 +8,7 @@ import QAClickedImageUrl from "./../actions/QAClickedImageUrl";
 import QAAnswerFlagClicked from "./../actions/QAAnswerFlagClicked";
 import QACurrentQuestion from "./../actions/QACurrentQuestion";
 import QAQuestionFlagClicked from "./../actions/QAQuestionFlagClicked";
+import QAResetResultsArray from "./../actions/QAResetResultsArray";
 
 var mapStateToProps = state => ({
   qaResultsArr: state.qaResultsArr,
@@ -44,6 +45,9 @@ var mapDispatchToProps = dispatch => ({
   },
   QAQuestionFlagClicked: clicked => {
     dispatch(QAQuestionFlagClicked(clicked));
+  },
+  QAResetResultsArray: array => {
+    dispatch(QAResetResultsArray(array));
   }
 });
 
