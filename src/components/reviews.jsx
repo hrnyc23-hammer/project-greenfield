@@ -15,11 +15,11 @@ const Reviews = (props) => {
             <div id="reviews" style={{ float: 'left' }}>
                 <h3 style={{ fontFamily: 'roboto' }}>Rating &amp; Reviews</h3>
 
-                <div><ReviewsScoresContainer /></div>
-                <br/>
+                <ReviewsScoresContainer />
+                <br />
                 <div style={{ fontFamily: 'roboto', fontSize: 'small' }}>{recommended} of reviews recommend this product</div>
                 <br />
-                <div><ReviewsBarsContainer /></div>
+                <ReviewsBarsContainer />
             </div>
             <div style={{ marginLeft: '350px' }}><ReviewListContainer /></div>
         </React.Fragment>

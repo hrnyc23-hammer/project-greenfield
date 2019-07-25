@@ -85,8 +85,6 @@ const OutfitItem = props => {
           <ReviewsStars meta={props.item.meta}/>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-      </CardActions>
     </Card>
   );
 };

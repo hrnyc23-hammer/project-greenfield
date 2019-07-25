@@ -28,16 +28,16 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Box px={8}>
-      <Paper className={classes.paper} divider={true}>
-        <OverviewContainer />
-        <Divider light={true} variant="middle"/>
-        <RelatedContainer />
-        <OutfitsContainer />
-        <Divider light={true} variant="middle"/>
-        <QAContainer />
-        <Divider light={true} variant="middle"/> 
-        <ReviewsContainer />
-      </Paper>
+        <Paper className={classes.paper} style={{overflow: 'auto'}}>
+          <OverviewContainer />
+          <Divider light={true} variant="middle"/>
+          <RelatedContainer />
+          <OutfitsContainer />
+          <Divider light={true} variant="middle"/>
+          <QAContainer />
+          <Divider light={true} variant="middle"/> 
+          <ReviewsContainer />
+        </Paper>
       </Box>
     </React.Fragment>
   )
