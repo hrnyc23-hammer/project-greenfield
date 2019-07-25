@@ -129,10 +129,12 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     zIndex: 1
   };
   const selectedThumbnail = {
-    border: "3px solid lightGreen"
+    border: "3px solid lightGreen",
+    cursor:"pointer"
   };
   const thumbnail = {
-    opacity: 0.65
+    opacity: 0.65,
+    cursor:"pointer"
   };
 
   const backgroundImageStyle = {
@@ -174,7 +176,14 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     zoom: {
       "&:hover": {
         opacity: 0
+      },
+    thumbnailHover : {
+      "&:hover": {
+        height:"150%",
+        width:"150%",
+        opacity:1
       }
+    }
     },
     img: {
       display: "block",
@@ -183,6 +192,9 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     paper: {
       padding: theme.spacing(2),
       maxWidth: "100%"
+    },
+    buttonBase: {
+      borderRadius:35
     }
   }));
   const classes = useStyles();
@@ -216,6 +228,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
               {thumbnailsShown.map((photo, i) => (
                 <GridListTile key={photo.thumbnail_url}>
                   <ButtonBase
+                    className={classes.buttonBase}
                     onClick={e => {
                       setCount(thumbCount + i);
                       e.stopPropagation();
@@ -264,6 +277,8 @@ const Carousel = ({ props, setView, expanded, meta }) => {
               {thumbnailsShown.map((photo, i) => (
                 <GridListTile key={photo.thumbnail_url}>
                   <ButtonBase
+                    className={classes.buttonBase}
+                    style={{cursor:"pointer"}}
                     onClick={e => {
                       setCount(thumbCount + i);
                       e.stopPropagation();
