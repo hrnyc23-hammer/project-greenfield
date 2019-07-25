@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const Axios = require('axios');
 const { getProductInfo, getStyles, getRelated, getQA, getReviews, getMeta } = require('./infoFetchers');
 const rootReducer = require("./reducers/main").default;
+const { ServerStyleSheets } = require('@material-ui/styles');
 const expressStaticGzip = require("express-static-gzip");
 
 
@@ -47,13 +48,15 @@ const handleRender = (req, res) => {
           meta: metaResponse.data,
           reviewsLoadedReducer: reviewsResponse.data.results
       });
+      const sheets = new ServerStyleSheets();
       const html = renderToString(
         <Provider store={store}>
-          <App />
+          {sheets.collect(<App />)}
         </Provider>
       );
+      const cssString = sheets.toString();
       const finalState = store.getState();
-      res.send(renderFullPage(html, finalState)); 
+      res.send(renderFullPage(html, finalState, cssString)); 
     }))
     .catch((err) => {
       console.error(err);
@@ -63,12 +66,13 @@ const handleRender = (req, res) => {
     }
 };
 
-function renderFullPage(html, preloadedState) {
+function renderFullPage(html, preloadedState, cssString) {
   return `
     <!doctype html>
     <html>
       <head>
         <title>Project Greenfield</title>
+        <style id="jss-server-side">${cssString}</style>
       </head>
       <body>
         <div id="app">${html}</div>
