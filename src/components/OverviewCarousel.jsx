@@ -50,7 +50,7 @@ const Carousel = ({ props, setView, expanded }) => {
     height: "100%",
     width: "100%",
     transition: "all 0.5s linear",
-    cursor: "crosshair",
+    cursor: zoom === false ? "crosshair" : "zoom-out",
     backgroundColor: "lightGray"
   };
 
@@ -59,7 +59,6 @@ const Carousel = ({ props, setView, expanded }) => {
     backgroundPosition: position,
     height:'100%',
     backgroundRepeat: "no-repeat",
-    cursor:"zoom-out"
   };
 
   useEffect(() => {
@@ -101,14 +100,43 @@ const Carousel = ({ props, setView, expanded }) => {
     setPosition(`${x}% ${y}%`);
   };
 
+  const handleBackgroundClick = e => {
+    e.preventDefault();
+    setZoom(!zoom);
+    e.stopPropagation();
+  }
+
+  const handleLeftArrow= e => {
+    e.preventDefault();
+    setCount(count === 0 ? 0 : count - 1);
+    e.stopPropagation();
+  }
+
+const handleRightArrow = e => {
+  e.preventDefault();
+  setCount(Math.min(count + 1, photoLength))
+  e.stopPropagation();
+}
+
+  const handleThumbLeftArrow= e => {
+  e.preventDefault();
+  setThumbCount(thumbCount === 0 ? 0 : thumbCount - 1);
+  e.stopPropagation();
+}
+
+const handleThumbRightArrow = e => {
+  e.preventDefault();
+  setThumbCount(Math.min(thumbCount + 1, photoLength));
+  e.stopPropagation();
+}
+
   return (
     <div style={defaultView}>
     {expanded.xs===8 ?
       <div
         className={expanded.xs===12 ? classes.zoom : null}
         style={expanded.xs === 8 ? imageSlider : zoom === false ? backgroundImageStyleExpanded : null}
-        onMouseOver={handleMouseMove}
-        onClick={expanded.xs === 12 ? ()=>setZoom(!zoom) : null}>
+        onMouseOver={handleMouseMove}>
         <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer" }} onClick={setView} />
         <div style={{ display: "flex", position: "relative", top: "50%" }}>
           <div style={count === 0 ? hideArrow : showLeftArrow} onClick={() => setCount(count === 0 ? 0 : count - 1)}>
@@ -125,7 +153,7 @@ const Carousel = ({ props, setView, expanded }) => {
             </div>
             {thumbnailsShown.map((photo, i) => (
               <GridListTile key={photo.thumbnail_url}>
-                <ButtonBase onClick={() => setCount(thumbCount + i)}>
+                <ButtonBase onClick={()=>setCount(thumbCount + i)}>
                   <Avatar
                     src={photo.thumbnail_url || noImgAvailableURL}
                     style={photo.thumbnail_url === props.selectedStyle.photos[count].thumbnail_url ? selectedThumbnail : thumbnail}
@@ -140,30 +168,29 @@ const Carousel = ({ props, setView, expanded }) => {
         </div>
       </div> : zoom === true ?
     <figure onMouseMove={handleMouseMove} style={zoomed}>
-      <div className={classes.zoom} style={backgroundImageStyleExpanded} onClick={()=>setZoom(!zoom)}/>
+      <div className={classes.zoom} style={backgroundImageStyleExpanded} onClick={handleBackgroundClick}/>
     </figure> : 
-    
     <div
         style={expanded.xs === 8 ? imageSlider : zoom === false ? backgroundImageStyleExpanded : null}
         onMouseOver={handleMouseMove}
-        onClick={expanded.xs === 12 ? ()=>setZoom(!zoom) : null}>
+        onClick={handleBackgroundClick}>
         <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer" }} onClick={setView} />
         <div style={{ display: "flex", position: "relative", top: "50%" }}>
-          <div style={count === 0 ? hideArrow : showLeftArrow} onClick={() => setCount(count === 0 ? 0 : count - 1)}>
+          <div style={count === 0 ? hideArrow : showLeftArrow} onClick={handleLeftArrow}>
             <ChevronLeftIcon />
           </div>
-          <div style={count === photoLength ? hideArrow : showRightArrow} onClick={() => setCount(Math.min(count + 1, photoLength))}>
+          <div style={count === photoLength ? hideArrow : showRightArrow} onClick={handleRightArrow}>
             <ChevronRightIcon />
           </div>
         </div>
         <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
           <GridList cellHeight={100} cols={9} className={classes.root}>
-            <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={() => setThumbCount(thumbCount === 0 ? 0 : thumbCount - 1)}>
+            <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={handleThumbLeftArrow}>
               <ChevronLeftIcon />
             </div>
             {thumbnailsShown.map((photo, i) => (
               <GridListTile key={photo.thumbnail_url}>
-                <ButtonBase onClick={() => setCount(thumbCount + i)}>
+                <ButtonBase onClick={()=>setCount(thumbCount + i)}>
                   <Avatar
                     src={photo.thumbnail_url || noImgAvailableURL}
                     style={photo.thumbnail_url === props.selectedStyle.photos[count].thumbnail_url ? selectedThumbnail : thumbnail}
@@ -171,7 +198,7 @@ const Carousel = ({ props, setView, expanded }) => {
                 </ButtonBase>
               </GridListTile>
             ))}
-            <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={() => setThumbCount(Math.min(thumbCount + 1, photoLength))}>
+            <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={handleThumbRightArrow}>
               <ChevronRightIcon />
             </div>
           </GridList>
