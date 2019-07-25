@@ -4,6 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ShareIcon from "@material-ui/icons/Share";
 import { makeStyles } from "@material-ui/core/styles";
+import { clickTracker } from '../infoFetchers';
 
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,7 +27,7 @@ export default function SimpleMenu() {
 
   return (
     <div>
-      <Button variant="contained" className={classes.button} onClick={handleClick}>
+      <Button variant="contained" className={classes.button} onClick={(e)=>{handleClick(e);clickTracker("share","overview")}}>
         <ShareIcon/>
       </Button>
       <Menu

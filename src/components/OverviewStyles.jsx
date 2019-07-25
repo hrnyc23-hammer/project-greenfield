@@ -5,6 +5,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from '@material-ui/core/Tooltip';
+import { clickTracker } from '../infoFetchers';
 
 const Styles = ({props}) => {
 
@@ -34,7 +35,8 @@ const classes = useStyles();
     {props.styles.results.map(style => (
       <GridListTile key={style.style_id}>
         <Tooltip title={style.name}>
-        <ButtonBase className={classes.buttonBase} onClick={() => props.handleSelectedStyle(style)}>
+        <ButtonBase className={classes.buttonBase} 
+                    onClick={() => {props.handleSelectedStyle(style);clickTracker("select-style","overview")}}>
         <Avatar src={style.photos[0].thumbnail_url} 
         className={style.style_id === props.selectedStyle.style_id ? classes.selectedStyle:classes.bigAvatar} />
         </ButtonBase>
