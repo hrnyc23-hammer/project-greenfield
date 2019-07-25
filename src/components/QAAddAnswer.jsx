@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
-import { postAnswer } from "../infoFetchers.js";
+import { postAnswer, clickTracker } from "../infoFetchers.js";
 import { Typography } from "@material-ui/core";
 
 let QAAddAnswer = props => {
@@ -23,13 +23,14 @@ let QAAddAnswer = props => {
             left: "35%",
             top: "25%",
             background: "white",
-            margin: '20px',
-            padding:'20px'
+            margin: "20px",
+            padding: "20px"
           }}
         >
           <Button
             style={{ float: "right" }}
             onClick={() => {
+              clickTracker("Exit Answer Modal", "QA");
               props.QAAnswerFlagClicked(!props.clickedFlag);
             }}
           >
@@ -62,6 +63,7 @@ let QAAddAnswer = props => {
           />
           <Button
             onClick={() => {
+              clickTracker("Added a photo to answer modal", "QA");
               if (props.photoUrl.length < 5) {
                 props.QAAddPhotos(props.url);
               }
@@ -88,6 +90,7 @@ let QAAddAnswer = props => {
           <Fab
             style={{ float: "right" }}
             onClick={() => {
+              clickTracker("Submitted answer form", "QA");
               postAnswer(
                 props.qaCurrentQuestion,
                 props.answerBody,

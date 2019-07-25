@@ -3,7 +3,7 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
-import { postQuestion } from "../infoFetchers.js";
+import { postQuestion, clickTracker } from "../infoFetchers.js";
 import { Typography } from "@material-ui/core";
 
 let QAAddQuestion = props => {
@@ -30,6 +30,7 @@ let QAAddQuestion = props => {
           <Button
             style={{ float: "right" }}
             onClick={() => {
+              clickTracker("exit question modal", "QA");
               props.QAQuestionFlagClicked(!props.clickedFlag);
             }}
           >
@@ -67,6 +68,7 @@ let QAAddQuestion = props => {
           <Fab
             style={{ float: "right" }}
             onClick={() => {
+              clickTracker("Submit Question", "QA");
               postQuestion(
                 props.productId,
                 props.body,

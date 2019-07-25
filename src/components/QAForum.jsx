@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import QAAddQuestionContainer from "./../containers/QAAddQuestionContainer";
 import Modal from "@material-ui/core/Modal";
-
+import { clickTracker } from "../infoFetchers.js";
 import {
   putAnswerReport,
   putAnswerHelpful,
@@ -57,6 +57,7 @@ let QAForum = props => {
                   {" "}
                   <span
                     onClick={() => {
+                      clickTracker("Add an answer", "QA");
                       props.QACurrentQuestion(question.question_id);
                       props.QAAnswerFlagClicked(!props.answerClickedFlag);
                     }}
@@ -91,6 +92,7 @@ let QAForum = props => {
                 </span>
                 <span
                   onClick={() => {
+                    clickTracker("upvotes question", "QA");
                     putQuestionHelpful(question.question_id).catch(err => {
                       console.error("API request error");
                     });
@@ -144,6 +146,10 @@ let QAForum = props => {
                                 <img
                                   key={photoIndex}
                                   onClick={() => {
+                                    clickTracker(
+                                      "image clicked in answer",
+                                      "QA"
+                                    );
                                     props.QAClickedImageUrl(photo);
                                     props.QAImageClicked(!props.qaImageClicked);
                                   }}
@@ -170,6 +176,7 @@ let QAForum = props => {
                             </span>
                             <span
                               onClick={() => {
+                                clickTracker("upvote answer", "QA");
                                 putAnswerHelpful(answer.id).catch(err => {
                                   console.error("API request error");
                                 });
@@ -207,6 +214,7 @@ let QAForum = props => {
 
                             <span
                               onClick={() => {
+                                clickTracker("Answer reported", "QA");
                                 putAnswerReport(answer.id).catch(err => {
                                   console.error("API request error");
                                 });
@@ -238,6 +246,7 @@ let QAForum = props => {
                     size="small"
                     style={{ marginRight: "20px" }}
                     onClick={() => {
+                      clickTracker("load more answers", "QA");
                       props.QAAddAnswers(questionIndex);
                     }}
                   >
@@ -257,7 +266,7 @@ let QAForum = props => {
           height="50"
           style={{ cursor: "pointer" }}
           onClick={() => {
-            console.log(props);
+            clickTracker("collapse button", "QA");
             props.QAIncrementer(2 - props.qaCount);
             getQA(props.productId).then(data =>
               props.QAResetResultsArray(data.data.results)
@@ -272,6 +281,7 @@ let QAForum = props => {
         variant="contained"
         size="large"
         onClick={() => {
+          clickTracker("more answered questions button", "QA");
           if (props.qaCount < props.qaResultsArr.length) {
             props.QAIncrementer(1);
             props.QAChangeResultsArr(props.qaCount);
@@ -284,6 +294,7 @@ let QAForum = props => {
         variant="contained"
         size="large"
         onClick={() => {
+          clickTracker("add a question", "QA");
           props.QAQuestionFlagClicked(!props.questionClickedFlag);
         }}
       >
@@ -300,6 +311,7 @@ let QAForum = props => {
           <Button
             style={{ float: "right" }}
             onClick={() => {
+              clickTracker("exit out of answer image modal", "QA");
               props.QAImageClicked(!props.qaImageClicked);
             }}
           >
