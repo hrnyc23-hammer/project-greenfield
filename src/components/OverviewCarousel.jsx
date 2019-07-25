@@ -136,19 +136,20 @@ const handleThumbRightArrow = e => {
       <div
         className={expanded.xs===12 ? classes.zoom : null}
         style={expanded.xs === 8 ? imageSlider : zoom === false ? backgroundImageStyleExpanded : null}
-        onMouseOver={handleMouseMove}>
+        onMouseOver={handleMouseMove}
+        onClick={setView}>
         <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer" }} onClick={setView} />
         <div style={{ display: "flex", position: "relative", top: "50%" }}>
-          <div style={count === 0 ? hideArrow : showLeftArrow} onClick={() => setCount(count === 0 ? 0 : count - 1)}>
+          <div style={count === 0 ? hideArrow : showLeftArrow} onClick={handleLeftArrow}>
             <ChevronLeftIcon />
           </div>
-          <div style={count === photoLength ? hideArrow : showRightArrow} onClick={() => setCount(Math.min(count + 1, photoLength))}>
+          <div style={count === photoLength ? hideArrow : showRightArrow} onClick={handleRightArrow}>
             <ChevronRightIcon />
           </div>
         </div>
         <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
           <GridList cellHeight={100} cols={9} className={classes.root}>
-            <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={() => setThumbCount(thumbCount === 0 ? 0 : thumbCount - 1)}>
+            <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={handleLeftArrow}>
               <ChevronLeftIcon />
             </div>
             {thumbnailsShown.map((photo, i) => (
@@ -161,7 +162,7 @@ const handleThumbRightArrow = e => {
                 </ButtonBase>
               </GridListTile>
             ))}
-            <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={() => setThumbCount(Math.min(thumbCount + 1, photoLength))}>
+            <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={handleRightArrow}>
               <ChevronRightIcon />
             </div>
           </GridList>
