@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import DoneIcon from "@material-ui/icons/Done";
 
 
 const Overview = props => {
@@ -62,7 +63,7 @@ const Overview = props => {
     <div className={classes.root}>
       <OverviewSearch />
       <Typography align="center">
-        SITE-WIDE ANNOUCEMENT MESSAGE! -SALE/DISCOUNT OFFER
+        SITE-WIDE ANNOUCEMENT MESSAGE! SALE/DISCOUNT OFFER
         </Typography>
         {expanded.xs === 12 ? (
           <Grid item xs={expanded.xs}>
@@ -102,8 +103,14 @@ const Overview = props => {
                 </Grid>
                 </Grid>
             </Grid>
-            <Grid item xs={12} className={classes.slogan}>
+            <Grid container direction="column">
+            <Grid item xs={6} className={classes.slogan}>
               <Typography variant="h5">{props.info.slogan}</Typography>
+              <Typography variant="body2" component="p">{props.info.description}</Typography>
+            </Grid>
+            <Grid item xs={6}>{props.info.features.map(thing => {
+                return <div><Typography variant="overline"><DoneIcon/>{thing.feature}  {thing.value}</Typography></div>
+            })}</Grid>
             </Grid>
           </Grid>
         )}

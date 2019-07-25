@@ -134,7 +134,8 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   };
   const thumbnail = {
     opacity: 0.65,
-    cursor:"pointer"
+    cursor:"pointer",
+    border:"3px"
   };
 
   const backgroundImageStyle = {
