@@ -6,7 +6,6 @@ import ProductInfo from "./OverviewProductInfo";
 import Styles from "./OverviewStyles";
 import Cart from "./OverviewCart";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Share from "./OverviewShare";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -102,7 +101,7 @@ const Overview = props => {
   }
 
   return (
-    <div className={classes.root}>
+    <div id="overview" className={classes.root}>
       <OverviewSearch />
       <Typography align="center">
         SITE-WIDE ANNOUCEMENT MESSAGE! SALE/DISCOUNT OFFER
@@ -120,7 +119,7 @@ const Overview = props => {
               <Grid item>
               <div style={{display:'flex',alignItems: "baseline",justifyContent: "flex-start", paddingBottom:10}}>
                 {props.meta ? <ReviewsStars meta={props.meta} /> : null}
-                <a style={{textDecoration: "underline",fontSize:11, fontFamily: 'roboto',cursor:"pointer"}} onClick={()=>scrollToReviews()}>({totalStars}) READ ALL REVIEWS</a>
+                <a style={{textDecoration: "underline",fontSize:11, fontFamily: 'roboto',cursor:"pointer"}} onClick={()=>{scrollToReviews();clickTracker("scroll-to-reviews","overview")}}>({totalStars}) READ ALL REVIEWS</a>
                 </div>
                 <ProductInfo props={props} />
               </Grid>
