@@ -21,12 +21,13 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   const thumbnailsShown =
     props.selectedStyle.photos.length <= 7 ? props.selectedStyle.photos : props.selectedStyle.photos.slice(thumbCount, Math.min(thumbCount + 7, photoLength));
 
-  const defaultView = { height: 500, borderRadius:15 };
-  const showLeftArrow = { color: "red", height: 40, width: 20, position: "relative", zIndex: 1, cursor: "pointer" };
-  const showRightArrow = { color: "red", height: 40, width: 20, position: "relative", left: "95%", zIndex: 1, cursor: "pointer" };
-  const showLeftThumbArrow = { color: "red", height: 20, width: 20, position: "relative", zIndex: 1, cursor: "pointer" };
-  const showRightThumbArrow = { color: "red", height: 20, width: 20, position: "relative", zIndex: 1, cursor: "pointer" };
-  const hideArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1 };
+  const defaultView = { height: 500, borderRadius:15, position:"relative" };
+  const showLeftArrow = { color: "red", height: 40, width: 20, position: "absolute", zIndex: 1, cursor: "pointer" };
+  const showRightArrow = { color: "red", height: 40, width: 20, position: "absolute", right: 5, zIndex: 1, cursor: "pointer" };
+  const showLeftThumbArrow = { color: "red", height: 20, width: 20, zIndex: 1, cursor: "pointer" };
+  const showRightThumbArrow = { color: "red", height: 20, width: 20, zIndex: 1, cursor: "pointer" };
+  const hideArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1, position:"absolute" };
+  const hideThumbArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1};
   const selectedThumbnail = { border: "3px solid lightGreen" };
   const thumbnail = { opacity: 0.65 };
 
@@ -155,7 +156,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
           </div>
           <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
             <GridList cellHeight={100} cols={9} className={classes.root}>
-              <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={handleThumbLeftArrow}>
+              <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow} onClick={handleThumbLeftArrow}>
                 <ChevronLeftIcon />
               </div>
               {thumbnailsShown.map((photo, i) => (
@@ -173,7 +174,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
                   </ButtonBase>
                 </GridListTile>
               ))}
-              <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={handleThumbRightArrow}>
+              <div style={thumbCount + 7 >= photoLength ? hideThumbArrow : showRightThumbArrow} onClick={handleThumbRightArrow}>
                 <ChevronRightIcon />
               </div>
             </GridList>
@@ -200,7 +201,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
           </div>
           <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
             <GridList cellHeight={100} cols={9} className={classes.root}>
-              <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={handleThumbLeftArrow}>
+              <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow} onClick={handleThumbLeftArrow}>
                 <ChevronLeftIcon />
               </div>
               {thumbnailsShown.map((photo, i) => (
@@ -218,7 +219,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
                   </ButtonBase>
                 </GridListTile>
               ))}
-              <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={handleThumbRightArrow}>
+              <div style={thumbCount + 7 >= photoLength ? hideThumbArrow : showRightThumbArrow} onClick={handleThumbRightArrow}>
                 <ChevronRightIcon />
               </div>
             </GridList>

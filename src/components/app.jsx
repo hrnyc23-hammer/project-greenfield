@@ -13,7 +13,7 @@ const App = (props) => {
 
   const useStyles = makeStyles(theme => ({
     paper: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(8),
       maxWidth: "100%"
     }
   }))
