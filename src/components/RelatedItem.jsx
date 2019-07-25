@@ -56,10 +56,10 @@ const RelatedItem = props => {
 
   const useStyles = makeStyles({
     card: {
-      width: 250
+      width: 225
     },
     media: {
-      height: 140
+      height: 120
     }
   });
 
@@ -74,18 +74,22 @@ const RelatedItem = props => {
           image={imgSrc}
           title={props.item.info ? props.item.info.name : itemUnavailable}
         >
-          <SvgIcon color="primary" onClick={() => {
+          <SvgIcon color="inherit" onClick={(event) => {
             toggleOpen();
             clickTracker("compare-products", "compare");
           }}>
             <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>
           </SvgIcon>
-        </CardMedia>
-        <CardContent>
           <ComparisonModal open={open} 
             handleClose={handleClose} 
             compareInfo={props.item.info ? props.item.info : {}}
             currentInfo={props.currentItemInfo ? props.currentItemInfo : {}}></ComparisonModal>
+        </CardMedia>
+        <CardContent onClick={() => {
+              clickTracker("change-products", "compare");
+              !props.item.info ? null : location.href = `/?products=${props.item.info.id}`;
+            }
+          }>
           <Typography variant="subtitle2" color="textSecondary" component="p">
             {props.item.info ? props.item.info.category : itemUnavailable}
           </Typography>
@@ -99,12 +103,12 @@ const RelatedItem = props => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={() => {
+        {/* <Button size="small" color="primary" onClick={() => {
           clickTracker("change-products", "compare");
         }}>
           <a href={props.item.info ? `/?products=${props.item.info.id}` : "#"}
             style={{textDecoration: "none"}}>See Product</a>
-        </Button>
+        </Button> */}
       </CardActions>
     </Card>
   );

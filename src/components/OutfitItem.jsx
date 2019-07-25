@@ -40,10 +40,10 @@ const OutfitItem = props => {
 
   const useStyles = makeStyles({
     card: {
-      width: 250
+      width: 225
     },
     media: {
-      height: 140
+      height: 120
     }
   });
 
@@ -65,7 +65,7 @@ const OutfitItem = props => {
           image={imgSrc}
           title={props.item.info ? props.item.info.name : itemUnavailable}
         >
-          <SvgIcon color="primary" onClick={() => {
+          <SvgIcon color="inherit" onClick={() => {
             removeOutfit();
             clickTracker("remove-outfit", "compare");
           }}>
