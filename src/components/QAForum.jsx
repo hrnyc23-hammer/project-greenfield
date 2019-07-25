@@ -277,19 +277,21 @@ let QAForum = props => {
         <div />
       )}
       <br />
-      <Button
-        variant="contained"
-        size="large"
-        onClick={() => {
-          clickTracker("more answered questions button", "QA");
-          if (props.qaCount < props.qaResultsArr.length) {
-            props.QAIncrementer(1);
-            props.QAChangeResultsArr(props.qaCount);
-          }
-        }}
-      >
-        More Answered Questions
-      </Button>
+      <span style={{ marginRight: "20px" }}>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={() => {
+            clickTracker("more answered questions button", "QA");
+            if (props.qaCount < props.qaResultsArr.length) {
+              props.QAIncrementer(1);
+              props.QAChangeResultsArr(props.qaCount);
+            }
+          }}
+        >
+          More Answered Questions
+        </Button>
+      </span>
       <Button
         variant="contained"
         size="large"
