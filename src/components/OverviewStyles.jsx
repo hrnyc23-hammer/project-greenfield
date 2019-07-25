@@ -11,7 +11,8 @@ const Styles = ({props}) => {
 const useStyles = makeStyles(theme => ({
   bigAvatar: {
     width: 65,
-    height: 65
+    height: 65,
+    border:'3px solid white'
   },
   selectedStyle: {
     width:65,

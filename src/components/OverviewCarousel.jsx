@@ -77,9 +77,9 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     height: 500,
     borderRadius: 15,
     position: "relative",
-    webkitBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
-    mozBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
-    boxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)"
+    WebkitBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
+    MozBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
+    BoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)"
   };
 
   const showLeftArrow = {
@@ -134,7 +134,8 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   };
   const thumbnail = {
     opacity: 0.65,
-    cursor:"pointer"
+    cursor:"pointer",
+    border:"3px"
   };
 
   const backgroundImageStyle = {
@@ -156,7 +157,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     backgroundPosition: "center",
     height: "100%",
     width: "100%",
-    transition: "all 0.5s linear",
+    transition: zoom === true ? "0s" : "all 0.5s linear",
     cursor: zoom === false ? "crosshair" : "zoom-out",
     backgroundColor: "white",
     borderRadius: 15
@@ -174,16 +175,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
       justifyContent: "space-around"
     },
     zoom: {
-      "&:hover": {
-        opacity: 0
-      },
-    thumbnailHover : {
-      "&:hover": {
-        height:"150%",
-        width:"150%",
-        opacity:1
-      }
-    }
+      opacity : 0
     },
     img: {
       display: "block",
@@ -248,7 +240,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
           </div>
         </div>
       ) : zoom === true ? (
-        <figure onMouseMove={handleMouseMove} style={zoomed}>
+        <figure onMouseMove={handleMouseMove} style={zoom? zoomed : backgroundImageStyleExpanded}>
           <div className={classes.zoom} style={backgroundImageStyleExpanded} onClick={handleBackgroundClick} />
         </figure>
       ) : (
