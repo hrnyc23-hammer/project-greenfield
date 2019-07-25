@@ -55,7 +55,7 @@ const Related = (props) => {
         <Grid item className={lowerLimit !== 0 ? classes.visible : classes.invisible}>
           <SvgIcon color="primary" onClick={() => {
             reduceLimit();
-            clickTracker("related-products", "compare");
+            clickTracker("see-more-related-products", "compare");
           }} className={classes.shift}>
             <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
           </SvgIcon>
@@ -71,7 +71,7 @@ const Related = (props) => {
         <Grid item className={lowerLimit + 4 < props.related.length ? classes.visible : classes.invisible}>
           <SvgIcon color="primary" onClick={() => {
             increaseLimit();
-            clickTracker("related-products", "compare");
+            clickTracker("see-more-related-products", "compare");
           }} className={classes.shift}>
             <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
           </SvgIcon>

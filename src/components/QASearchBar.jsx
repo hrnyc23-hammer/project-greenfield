@@ -1,12 +1,16 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import Fab from "@material-ui/core/Fab";
+import Typography from "@material-ui/core/Typography";
+
 
 let QASearchBar = props => {
   return (
     <React.Fragment>
       <div>
-        <h3>Questions and Answers</h3>
+        <Typography variant='h4'>
+         Questions and Answers
+        </Typography>
+
         <TextField
           style={{ margin: 8 }}
           fullWidth

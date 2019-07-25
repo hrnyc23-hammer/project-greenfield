@@ -71,7 +71,7 @@ const Outfits = (props) => {
         <Grid item>
           <SvgIcon onClick={() => {
             addOutfit();
-            clickTracker("outfit", "compare");
+            clickTracker("add-outfit", "compare");
           }} className={classes.add} color="primary">
             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
           </SvgIcon>
@@ -79,7 +79,7 @@ const Outfits = (props) => {
         <Grid item className={lowerLimit !== 0 ? classes.visible : classes.invisible}>
           <SvgIcon color="primary" onClick={() => {
             reduceLimit();
-            clickTracker("outfits", "compare");
+            clickTracker("see-more-outfits", "compare");
           }} className={classes.add}>
             <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>
           </SvgIcon>
@@ -97,7 +97,7 @@ const Outfits = (props) => {
         <Grid item className={lowerLimit + 4 < Object.keys(props.outfits).length ? classes.visible : classes.invisible}>
           <SvgIcon color="primary" onClick={() => {
             increaseLimit();
-            clickTracker("outfit", "compare");
+            clickTracker("see-more-outfits", "compare");
           }} className={classes.add}>
             <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/>
           </SvgIcon>

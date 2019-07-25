@@ -25,10 +25,10 @@ var QAChangeResultsArrReducer = (state = [], action) => {
 
     default:
       if (state.length > 0 && state[0].answerLimit === undefined) {
-        return state.map(ele => {
-          ele.answerLimit = 2;
+        return state.map(questions => {
+          questions.answerLimit = 2;
 
-          return ele;
+          return questions;
         });
       } else {
         return state;
