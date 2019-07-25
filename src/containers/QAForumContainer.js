@@ -16,7 +16,8 @@ var mapStateToProps = state => ({
   qaImageClicked: state.qaImageClicked,
   qaImageUrl: state.qaImageUrl,
   answerClickedFlag: state.qaAnswerClicked,
-  questionClickedFlag: state.qaQuestionClicked
+  questionClickedFlag: state.qaQuestionClicked,
+  productId: state.meta.product_id
 });
 
 var mapDispatchToProps = dispatch => ({

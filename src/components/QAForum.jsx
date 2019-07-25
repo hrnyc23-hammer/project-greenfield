@@ -9,7 +9,8 @@ import Modal from "@material-ui/core/Modal";
 import {
   putAnswerReport,
   putAnswerHelpful,
-  putQuestionHelpful
+  putQuestionHelpful,
+  getQA
 } from "../infoFetchers.js";
 
 let QAForum = props => {
@@ -278,6 +279,16 @@ let QAForum = props => {
           />
         </React.Fragment>
       </Modal>
+      <Button
+        variant="contained"
+        size="large"
+        onClick={() => {
+          console.log(props);
+          getQA(props.productId);
+        }}
+      >
+        Reset
+      </Button>
     </div>
   );
 };
