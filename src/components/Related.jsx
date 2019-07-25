@@ -52,6 +52,11 @@ const Related = (props) => {
         alignItems="center"
         spacing={4}
       >
+        <Grid item className={classes.invisible}>
+        <SvgIcon className={classes.shift} color="primary">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </SvgIcon>
+        </Grid>
         <Grid item className={lowerLimit !== 0 ? classes.visible : classes.invisible}>
           <SvgIcon color="primary" onClick={() => {
             reduceLimit();

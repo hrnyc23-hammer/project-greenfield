@@ -40,10 +40,10 @@ const OutfitItem = props => {
 
   const useStyles = makeStyles({
     card: {
-      width: 250
+      width: 225
     },
     media: {
-      height: 140
+      height: 120
     }
   });
 
