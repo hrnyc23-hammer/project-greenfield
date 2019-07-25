@@ -28,11 +28,11 @@ const App = (props) => {
     <React.Fragment>
       <Box px={8}>
       <Paper className={classes.paper}>
-      <OverviewContainer />
-      <RelatedContainer />
-      <OutfitsContainer />
-      <QAContainer /> 
-      <ReviewsContainer />
+        <OverviewContainer />
+        <RelatedContainer />
+        <OutfitsContainer />
+        <QAContainer /> 
+        <ReviewsContainer />
       </Paper>
       </Box>
     </React.Fragment>
