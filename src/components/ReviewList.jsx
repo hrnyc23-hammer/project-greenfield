@@ -147,6 +147,7 @@ const ReviewList = (props) => {
         } else if (props.meta.characteristics.Quality && quality === 0) {
             alert('Quality is required')
         } else {
+            props.handleClose()
             var characteristics = {}
             if (props.meta.characteristics.Size) {
                 characteristics.Size = {
