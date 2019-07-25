@@ -6,12 +6,12 @@ import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import QAAddQuestionContainer from "./../containers/QAAddQuestionContainer";
 import Modal from "@material-ui/core/Modal";
-import { clickTracker } from "../infoFetchers.js";
 import {
   putAnswerReport,
   putAnswerHelpful,
   putQuestionHelpful,
-  getQA
+  getQA,
+  clickTracker
 } from "../infoFetchers.js";
 
 let QAForum = props => {
