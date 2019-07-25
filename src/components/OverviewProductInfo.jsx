@@ -8,7 +8,8 @@ const ProductInfo = ({ props }) => {
       textDecoration: "line-through",
     },
     salePrice: {
-      color: "red"
+      color: "red",
+      paddingLeft:10
     },
     saleHidden: {
       visibility: "hidden"
@@ -23,6 +24,7 @@ const ProductInfo = ({ props }) => {
       <Typography variant="subtitle2" gutterBottom>
         {props.info.category}
       </Typography>
+      <div style={{display:'flex', justifyContent:'flex-start'}}>
       <Typography
         variant="body2"
         color="textSecondary"
@@ -43,6 +45,7 @@ const ProductInfo = ({ props }) => {
       >
         ${props.selectedStyle.sale_price}
       </Typography>
+      </div>
       <Typography variant="overline">STYLE > {props.selectedStyle.name}</Typography>
     </React.Fragment>
   );
