@@ -43,7 +43,7 @@ const ProductInfo = ({ props }) => {
       >
         ${props.selectedStyle.sale_price}
       </Typography>
-      <Typography variant="h5">{props.selectedStyle.name}</Typography>
+      <Typography variant="overline">STYLE > {props.selectedStyle.name}</Typography>
     </React.Fragment>
   );
 };

@@ -8,10 +8,10 @@ import Cart from "./OverviewCart";
 import Grid from "@material-ui/core/Grid";
 import Share from "./OverviewShare";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+
 
 const Overview = props => {
   const [expanded, setExpanded] = useState({ xs: 8 });
@@ -53,13 +53,20 @@ const Overview = props => {
     document.getElementById("reviews").scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  var totalStars = 0
+  for (let key in props.meta.ratings) {
+      totalStars = totalStars + props.meta.ratings[key]
+  }
+
   return (
     <div className={classes.root}>
       <OverviewSearch />
-      <Paper className={classes.paper}>
+      <Typography align="center">
+        SITE-WIDE ANNOUCEMENT MESSAGE! -SALE/DISCOUNT OFFER
+        </Typography>
         {expanded.xs === 12 ? (
           <Grid item xs={expanded.xs}>
-            <Carousel props={props} setView={toggleExpand} expanded={expanded} />
+            <Carousel props={props} setView={toggleExpand} expanded={expanded}/>
           </Grid>
         ) : (
           <Grid container spacing={2}>
@@ -69,7 +76,7 @@ const Overview = props => {
             <Grid item xs={4} container direction="column">
               <Grid item>
                 {props.meta ? <ReviewsStars meta={props.meta} /> : null}
-                <a onClick={()=>scrollToReviews()}>READ ALL REVIEWS</a>
+                <a style={{cursor : "pointer"}} onClick={()=>scrollToReviews()}>({totalStars}) READ ALL REVIEWS</a>
                 <ProductInfo props={props} />
               </Grid>
               <Grid item>
@@ -98,7 +105,6 @@ const Overview = props => {
             </Grid>
           </Grid>
         )}
-      </Paper>
     </div>
   );
 };
