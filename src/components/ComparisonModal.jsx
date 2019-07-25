@@ -6,7 +6,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { isNull } from 'util';
 import { SvgIcon } from '@material-ui/core';
 
 
@@ -46,17 +45,17 @@ const ComparisonModal = (props) => {
 
   const comparison = makeComparison(props.currentInfo.features, props.compareInfo.features);
 
-  const displayItemValue = (item) => {
+  const displayItemValue = (item, side) => {
     if (item === undefined || item === 'false' || item === 'null') {
       return <ListItemText className={classes.compareItem}></ListItemText>
     } else if (item === 'true') {
-      return <ListItemIcon className={classes.compareItem}>
+      return <ListItemIcon className={classes.compareItem} style={{contentAlign: side}}>
         <SvgIcon>
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
         </SvgIcon>
       </ListItemIcon>
     } else {
-      return <ListItemText className={classes.compareItem}>{item}</ListItemText>
+      return <ListItemText className={classes.compareItem} style={{textAlign: side}}>{item}</ListItemText>
     }
   };
 
@@ -65,9 +64,9 @@ const ComparisonModal = (props) => {
       <DialogTitle id="simple-dialog-title">Comparing</DialogTitle>
       <List>
         <ListItem divider={true}>
-            <ListItemText className={classes.compareItem}>{props.currentInfo.name}</ListItemText>
+            <ListItemText className={classes.compareItem} style={{textAlign: "left"}}>{props.currentInfo.name}</ListItemText>
               <ListItemText className={classes.compareItem}></ListItemText>
-              <ListItemText className={classes.compareItem}>{props.compareInfo.name}</ListItemText>
+              <ListItemText className={classes.compareItem} style={{textAlign: "right"}} primaryTypographyProps={{align: "right"}}>{props.compareInfo.name}</ListItemText>
         </ListItem>
         {Object.keys(comparison).map((feature, idx) => {
           let original = comparison[feature].original;
@@ -76,9 +75,9 @@ const ComparisonModal = (props) => {
           (compare !== undefined && compare !== 'false' && compare !== 'null')) {
               return (
                 <ListItem divider={true} key={idx}>
-                  {displayItemValue(original)}
-                  <ListItemText className={classes.compareItem}>{feature}</ListItemText>
-                  {displayItemValue(compare)}
+                  {displayItemValue(original, "left")}
+                  <ListItemText className={classes.compareItem} style={{textAlign: "center"}}>{feature}</ListItemText>
+                  {displayItemValue(compare, "right")}
                 </ListItem>
               )
             }})}

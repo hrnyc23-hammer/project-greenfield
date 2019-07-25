@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import DoneIcon from "@material-ui/icons/Done";
+import { postToCart } from '../infoFetchers';
+import CartModal from './CartModal';
 
 
 const Overview = props => {
@@ -54,6 +56,43 @@ const Overview = props => {
     document.getElementById("reviews").scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  let sessionId;
+
+  const [size, setSize] = useState(undefined);
+  const [qty, setQty] = useState(undefined);
+  const [status, setStatus] = useState(undefined);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+    setStatus('incomplete');
+  }
+
+  const handleOpen = () => {
+    setOpen(true);  
+  }
+
+  const selectSize = (newSize) => {
+    setSize(newSize);
+  };
+
+  const selectQty = (newQty) => {
+    setQty(newQty);
+  };
+
+  useEffect(() => {
+    sessionId = sessionStorage.getItem("greenfieldSession");
+    if (sessionId === null) {
+      sessionId = Math.floor(Math.random() * Math.pow(10, 9));
+      sessionStorage.setItem("greenfieldSession", sessionId);
+    }
+  })
+
+  const addToCart = (event) => {
+    event.preventDefault();
+    return postToCart(props.info.id, sessionId);
+  };
+  
   var totalStars = 0
   for (let key in props.meta.ratings) {
       totalStars = totalStars + props.meta.ratings[key]
@@ -88,18 +127,36 @@ const Overview = props => {
               <Grid item>
                 <Grid container>
                   <Grid item xs={12}>
-                    <Cart props={props} />
+                    <Cart props={props} selectSize={selectSize} selectQty={selectQty}/>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid container justify="center">
                 <Grid item xs={6}>
-                <Button variant="contained" className={classes.button}>
+                <Button variant="contained" className={classes.button} onClick={(event) => {
+                  if (size !== undefined && size !== '' && qty !== undefined && qty !== '') {
+                    addToCart(event)
+                    .then(() => {
+                      setStatus("success");
+                      handleOpen();
+                      selectSize(undefined);
+                    })
+                    .catch(() => {
+                      setStatus("fail");
+                      handleOpen();
+                    });
+                  } else {
+                    setStatus("incomplete");
+                    handleOpen();
+                  }}}>
                   <ShoppingCartIcon/>
                 </Button>
                 </Grid>
                 <Grid item xs={6} className={classes.shawdow} >
                 <Share />
+                </Grid>
+                <Grid item>
+                  <CartModal open={open} status={status} handleClose={handleClose}/>
                 </Grid>
                 </Grid>
             </Grid>

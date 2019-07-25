@@ -27,13 +27,13 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Box px={8}>
-      <Paper className={classes.paper}>
-      <OverviewContainer />
-      <RelatedContainer />
-      <OutfitsContainer />
-      <QAContainer /> 
-      <ReviewsContainer />
-      </Paper>
+        <Paper className={classes.paper} style={{overflow: 'auto'}}>
+         <OverviewContainer />
+         <RelatedContainer />
+         <OutfitsContainer />
+         <QAContainer /> 
+         <ReviewsContainer />
+        </Paper>
       </Box>
     </React.Fragment>
   )
