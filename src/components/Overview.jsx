@@ -37,7 +37,8 @@ const Overview = props => {
       maxWidth: "100%"
     },
     slogan: {
-      textAlign: "center"
+      textAlign: "center",
+      alignItems:"center"
     },
     button: {
       margin: theme.spacing(1),
@@ -100,7 +101,7 @@ const Overview = props => {
   }
 
   return (
-    <div className={classes.root}>
+    <div id="overview" className={classes.root}>
       <OverviewSearch />
       <Typography align="center">
         SITE-WIDE ANNOUCEMENT MESSAGE! SALE/DISCOUNT OFFER
@@ -118,7 +119,7 @@ const Overview = props => {
               <Grid item>
               <div style={{display:'flex',alignItems: "baseline",justifyContent: "flex-start", paddingBottom:10}}>
                 {props.meta ? <ReviewsStars meta={props.meta} /> : null}
-                <a style={{textDecoration: "underline",fontSize:11, fontFamily: 'roboto',cursor:"pointer"}} onClick={()=>scrollToReviews()}>({totalStars}) READ ALL REVIEWS</a>
+                <a style={{textDecoration: "underline",fontSize:11, fontFamily: 'roboto',cursor:"pointer"}} onClick={()=>{scrollToReviews();clickTracker("scroll-to-reviews","overview")}}>({totalStars}) READ ALL REVIEWS</a>
                 </div>
                 <ProductInfo props={props} />
               </Grid>
@@ -163,12 +164,12 @@ const Overview = props => {
                 </Grid>
             </Grid>
             <Grid container direction="column">
-            <Grid item xs={6} className={classes.slogan}>
+            <Grid item xs={8} className={classes.slogan} style={{margin:'auto',borderRight:'double',padding:5}}>
               <Typography variant="h5">{props.info.slogan}</Typography>
-              <Typography variant="body2" component="p">{props.info.description}</Typography>
+              <Typography variant="body2">{props.info.description}</Typography>
             </Grid>
-            <Grid item xs={6}>{props.info.features.map(thing => {
-                return <div><Typography variant="overline"><DoneIcon/>{thing.feature}  {thing.value}</Typography></div>
+            <Grid item xs={4} style={{margin:'auto'}}>{props.info.features.map((productFeature,i) => {
+                return <div key={i}><Typography variant="overline"><DoneIcon/>{productFeature.feature}  {productFeature.value}</Typography></div>
             })}</Grid>
             </Grid>
           </Grid>
