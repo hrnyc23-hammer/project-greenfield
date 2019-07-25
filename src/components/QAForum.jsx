@@ -10,7 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import {
   putAnswerReport,
   putAnswerHelpful,
-  putQuestionHelpful
+  putQuestionHelpful,
+  getQA
 } from "../infoFetchers.js";
 
 let QAForum = props => {
@@ -35,7 +36,7 @@ let QAForum = props => {
                     style={{
                       fontSize: "large",
                       padding: "0px 0px 0px 55px",
-                      fontFamily: 'roboto'
+                      fontFamily: "roboto"
                     }}
                   >
                     Q: {question.question_body}
@@ -50,7 +51,7 @@ let QAForum = props => {
                     paddingRight: "20px",
                     float: "right",
                     cursor: "pointer",
-                    fontFamily: 'roboto'
+                    fontFamily: "roboto"
                   }}
                 >
                   {" "}
@@ -71,7 +72,7 @@ let QAForum = props => {
                     paddingLeft: "20px",
                     paddingRight: "20px",
                     float: "right",
-                    fontFamily: 'roboto'
+                    fontFamily: "roboto"
                   }}
                 >
                   |
@@ -82,7 +83,7 @@ let QAForum = props => {
                     fontSize: "small",
                     float: "right",
                     paddingLeft: "5px",
-                    fontFamily: 'roboto'
+                    fontFamily: "roboto"
                   }}
                 >
                   {" "}
@@ -101,13 +102,19 @@ let QAForum = props => {
                     textDecoration: "underline",
                     paddingLeft: "5px",
                     cursor: "pointer",
-                    fontFamily: 'roboto'
+                    fontFamily: "roboto"
                   }}
                 >
                   {" "}
                   Yes{" "}
                 </span>
-                <span style={{ fontSize: "small", float: "right", fontFamily: 'roboto'}}>
+                <span
+                  style={{
+                    fontSize: "small",
+                    float: "right",
+                    fontFamily: "roboto"
+                  }}
+                >
                   {" "}
                   helpful?{" "}
                 </span>
@@ -126,7 +133,9 @@ let QAForum = props => {
                       return (
                         <List key={answerIndex}>
                           <ListItem alignItems="flex-start">
-                            <p style={{fontFamily: 'roboto'}}>A: {answer.body}</p>
+                            <p style={{ fontFamily: "roboto" }}>
+                              A: {answer.body}
+                            </p>
                           </ListItem>
 
                           <ListItem>
@@ -153,7 +162,7 @@ let QAForum = props => {
                                 fontSize: "small",
                                 spanadding: "0px 0px 0px 0px",
                                 paddingRight: "5px",
-                                fontFamily: 'roboto'
+                                fontFamily: "roboto"
                               }}
                             >
                               by: {answer.answerer_name} | date:{" "}
@@ -171,7 +180,7 @@ let QAForum = props => {
                                 textDecoration: "underline",
                                 paddingRight: "5px",
                                 cursor: "pointer",
-                                fontFamily: 'roboto'
+                                fontFamily: "roboto"
                               }}
                             >
                               Yes
@@ -180,7 +189,7 @@ let QAForum = props => {
                               style={{
                                 fontSize: "small",
                                 spanadding: "0px 0px 0px 0px",
-                                fontFamily: 'roboto'
+                                fontFamily: "roboto"
                               }}
                             >
                               ({answer.helpfulness})
@@ -190,7 +199,7 @@ let QAForum = props => {
                                 fontSize: "small",
                                 paddingLeft: "20px",
                                 paddingRight: "20px",
-                                fontFamily: 'roboto'
+                                fontFamily: "roboto"
                               }}
                             >
                               |
@@ -209,7 +218,7 @@ let QAForum = props => {
                                 fontSize: "small",
                                 textDecoration: "underline",
                                 cursor: "pointer",
-                                fontFamily: 'roboto'
+                                fontFamily: "roboto"
                               }}
                             >
                               Report
@@ -290,6 +299,18 @@ let QAForum = props => {
           />
         </React.Fragment>
       </Modal>
+      <Button
+        variant="contained"
+        size="large"
+        onClick={() => {
+          props.QAIncrementer(2 - props.qaCount);
+          getQA(props.productId).then(data =>
+            props.QAResetResultsArray(data.data.results)
+          );
+        }}
+      >
+        Reset
+      </Button>
     </div>
   );
 };

@@ -22,6 +22,13 @@ var QAChangeResultsArrReducer = (state = [], action) => {
           .toLowerCase()
           .includes(action.entry.toLowerCase())
       );
+    case "RESET_RESULTS_ARRAY":
+      let resetArr = action.array;
+      resetArr.map(each => {
+        each.answerLimit = 2;
+      });
+
+      return resetArr;
 
     default:
       if (state.length > 0 && state[0].answerLimit === undefined) {
