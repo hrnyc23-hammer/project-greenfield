@@ -7,8 +7,11 @@ let QASearchBar = props => {
   return (
     <React.Fragment>
       <div>
-        <Typography variant="h4">Questions and Answers</Typography>
+        <br />
+        <br />
 
+        <Typography variant="h4">Questions and Answers</Typography>
+        <br />
         <TextField
           style={{ margin: 8 }}
           fullWidth
