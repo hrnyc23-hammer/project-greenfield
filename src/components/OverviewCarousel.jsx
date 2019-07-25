@@ -149,7 +149,7 @@ const handleThumbRightArrow = e => {
         </div>
         <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
           <GridList cellHeight={100} cols={9} className={classes.root}>
-            <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={handleLeftArrow}>
+            <div style={thumbCount > 0 ? showLeftThumbArrow : hideArrow} onClick={handleThumbLeftArrow}>
               <ChevronLeftIcon />
             </div>
             {thumbnailsShown.map((photo, i) => (
@@ -162,7 +162,7 @@ const handleThumbRightArrow = e => {
                 </ButtonBase>
               </GridListTile>
             ))}
-            <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={handleRightArrow}>
+            <div style={thumbCount + 7 >= photoLength ? hideArrow : showRightThumbArrow} onClick={handleThumbRightArrow}>
               <ChevronRightIcon />
             </div>
           </GridList>

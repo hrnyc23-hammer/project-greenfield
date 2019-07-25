@@ -12,7 +12,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import Box from "@material-ui/core/Box";
 
 const Overview = props => {
   const [expanded, setExpanded] = useState({ xs: 8 });
@@ -50,6 +49,10 @@ const Overview = props => {
 
   const classes = useStyles();
 
+  const scrollToReviews = () => {
+    document.getElementById("reviews").scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   return (
     <div className={classes.root}>
       <OverviewSearch />
@@ -66,8 +69,7 @@ const Overview = props => {
             <Grid item xs={4} container direction="column">
               <Grid item>
                 {props.meta ? <ReviewsStars meta={props.meta} /> : null}
-                <a onClick={()=>alert('clicked')}>READ ALL REVIEWS</a>
-                {/* this onclick needs to scroll to reviews */}
+                <a onClick={()=>scrollToReviews()}>READ ALL REVIEWS</a>
                 <ProductInfo props={props} />
               </Grid>
               <Grid item>
