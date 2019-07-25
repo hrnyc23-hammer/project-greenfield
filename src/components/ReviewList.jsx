@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import Button from "@material-ui/core/Button"
 import ReviewsModal from './ReviewsModal'
@@ -6,6 +6,15 @@ import ReviewsImageModal from './ReviewsImageModal'
 import { putReport, getSortedReviews, putHelpful, postReview, getMeta, clickTracker } from '../infoFetchers.js'
 
 const ReviewList = (props) => {
+
+    useEffect(() => {
+        sessionHelpfulness = sessionStorage.getItem("greenfieldHelpfulness");
+        if (sessionHelpfulness === null) {
+            sessionHelpfulness = {};
+            sessionStorage.setItem("greenfieldHelpfulness", JSON.stringify(sessionHelpfulness));
+        }
+    })
+
     const [open, setOpen] = useState(false);
     const [openImage, setOpenImage] = useState(false)
     const [url, setUrl] = useState(undefined)
@@ -38,6 +47,20 @@ const ReviewList = (props) => {
 
     var page = 1
     var sort = 'relevant'
+    var sessionHelpfulness
+
+    const addHelpfulness = (reviewId) => {
+        sessionHelpfulness = JSON.parse(sessionStorage.getItem("greenfieldHelpfulness"))
+        sessionHelpfulness[reviewId] = true
+        sessionStorage.setItem("greenfieldHelpfulness", JSON.stringify(sessionHelpfulness))
+    }
+
+    const handleHelpfulClick = (id) => {
+        sessionHelpfulness = JSON.parse(sessionStorage.getItem("greenfieldHelpfulness"))
+        if (!sessionHelpfulness[id]) {
+            handleHelpful(id)
+        }
+    }
 
     const handleSortChange = (sortOption) => {
         sort = sortOption
@@ -73,6 +96,7 @@ const ReviewList = (props) => {
     }
 
     const handleHelpful = id => {
+        addHelpfulness(id)
         putHelpful(id)
             .then(() => {
                 getSortedReviews(props.reviews.product, sort, page)
@@ -275,11 +299,11 @@ const ReviewList = (props) => {
                                     <p style={{ fontFamily: 'roboto' }}>{review.response}</p>
                                 </div> : null}
                                 <br />
-                                <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>Was this review helpful?   </span>
-                                <span onClick={() => { handleHelpful(review.review_id); clickTracker('helpful review', 'reviews') }} style={{ fontSize: 'small', textDecoration: 'underline' }}>Yes</span>
+                                <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>Was this review helpful?   </span 
+                                <span onClick={() => { handleHelpfulClick(review.review_id); clickTracker('helpful review', 'reviews') }} style={{ fontSize: 'small', fontFamily: 'roboto', textDecoration: 'underline' }}>Yes</span>
                                 <span style={{ fontSize: 'small', fontFamily: 'roboto' }}>({review.helpfulness})</span>
                                 <span style={{ fontSize: 'small', fontFamily: 'roboto', paddingLeft: '20px', paddingRight: '20px' }}>|</span>
-                                <span onClick={() => { handleReport(review.review_id); clickTracker('report review', 'reviews') }} style={{ fontSize: 'small', textDecoration: 'underline' }}>Report</span>
+                                <span onClick={() => { handleReport(review.review_id); clickTracker('report review', 'reviews') }} style={{ fontSize: 'small', fontFamily: 'roboto', textDecoration: 'underline' }}>Report</span>
                                 <hr />
                                 <br />
                             </React.Fragment>
