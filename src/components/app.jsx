@@ -27,7 +27,7 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Box px={8}>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} style={{overflow: 'auto'}}>
       <OverviewContainer />
       <RelatedContainer />
       <OutfitsContainer />
