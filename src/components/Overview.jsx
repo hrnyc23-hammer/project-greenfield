@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { postToCart } from '../infoFetchers';
+import CartModal from './CartModal';
 
 const Overview = props => {
   const [expanded, setExpanded] = useState({ xs: 8 });
@@ -63,6 +64,7 @@ const Overview = props => {
 
   const handleClose = () => {
     setOpen(false);
+    setStatus('incomplete');
   }
 
   const handleOpen = () => {
@@ -122,25 +124,30 @@ const Overview = props => {
               <Grid container justify="center">
                 <Grid item xs={6}>
                 <Button variant="contained" className={classes.button} onClick={(event) => {
-                  if (size !== undefined && qty !== undefined) {
+                  if (size !== undefined && size !== '' && qty !== undefined && qty !== '') {
+                    console.log('running');
                     addToCart(event)
                     .then(() => {
                       setStatus("success");
                       handleOpen();
+                      selectSize(undefined);
                     })
                     .catch(() => {
                       setStatus("fail");
-                      handleOpen(true);
+                      handleOpen();
                     });
                   } else {
                     setStatus("incomplete");
-                    handleOpen(true);
+                    handleOpen();
                   }}}>
                   <ShoppingCartIcon/>
                 </Button>
                 </Grid>
                 <Grid item xs={6} className={classes.shawdow} >
                 <Share />
+                </Grid>
+                <Grid item>
+                  <CartModal open={open} status={status} handleClose={handleClose}/>
                 </Grid>
                 </Grid>
             </Grid>
