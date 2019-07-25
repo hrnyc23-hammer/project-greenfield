@@ -6,6 +6,7 @@ import ProductInfo from "./OverviewProductInfo";
 import Styles from "./OverviewStyles";
 import Cart from "./OverviewCart";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import Share from "./OverviewShare";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -37,7 +38,8 @@ const Overview = props => {
       maxWidth: "100%"
     },
     slogan: {
-      textAlign: "center"
+      textAlign: "center",
+      alignItems:"center"
     },
     button: {
       margin: theme.spacing(1),
@@ -163,12 +165,12 @@ const Overview = props => {
                 </Grid>
             </Grid>
             <Grid container direction="column">
-            <Grid item xs={6} className={classes.slogan}>
+            <Grid item xs={8} className={classes.slogan} style={{margin:'auto',borderRight:'double',padding:5}}>
               <Typography variant="h5">{props.info.slogan}</Typography>
-              <Typography variant="body2" component="p">{props.info.description}</Typography>
+              <Typography variant="body2">{props.info.description}</Typography>
             </Grid>
-            <Grid item xs={6}>{props.info.features.map(thing => {
-                return <div><Typography variant="overline"><DoneIcon/>{thing.feature}  {thing.value}</Typography></div>
+            <Grid item xs={4} style={{margin:'auto'}}>{props.info.features.map((productFeature,i) => {
+                return <div key={i}><Typography variant="overline"><DoneIcon/>{productFeature.feature}  {productFeature.value}</Typography></div>
             })}</Grid>
             </Grid>
           </Grid>
