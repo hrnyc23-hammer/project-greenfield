@@ -8,7 +8,6 @@ import GridListTile from "@material-ui/core/GridListTile";
 import Avatar from "@material-ui/core/Avatar";
 import FullScreenIcon from "@material-ui/icons/Fullscreen";
 
-
 const Carousel = ({ props, setView, expanded, meta }) => {
   const noImgAvailableURL = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
 
@@ -16,58 +15,18 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   const [thumbCount, setThumbCount] = useState(0);
   const [zoom, setZoom] = useState(false);
   const [position, setPosition] = useState("0% 0%");
+  const [imageSlider, setImageSlider] = useState({});
 
   const photoLength = props.selectedStyle.photos.length - 1;
+
   const thumbnailsShown =
     props.selectedStyle.photos.length <= 7 ? props.selectedStyle.photos : props.selectedStyle.photos.slice(thumbCount, Math.min(thumbCount + 7, photoLength));
 
-  const defaultView = { height: 500, borderRadius:15, position:"relative",webkitBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
-  mozBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
-  boxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)"}
-
-
-
-  const showLeftArrow = { color: "red", height: 40, width: 20, position: "absolute", zIndex: 1, cursor: "pointer" };
-  const showRightArrow = { color: "red", height: 40, width: 20, position: "absolute", right: 5, zIndex: 1, cursor: "pointer" };
-  const showLeftThumbArrow = { color: "red", height: 20, width: 20, zIndex: 1, cursor: "pointer" };
-  const showRightThumbArrow = { color: "red", height: 20, width: 20, zIndex: 1, cursor: "pointer" };
-  const hideArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1, position:"absolute" };
-  const hideThumbArrow = { color: "red", height: 20, width: 20, visibility: "hidden", zIndex: 1};
-  const selectedThumbnail = { border: "3px solid lightGreen" };
-  const thumbnail = { opacity: 0.65 };
-
-  const [imageSlider, setImageSlider] = useState({});
-
-  const backgroundImageStyle = {
-    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    height: "100%",
-    width: "100%",
-    transition: "all 0.5s linear",
-    cursor: "zoom-in",
-    backgroundColor: "lightGray",
-    borderRadius:15
-  };
-  const backgroundImageStyleExpanded = {
-    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    height: "100%",
-    width: "100%",
-    transition: "all 0.5s linear",
-    cursor: zoom === false ? "crosshair" : "zoom-out",
-    backgroundColor: "lightGray",
-    borderRadius:15
-  };
-
-  const zoomed = {
-    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
-    backgroundPosition: position,
-    height: "100%",
-    backgroundRepeat: "no-repeat"
+  const handleMouseMove = e => {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setPosition(`${x}% ${y}%`);
   };
 
   useEffect(() => {
@@ -85,34 +44,6 @@ const Carousel = ({ props, setView, expanded, meta }) => {
       setImageSlider(backgroundImageStyle);
     }
   });
-
-  const useStyles = makeStyles(theme => ({
-    root: {
-      justifyContent: "space-around"
-    },
-    zoom: {
-      "&:hover": {
-        opacity: 0
-      }
-    },
-    img: {
-      display: "block",
-      width: "100%"
-    },
-    paper: {
-      padding: theme.spacing(2),
-      maxWidth: "100%"
-    }
-  }));
-  const classes = useStyles();
-
-  const handleMouseMove = e => {
-    const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = ((e.pageX - left) / width) * 100;
-    const y = ((e.pageY - top) / height) * 100;
-    setPosition(`${x}% ${y}%`);
-  };
-
   const handleBackgroundClick = e => {
     e.preventDefault();
     setZoom(!zoom);
@@ -142,6 +73,119 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     setThumbCount(Math.min(thumbCount + 1, photoLength));
     e.stopPropagation();
   };
+  const defaultView = {
+    height: 500,
+    borderRadius: 15,
+    position: "relative",
+    webkitBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
+    mozBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
+    boxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)"
+  };
+
+  const showLeftArrow = {
+    color: "red",
+    height: 40,
+    width: 20,
+    position: "absolute",
+    zIndex: 1,
+    cursor: "pointer"
+  };
+  const showRightArrow = {
+    color: "red",
+    height: 40,
+    width: 20,
+    position: "absolute",
+    right: 5,
+    zIndex: 1,
+    cursor: "pointer"
+  };
+  const showLeftThumbArrow = {
+    color: "red",
+    height: 20,
+    width: 20,
+    zIndex: 1,
+    cursor: "pointer"
+  };
+  const showRightThumbArrow = {
+    color: "red",
+    height: 20,
+    width: 20,
+    zIndex: 1,
+    cursor: "pointer"
+  };
+  const hideArrow = {
+    color: "red",
+    height: 20,
+    width: 20,
+    visibility: "hidden",
+    zIndex: 1,
+    position: "absolute"
+  };
+  const hideThumbArrow = {
+    color: "red",
+    height: 20,
+    width: 20,
+    visibility: "hidden",
+    zIndex: 1
+  };
+  const selectedThumbnail = {
+    border: "3px solid lightGreen"
+  };
+  const thumbnail = {
+    opacity: 0.65
+  };
+
+  const backgroundImageStyle = {
+    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    height: "100%",
+    width: "100%",
+    transition: "all 0.5s linear",
+    cursor: "zoom-in",
+    backgroundColor: "lightGray",
+    borderRadius: 15
+  };
+  const backgroundImageStyleExpanded = {
+    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    height: "100%",
+    width: "100%",
+    transition: "all 0.5s linear",
+    cursor: zoom === false ? "crosshair" : "zoom-out",
+    backgroundColor: "lightGray",
+    borderRadius: 15
+  };
+
+  const zoomed = {
+    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundPosition: position,
+    height: "100%",
+    backgroundRepeat: "no-repeat"
+  };
+
+  const useStyles = makeStyles(theme => ({
+    root: {
+      justifyContent: "space-around"
+    },
+    zoom: {
+      "&:hover": {
+        opacity: 0
+      }
+    },
+    img: {
+      display: "block",
+      width: "100%"
+    },
+    paper: {
+      padding: theme.spacing(2),
+      maxWidth: "100%"
+    }
+  }));
+  const classes = useStyles();
 
   return (
     <div style={defaultView}>
@@ -152,8 +196,11 @@ const Carousel = ({ props, setView, expanded, meta }) => {
           onMouseOver={handleMouseMove}
           onClick={setView}
         >
-          <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer" }} onClick={setView} />
-          <div style={{ display: "flex", position: "relative", top: "50%" }}>
+          <FullScreenIcon
+            style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer", position: "absolute", left: 10, top: 10 }}
+            onClick={setView}
+          />
+          <div style={{ display: "flex", position: "relative", top: "45%", opacity: 0.5 }}>
             <div style={count === 0 ? hideArrow : showLeftArrow} onClick={handleLeftArrow}>
               <ChevronLeftIcon />
             </div>
@@ -161,7 +208,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
               <ChevronRightIcon />
             </div>
           </div>
-          <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
+          <div style={{ zIndex: 2, position: "relative", top: "85%", display: "inlineBlock" }}>
             <GridList cellHeight={100} cols={9} className={classes.root}>
               <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow} onClick={handleThumbLeftArrow}>
                 <ChevronLeftIcon />
@@ -197,7 +244,10 @@ const Carousel = ({ props, setView, expanded, meta }) => {
           onMouseOver={handleMouseMove}
           onClick={handleBackgroundClick}
         >
-          <FullScreenIcon style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer" }} onClick={setView} />
+          <FullScreenIcon
+            style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer", left: 10, top: 10, position: "absolute" }}
+            onClick={setView}
+          />
           <div style={{ display: "flex", position: "relative", top: "50%" }}>
             <div style={count === 0 ? hideArrow : showLeftArrow} onClick={handleLeftArrow}>
               <ChevronLeftIcon />
@@ -206,7 +256,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
               <ChevronRightIcon />
             </div>
           </div>
-          <div style={{ zIndex: 2, position: "relative", top: "75%", display: "block" }}>
+          <div style={{ zIndex: 2, position: "relative", top: "85%", display: "inlineBlock" }}>
             <GridList cellHeight={100} cols={9} className={classes.root}>
               <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow} onClick={handleThumbLeftArrow}>
                 <ChevronLeftIcon />
