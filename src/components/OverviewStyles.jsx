@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
   buttonBase: {
     borderRadius:35
-  }
+  },
 }))
 
 const classes = useStyles();
