@@ -146,7 +146,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     width: "100%",
     transition: "all 0.5s linear",
     cursor: "zoom-in",
-    backgroundColor: "lightGray",
+    backgroundColor: "white",
     borderRadius: 15
   };
   const backgroundImageStyleExpanded = {
@@ -158,7 +158,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     width: "100%",
     transition: "all 0.5s linear",
     cursor: zoom === false ? "crosshair" : "zoom-out",
-    backgroundColor: "lightGray",
+    backgroundColor: "white",
     borderRadius: 15
   };
 
