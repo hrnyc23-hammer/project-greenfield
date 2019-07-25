@@ -6,6 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import QAAddQuestionContainer from "./../containers/QAAddQuestionContainer";
 import Modal from "@material-ui/core/Modal";
+import Typography from "@material-ui/core/Typography";
 import {
   putAnswerReport,
   putAnswerHelpful,
@@ -29,6 +30,7 @@ let QAForum = props => {
             return (
               <React.Fragment key={questionIndex}>
                 <strong>
+                  {" "}
                   <span
                     style={{
                       fontSize: "large",
