@@ -21,7 +21,12 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   const thumbnailsShown =
     props.selectedStyle.photos.length <= 7 ? props.selectedStyle.photos : props.selectedStyle.photos.slice(thumbCount, Math.min(thumbCount + 7, photoLength));
 
-  const defaultView = { height: 500, borderRadius:15, position:"relative" };
+  const defaultView = { height: 500, borderRadius:15, position:"relative",webkitBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
+  mozBoxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)",
+  boxShadow: "1px 1px 8px 1px rgba(0,0,0,0.61)"}
+
+
+
   const showLeftArrow = { color: "red", height: 40, width: 20, position: "absolute", zIndex: 1, cursor: "pointer" };
   const showRightArrow = { color: "red", height: 40, width: 20, position: "absolute", right: 5, zIndex: 1, cursor: "pointer" };
   const showLeftThumbArrow = { color: "red", height: 20, width: 20, zIndex: 1, cursor: "pointer" };
@@ -42,7 +47,8 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     width: "100%",
     transition: "all 0.5s linear",
     cursor: "zoom-in",
-    backgroundColor: "lightGray"
+    backgroundColor: "lightGray",
+    borderRadius:15
   };
   const backgroundImageStyleExpanded = {
     backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
@@ -53,7 +59,8 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     width: "100%",
     transition: "all 0.5s linear",
     cursor: zoom === false ? "crosshair" : "zoom-out",
-    backgroundColor: "lightGray"
+    backgroundColor: "lightGray",
+    borderRadius:15
   };
 
   const zoomed = {

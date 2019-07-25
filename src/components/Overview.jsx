@@ -76,7 +76,7 @@ const Overview = props => {
             <Grid item xs={4} container direction="column">
               <Grid item>
                 {props.meta ? <ReviewsStars meta={props.meta} /> : null}
-                <a style={{cursor : "pointer"}} onClick={()=>scrollToReviews()}>({totalStars}) READ ALL REVIEWS</a>
+                <a style={{ fontSize: "small", fontFamily: 'roboto',cursor:"pointer"}} onClick={()=>scrollToReviews()}>({totalStars}) READ ALL REVIEWS</a>
                 <ProductInfo props={props} />
               </Grid>
               <Grid item>
