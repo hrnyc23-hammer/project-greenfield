@@ -132,7 +132,6 @@ const Overview = props => {
                 <Grid item xs={6}>
                 <Button variant="contained" className={classes.button} onClick={(event) => {
                   if (size !== undefined && size !== '' && qty !== undefined && qty !== '') {
-                    console.log('running');
                     addToCart(event)
                     .then(() => {
                       setStatus("success");
