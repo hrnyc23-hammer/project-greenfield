@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import OutfitItem from './OutfitItem';
-import { SvgIcon, Typography } from '@material-ui/core';
+import { SvgIcon, Typography, Box } from '@material-ui/core';
 import { clickTracker } from '../infoFetchers';
 
 const useStyles = makeStyles(theme => ({
@@ -61,12 +61,15 @@ const Outfits = (props) => {
 
   return (
     <React.Fragment>
-      <Typography variant="h5">Your Outfits</Typography>
+      <Box style={{textAlign: "center", margin: "16px 0px 12px 0px"}}>
+        <Typography variant="h5">Your Outfits</Typography>
+      </Box>
       <Grid container className={classes.root}
       direction="row"
       justify="flex-start"
       alignItems="center"
       spacing={4}
+      style={{marginBottom: "10px"}}
       >
         <Grid item>
           <SvgIcon onClick={() => {

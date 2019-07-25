@@ -74,7 +74,7 @@ const RelatedItem = props => {
           image={imgSrc}
           title={props.item.info ? props.item.info.name : itemUnavailable}
         >
-          <SvgIcon color="inherit" onClick={(event) => {
+          <SvgIcon color="primary" style={{margin: "5px 0px 0px 5px"}} onClick={(event) => {
             toggleOpen();
             clickTracker("compare-products", "compare");
           }}>
@@ -102,14 +102,6 @@ const RelatedItem = props => {
           <ReviewsStars meta={props.item.meta}/>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary" onClick={() => {
-          clickTracker("change-products", "compare");
-        }}>
-          <a href={props.item.info ? `/?products=${props.item.info.id}` : "#"}
-            style={{textDecoration: "none"}}>See Product</a>
-        </Button> */}
-      </CardActions>
     </Card>
   );
 };

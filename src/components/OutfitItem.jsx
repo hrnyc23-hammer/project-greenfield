@@ -65,7 +65,7 @@ const OutfitItem = props => {
           image={imgSrc}
           title={props.item.info ? props.item.info.name : itemUnavailable}
         >
-          <SvgIcon color="inherit" onClick={() => {
+          <SvgIcon color="primary" style={{margin: "5px 0px 0px 5px"}} onClick={() => {
             removeOutfit();
             clickTracker("remove-outfit", "compare");
           }}>
@@ -85,8 +85,6 @@ const OutfitItem = props => {
           <ReviewsStars meta={props.item.meta}/>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-      </CardActions>
     </Card>
   );
 };
