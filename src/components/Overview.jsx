@@ -14,6 +14,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import DoneIcon from "@material-ui/icons/Done";
 import { postToCart } from '../infoFetchers';
 import CartModal from './CartModal';
+import { clickTracker } from '../infoFetchers';
 
 
 const Overview = props => {
@@ -134,6 +135,7 @@ const Overview = props => {
               <Grid container justify="center">
                 <Grid item xs={6}>
                 <Button variant="contained" className={classes.button} onClick={(event) => {
+                  clickTracker("added-to-cart", "overview")
                   if (size !== undefined && size !== '' && qty !== undefined && qty !== '') {
                     addToCart(event)
                     .then(() => {
@@ -173,6 +175,6 @@ const Overview = props => {
         )}
     </div>
   );
-};
+}
 
 export default Overview;
