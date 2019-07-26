@@ -7,6 +7,8 @@ import { putReport, getSortedReviews, putHelpful, postReview, getMeta, clickTrac
 
 const ReviewList = (props) => {
 
+    //this object in session storage will store each review id that has been marked helpful
+    //in order to ensure that a user can only mark a review as helpful once
     useEffect(() => {
         sessionHelpfulness = sessionStorage.getItem("greenfieldHelpfulness");
         if (sessionHelpfulness === null) {
@@ -14,7 +16,7 @@ const ReviewList = (props) => {
             sessionStorage.setItem("greenfieldHelpfulness", JSON.stringify(sessionHelpfulness));
         }
     })
-
+    //hooks to handle the open/closed state of the review post modal (open) and the expanded review photo (openImage)
     const [open, setOpen] = useState(false);
     const [openImage, setOpenImage] = useState(false)
     const [url, setUrl] = useState(undefined)
@@ -40,6 +42,8 @@ const ReviewList = (props) => {
         openImage ? handleCloseImage() : handleOpenImage()
     }
 
+    //use the total number of ratings in meta to determine the total number of reviews
+    //this is not consistent because when a review is reported, it is removed from the reviews list but its rating remain in meta
     var totalReviews = 0
     for (let key in props.meta.ratings) {
         totalReviews = totalReviews + props.meta.ratings[key]
@@ -49,12 +53,14 @@ const ReviewList = (props) => {
     var sort = 'relevant'
     var sessionHelpfulness
 
+    //mark a review as helpful in session storage
     const addHelpfulness = (reviewId) => {
         sessionHelpfulness = JSON.parse(sessionStorage.getItem("greenfieldHelpfulness"))
         sessionHelpfulness[reviewId] = true
         sessionStorage.setItem("greenfieldHelpfulness", JSON.stringify(sessionHelpfulness))
     }
 
+    //make a post request to increment the helpfulness rating only if the user has not already clicked it
     const handleHelpfulClick = (id) => {
         sessionHelpfulness = JSON.parse(sessionStorage.getItem("greenfieldHelpfulness"))
         if (!sessionHelpfulness[id]) {
@@ -65,20 +71,26 @@ const ReviewList = (props) => {
     const handleSortChange = (sortOption) => {
         sort = sortOption
         page = 1
+        //the reviews state changes on every load. in order to display multiple pages of results, reviews are concatenated in the loaded state
+        //the loaded state is where the component actually gets the data to render the reviews
         getSortedReviews(props.reviews.product, sort, page)
             .then(({ data }) => {
                 props.handleReviewsChange(data)
+                //updates reviews state with new data
                 return data
             })
             .then((data) => {
                 props.handleLoadedReset()
+                //resets loaded state to empty
                 return data
             })
             .then((data) => {
                 props.handleLoadedChange(data.results)
+                //populates loaded state with new data
             })
             .then(() => {
                 props.handleLengthReset()
+                //resets number of reviews rendered to the default of 2
             })
             .catch((err) => {
                 console.log('API request error')
@@ -124,6 +136,7 @@ const ReviewList = (props) => {
     }
 
     const handleSubmitReview = (rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality) => {
+        // test to see if the form is complete
         if (rating === 0) {
             alert('Rating is required')
         } else if (summary === '') {
@@ -147,7 +160,10 @@ const ReviewList = (props) => {
         } else if (props.meta.characteristics.Quality && quality === 0) {
             alert('Quality is required')
         } else {
+            //close the modal
             handleClose()
+            //each characteristic needs a unique id that can only be obtained from meta data
+            //each product only uses certain characteristics, so check if each is present in meta data
             var characteristics = {}
             if (props.meta.characteristics.Size) {
                 characteristics.Size = {
@@ -186,10 +202,8 @@ const ReviewList = (props) => {
                 }
             }
             postReview(props.reviews.product, rating.toString(), summary, body, recommend, name, email, photos, characteristics)
-                // .then((results) => {
-                //     console.log(results)
-                // })
                 .then(() => {
+                    //reset the reviews after one is posted so the new one will be available
                     getSortedReviews(props.reviews.product, sort, page)
                         .then(({ data }) => {
                             props.handleReviewsChange(data)
@@ -218,6 +232,7 @@ const ReviewList = (props) => {
                             console.log('API request error')
                         })
                 })
+                //Due to API issues, a successful post still generates a 500 error, so we still want to get refreshed reviews in that case
                 .catch((err) => {
                     console.log('API request error')
                     getSortedReviews(props.reviews.product, sort, page)
@@ -252,6 +267,8 @@ const ReviewList = (props) => {
     }
 
     const handleMoreReviews = () => {
+        // if clicking "more reviews" will exceed the currently loaded reviews, the next page is requested and added to the loaded state
+        // in any case, increment the displayed reviews by 2
         if (props.reviewsLength + 2 > props.loadedReviews.length) {
             page++
             getSortedReviews(props.reviews.product, sort, page)
