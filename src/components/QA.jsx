@@ -7,6 +7,7 @@ let QA = props => {
     <div>
       <QASearchBarContainer />
       <QAForumContainer />
+      <br />
     </div>
   );
 };
