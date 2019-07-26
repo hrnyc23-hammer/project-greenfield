@@ -3,3 +3,4 @@ node_modules
 dist
 transpile
 coverage
+.DS_Store

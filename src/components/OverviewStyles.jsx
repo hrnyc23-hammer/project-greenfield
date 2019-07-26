@@ -11,21 +11,14 @@ const Styles = ({props}) => {
 
 const useStyles = makeStyles(theme => ({
   bigAvatar: {
-    width: 65,
-    height: 65,
     border:'3px solid white'
   },
   selectedStyle: {
-    width:65,
-    height:65,
     border: '3px solid lightGreen'
   },
   tile: {
     flexWrap: "wrap"
-  },
-  buttonBase: {
-    borderRadius:35
-  },
+  }
 }))
 
 const classes = useStyles();
@@ -35,9 +28,9 @@ const classes = useStyles();
     {props.styles.results.map(style => (
       <GridListTile key={style.style_id}>
         <Tooltip title={style.name}>
-        <ButtonBase className={classes.buttonBase} 
+        <ButtonBase
                     onClick={() => {props.handleSelectedStyle(style);clickTracker("select-style","overview")}}>
-        <Avatar src={style.photos[0].thumbnail_url} 
+        <Avatar style={{height: 65, width: 65}} src={style.photos[0].thumbnail_url} 
         className={style.style_id === props.selectedStyle.style_id ? classes.selectedStyle:classes.bigAvatar} />
         </ButtonBase>
         </Tooltip>

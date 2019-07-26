@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import OverviewContainer from '../containers/OverviewContainer.js';
 import RelatedContainer from '../containers/RelatedContainer.js';
 import ReviewsContainer from '../containers/ReviewsContainer.js';
@@ -23,7 +23,6 @@ const App = (props) => {
   }
 
   const classes = useStyles();
-
 
   return (
     <React.Fragment>
