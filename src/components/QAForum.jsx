@@ -122,7 +122,7 @@ let QAForum = props => {
                   }}
                 >
                   {" "}
-                  helpful?{" "}
+                  Helpful?{" "}
                 </span>
                 <ul>
                   {Object.values(question.answers)
