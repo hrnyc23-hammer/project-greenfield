@@ -79,7 +79,7 @@ let QAAddAnswer = props => {
           </Button>
           <br />
           <TextField
-            placeholder="your answer"
+            placeholder="Your answer to this question"
             fullWidth
             margin="normal"
             variant="outlined"
