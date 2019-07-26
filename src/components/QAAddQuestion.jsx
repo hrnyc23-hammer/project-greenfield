@@ -42,25 +42,31 @@ let QAAddQuestion = props => {
           </Typography>
 
           <TextField
-            placeholder="nickname"
+            placeholder="Example: jackson11!"
             onChange={e => {
               props.QAQuestionNickname(e.target.value);
             }}
           />
+          <p style={{ fontFamily: "roboto", fontSize: "10px" }}>
+            “For privacy reasons, do not use your full name or email address”
+          </p>
           <br />
           <TextField
-            placeholder="your email"
+            placeholder="Example: jack@email.com"
             onChange={e => {
               props.QAQuestionEmail(e.target.value);
             }}
           />
+          <p style={{ fontFamily: "roboto", fontSize: "10px" }}>
+            “For authentication reasons, you will not be emailed”
+          </p>
           <br />
           <br />
           <TextField
             fullWidth
             margin="normal"
             variant="outlined"
-            placeholder="your question"
+            placeholder="Why did you like the product or not?"
             onChange={e => {
               props.QAQuestionBody(e.target.value);
             }}
