@@ -7,6 +7,7 @@ import changeSelectedStyle from './src/actions/changeSelectedStyle.js';
 import changeSize from './src/actions/changeSize.js';
 import addToOutfits from './src/actions/addToOutfits';
 import removeFromOutfits from './src/actions/removeFromOutfits.js';
+import changeInfo from './src/actions/changeInfo.js';
 
 let page;
 let browser;
@@ -61,9 +62,9 @@ describe('redux', () => {
     })
 
     it('should dispatch selected style change', () => {
-      store.dispatch(changeSelectedStyle({foo: 'bar'}));
+      store.dispatch(changeSelectedStyle({1: 'onesie'}));
       const action = store.getActions();
-      const expectedPayload = { type: 'OVERVIEW_CHANGE_SELECTED_STYLE', selectedStyle: {foo: 'bar'}};
+      const expectedPayload = { type: 'OVERVIEW_CHANGE_SELECTED_STYLE', selectedStyle: {1: 'onesie'}};
       expect(action).toEqual([expectedPayload]);
     })
 
@@ -74,6 +75,12 @@ describe('redux', () => {
       expect(action).toEqual([expectedPayload]);
     })
     
+    it('should dispatch new product info', ()=>{
+      store.dispatch(changeInfo({id:1,name:'jacket'}));
+      const action = store.getActions();
+      const expectedPayload={type : 'OVERVIEW_CHANGE_INFO', info : {id:1,name:'jacket'}};
+      expect(action).toEqual([expectedPayload]);
+    })
   });
 });
 
