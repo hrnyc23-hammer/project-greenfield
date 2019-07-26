@@ -62,7 +62,7 @@ let QAAddAnswer = props => {
           <br />
 
           <TextField
-            placeholder="photo url"
+            placeholder="Photo Url"
             onChange={e => {
               props.QAUrl(e.target.value);
             }}
@@ -75,7 +75,7 @@ let QAAddAnswer = props => {
               }
             }}
           >
-            add photos (Up to 5)
+            Add photos (Up to 5)
           </Button>
           <br />
           <TextField
