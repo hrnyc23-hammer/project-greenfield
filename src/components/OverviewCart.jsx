@@ -8,11 +8,9 @@ import Grid from "@material-ui/core/Grid";
 const Cart = ({ props, selectSize, selectQty }) => {
   const useStyles = makeStyles(theme => ({
     formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120
+      width: 120
     },
     button: {
-      margin: theme.spacing(1)
     }
   }));
 
@@ -21,7 +19,7 @@ const Cart = ({ props, selectSize, selectQty }) => {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} styles={{margin:2}}>
           <InputLabel htmlFor="age-native-helper">Size</InputLabel>
           <NativeSelect onChange={e => {
             selectSize(e.target.value);
@@ -38,7 +36,7 @@ const Cart = ({ props, selectSize, selectQty }) => {
         </FormControl>
       </Grid>
       <Grid item xs={6}>
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} styles={{margin:2}}>
           <InputLabel htmlFor="age-native-helper">Qty</InputLabel>
           <NativeSelect onChange={e => selectQty(e.target.value)}>
             <option value="" />
