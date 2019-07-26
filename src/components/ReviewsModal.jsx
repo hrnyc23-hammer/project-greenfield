@@ -233,15 +233,15 @@ const ReviewsModal = props => {
             {props.meta.characteristics.Size ?
               <React.Fragment>
                 <label style={leftStyle}><strong>Size: </strong></label>
-                <input onClick={() => { setSize(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
+                <input onClick={() => { setSize(1); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="size" />
                 <label style={leftStyle}>A size too small</label>
-                <input onClick={() => { setSize(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
+                <input onClick={() => { setSize(2); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="size" />
                 <label style={leftStyle}>½ a size too small</label>
-                <input onClick={() => { setSize(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
+                <input onClick={() => { setSize(3); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="size" />
                 <label style={leftStyle}>Perfect</label>
-                <input onClick={() => { setSize(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
+                <input onClick={() => { setSize(4); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="size" />
                 <label style={leftStyle}>½ a size too big</label>
-                <input onClick={() => { setSize(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="comfort" />
+                <input onClick={() => { setSize(5); clickTracker('post review form', 'reviews') }} style={leftStyle} type="radio" name="size" />
                 <label style={leftStyle}>A size too wide</label>
                 <br /><br />
               </React.Fragment> : null}
@@ -339,7 +339,7 @@ const ReviewsModal = props => {
             cols="80"
           />
           <button onClick={() => { submitPhoto(); clickTracker('post review form', 'reviews') }}>Submit URL</button>
-          <button onClick={() => { props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality); clickTracker('post review form', 'reviews')}} style={submitStyle}>Submit Review</button>
+          <button onClick={() => { props.handleSubmitReview(rating, summary, body, recommend, name, email, photos, size, width, comfort, length, fit, quality); clickTracker('post review form', 'reviews') }} style={submitStyle}>Submit Review</button>
           <br />
           {photos.map((pic, index) => {
             return (
