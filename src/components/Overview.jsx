@@ -42,11 +42,10 @@ const Overview = props => {
       alignItems:"center"
     },
     button: {
-      margin: theme.spacing(1),
-      width:'75%'
+      width:'75%',
+      marin : 4
     },
     shawdow : {
-
       '&:hover': {
         opacity: 0.5
     }
@@ -106,7 +105,7 @@ const Overview = props => {
     <Box py={2}>
       <OverviewSearch />
       <Box pt={1} pb={4}>
-      <Typography align="center" padding>
+      <Typography align="center">
         SITE-WIDE ANNOUCEMENT MESSAGE! SALE/DISCOUNT OFFER
         </Typography>
         </Box>

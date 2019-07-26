@@ -18,7 +18,7 @@ export default function SimpleMenu() {
   }
   const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1)
+      marin:4
     }
   }));
 

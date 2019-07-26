@@ -28,7 +28,7 @@ const classes = useStyles();
     {props.styles.results.map(style => (
       <GridListTile key={style.style_id}>
         <Tooltip title={style.name}>
-        <ButtonBase
+        <ButtonBase style={{borderRadius:35}}
                     onClick={() => {props.handleSelectedStyle(style);clickTracker("select-style","overview")}}>
         <Avatar style={{height: 65, width: 65}} src={style.photos[0].thumbnail_url} 
         className={style.style_id === props.selectedStyle.style_id ? classes.selectedStyle:classes.bigAvatar} />
