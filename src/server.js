@@ -8,7 +8,7 @@ const { Provider } = require('react-redux');
 let App = require('./components/app.js').default;
 const bodyParser = require('body-parser');
 const Axios = require('axios');
-const { getProductInfo, getStyles, getRelated, getQA, getReviews, getMeta } = require('./infoFetchers');
+const { getProductInfo, getStyles, getQA, getReviews, getMeta } = require('./infoFetchers');
 const rootReducer = require("./reducers/main").default;
 const { ServerStyleSheets } = require('@material-ui/styles');
 const expressStaticGzip = require("express-static-gzip");
@@ -18,14 +18,6 @@ const expressStaticGzip = require("express-static-gzip");
 const port = process.env.PORT || 8866;
 
 app.use(bodyParser.json());
-
-// app.use('/', expressStaticGzip(path.join(__dirname, '../dist'), {
-//   enableBrotli: true,
-//   orderPreference: ['br', 'gz'],
-//   setHeaders: function (res, path) {
-//      res.setHeader("Cache-Control", "public, max-age=31536000");
-//   }
-// }));
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
@@ -72,6 +64,7 @@ function renderFullPage(html, preloadedState, cssString) {
     <html>
       <head>
         <title>Project Greenfield</title>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <style id="jss-server-side">${cssString}</style>
       </head>
       <body>
@@ -84,10 +77,6 @@ function renderFullPage(html, preloadedState, cssString) {
     </html>
     `
 }
-
-app.get('/favicon', (req, res) => {
-  res.sendStatus(404);
-});
 
 app.get('/', handleRender);
 
