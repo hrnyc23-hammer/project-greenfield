@@ -168,7 +168,7 @@ const Overview = props => {
                 </Grid>
             </Grid>
             <Grid container direction="column">
-            <Grid item xs={8} className={classes.slogan} style={{margin:'auto',borderRight:'double',padding:5}}>
+            <Grid item xs={8} className={classes.slogan} style={{margin:'auto',padding:5}}>
               <Typography variant="h5">{props.info.slogan}</Typography>
               <Typography variant="body2">{props.info.description}</Typography>
             </Grid>
