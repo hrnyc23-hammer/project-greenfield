@@ -41,18 +41,24 @@ let QAAddAnswer = props => {
             Share Your Answer
           </Typography>
           <TextField
-            placeholder="nickname"
+            placeholder="Example: jack543!"
             onChange={e => {
               props.QAAnswerNickname(e.target.value);
             }}
           />
+          <p style={{ fontFamily: "roboto", fontSize: "10px" }}>
+            “For privacy reasons, do not use your full name or email address”
+          </p>
           <br />
           <TextField
-            placeholder="your email"
+            placeholder="Example: jack@email.com"
             onChange={e => {
               props.QAAnswerEmail(e.target.value);
             }}
           />
+          <p style={{ fontFamily: "roboto", fontSize: "10px" }}>
+            “For authentication reasons, you will not be emailed”
+          </p>
           <br />
 
           <TextField

@@ -124,6 +124,7 @@ let QAForum = props => {
                   {" "}
                   Helpful?{" "}
                 </span>
+
                 <ul>
                   {Object.values(question.answers)
                     .sort((a, b) =>
