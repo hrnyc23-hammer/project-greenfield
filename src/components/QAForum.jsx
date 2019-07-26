@@ -160,7 +160,10 @@ let QAForum = props => {
                                   src={photo}
                                   width="100"
                                   height="60"
-                                  style={{ cursor: "pointer" }}
+                                  style={{
+                                    cursor: "pointer",
+                                    marginRight: "10px"
+                                  }}
                                 />
                               );
                             })}
@@ -323,6 +326,7 @@ let QAForum = props => {
           >
             x
           </Button>
+
           <img
             src={props.qaImageUrl}
             style={{
