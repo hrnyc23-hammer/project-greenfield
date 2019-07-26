@@ -15,6 +15,7 @@ import DoneIcon from "@material-ui/icons/Done";
 import { postToCart } from '../infoFetchers';
 import CartModal from './CartModal';
 import { clickTracker } from '../infoFetchers';
+import Box from '@material-ui/core/Box';
 
 
 const Overview = props => {
@@ -102,10 +103,13 @@ const Overview = props => {
 
   return (
     <div id="overview" className={classes.root}>
+    <Box py={2}>
       <OverviewSearch />
-      <Typography align="center">
+      <Box pt={1} pb={4}>
+      <Typography align="center" padding>
         SITE-WIDE ANNOUCEMENT MESSAGE! SALE/DISCOUNT OFFER
         </Typography>
+        </Box>
         {expanded.xs === 12 ? (
           <Grid item xs={expanded.xs}>
             <Carousel props={props} setView={toggleExpand} expanded={expanded}/>
@@ -174,6 +178,7 @@ const Overview = props => {
             </Grid>
           </Grid>
         )}
+        </Box>
     </div>
   );
 }
