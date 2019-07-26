@@ -15,6 +15,11 @@ import reviewsLength from './src/actions/reviewsLength.js'
 import reviewsLengthReset from './src/actions/reviewsLengthReset.js'
 import reviewsLoaded from './src/actions/reviewsLoaded.js'
 import reviewsLoadedReset from './src/actions/reviewsLoadedReset.js'
+import reviewsReducer from './src/reducers/reviewsReducer.js'
+import reviewsLoadedReducer from './src/reducers/reviewsLoadedReducer.js'
+import reviewsLengthReducer from './src/reducers/reviewsLengthReducer.js'
+import reviewsChangeBarFilterReducer from './src/reducers/reviewsChangeBarFilterReducer.js'
+import metaReducer from './src/reducers/metaReducer.js'
 
 let page;
 let browser;
@@ -144,6 +149,38 @@ describe('redux', () => {
       expect(action).toEqual([expectedPayload]);
     })
   });
+  describe('reducers', () => {
+
+    it('should handle initializing and setting reviews', () => {
+      expect(reviewsReducer(undefined, [])).toEqual([])
+      expect(reviewsReducer([], { type: 'CHANGE_REVIEWS', reviews: [1, 2, 3] })).toEqual([1, 2, 3])
+    })
+
+    it('should add to and reset loaded reviews', () => {
+      expect(reviewsLoadedReducer(undefined, [])).toEqual([])
+      expect(reviewsLoadedReducer([], { type: 'ADD_LOADED_REVIEWS', payload: [1, 2] })).toEqual([1, 2])
+      expect(reviewsLoadedReducer([1, 2], { type: 'ADD_LOADED_REVIEWS', payload: [3] })).toEqual([1, 2, 3])
+      expect(reviewsLoadedReducer([1, 2, 3], { type: 'RESET_LOADED_REVIEWS' })).toEqual([])
+    })
+
+    it('should increment and reset reviews length', () => {
+      expect(reviewsLengthReducer(undefined, 1)).toEqual(1)
+      expect(reviewsLengthReducer(1, { type: 'CHANGE_REVIEW_LENGTH' })).toEqual(3)
+      expect(reviewsLengthReducer(3, { type: 'RESET_REVIEW_LENGTH' })).toEqual(1)
+    })
+
+    it('should add to and reset bar filter', () => {
+      expect(reviewsChangeBarFilterReducer(undefined, [])).toEqual([])
+      expect(reviewsChangeBarFilterReducer([], { type: 'CHANGE_BAR_FILTER', barFilter: 2 })).toEqual([2])
+      expect(reviewsChangeBarFilterReducer([2], { type: 'CHANGE_BAR_FILTER', barFilter: 3 })).toEqual([2, 3])
+      expect(reviewsChangeBarFilterReducer([2, 3], { type: 'RESET_BAR_FILTER' })).toEqual([])
+    })
+
+    it('should change meta', () => {
+      expect(metaReducer(undefined, {})).toEqual({})
+      expect(metaReducer({}, { type: 'CHANGE_META', meta: { a: 1 } })).toEqual({ a: 1 })
+    })
+  })
 });
 
 // describe('end-to-end tests', () => {
