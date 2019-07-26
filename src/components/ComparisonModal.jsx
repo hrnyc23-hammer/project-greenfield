@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { SvgIcon } from '@material-ui/core';
+import Slide from '@material-ui/core/Slide';
 
 
 const makeComparison = (originalFeatures, compareToFeatures) => {
@@ -39,6 +40,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const ComparisonModal = (props) => {
 
   const classes = useStyles();
@@ -60,7 +65,12 @@ const ComparisonModal = (props) => {
   };
 
   return (
-    <Dialog onClose={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open} maxWidth="sm" fullWidth={true}>
+    <Dialog onClose={props.handleClose} 
+      aria-labelledby="simple-dialog-title" 
+      open={props.open} maxWidth="sm" 
+      fullWidth={true}
+      TransitionComponent={Transition}
+      keepMounted>
       <DialogTitle id="simple-dialog-title">Comparing</DialogTitle>
       <List>
         <ListItem divider={true}>
