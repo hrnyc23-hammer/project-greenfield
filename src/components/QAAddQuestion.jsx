@@ -43,7 +43,7 @@ let QAAddQuestion = props => {
           <br />
           <Typography variant="subtitle1" gutterBottom>
             {" "}
-            Email: 
+            Nickname:
           </Typography>
           <TextField
             placeholder="Example: jackson11!"
@@ -55,7 +55,10 @@ let QAAddQuestion = props => {
             “For privacy reasons, do not use your full name or email address”
           </p>
           <br />
-
+          <Typography variant="subtitle1" gutterBottom>
+            {" "}
+            Email:
+          </Typography>
           <TextField
             placeholder="Example: jack@email.com"
             onChange={e => {
@@ -68,6 +71,10 @@ let QAAddQuestion = props => {
           </p>
           <br />
           <br />
+          <Typography variant="subtitle1" gutterBottom>
+            {" "}
+            Question Body:
+          </Typography>
           <TextField
             fullWidth
             margin="normal"

@@ -17,8 +17,8 @@ let QAAddAnswer = props => {
       >
         <div
           style={{
-            width: "500px",
-            height: "500px",
+            width: "600px",
+            height: "600px",
             position: "absolute",
             left: "35%",
             top: "25%",
@@ -40,6 +40,11 @@ let QAAddAnswer = props => {
             {" "}
             Share Your Answer
           </Typography>
+          <br />
+          <Typography variant="subtitle1" gutterBottom>
+            {" "}
+            Nickname:
+          </Typography>
           <TextField
             placeholder="Example: jack543!"
             onChange={e => {
@@ -50,6 +55,10 @@ let QAAddAnswer = props => {
             “For privacy reasons, do not use your full name or email address”
           </p>
           <br />
+          <Typography variant="subtitle1" gutterBottom>
+            {" "}
+            Email:
+          </Typography>
           <TextField
             placeholder="Example: jack@email.com"
             onChange={e => {
@@ -60,7 +69,10 @@ let QAAddAnswer = props => {
             “For authentication reasons, you will not be emailed”
           </p>
           <br />
-
+          <Typography variant="subtitle1" gutterBottom>
+            {" "}
+            Upload Photos:
+          </Typography>
           <TextField
             placeholder="Photo Url"
             onChange={e => {
@@ -78,6 +90,10 @@ let QAAddAnswer = props => {
             Add photos (Up to 5)
           </Button>
           <br />
+          <Typography variant="subtitle1" gutterBottom>
+            {" "}
+            Answer Body:
+          </Typography>
           <TextField
             placeholder="Your answer to this question"
             fullWidth
