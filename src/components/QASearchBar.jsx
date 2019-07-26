@@ -10,7 +10,7 @@ let QASearchBar = props => {
         <br />
         <br />
 
-        <Typography variant="h4">Questions and Answers</Typography>
+        <Typography variant="h6">Questions and Answers</Typography>
         <br />
         <TextField
           style={{ margin: 8 }}
