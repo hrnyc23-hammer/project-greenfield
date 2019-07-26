@@ -13,7 +13,8 @@
     "production_build": "webpack -p && babel src -d transpile",
     "travisbuild": "webpack -d",
     "babelbuild": "babel src -d transpile",
-    "clean": "eslint src/ && eslint server.js"
+    "clean": "eslint src/ && eslint server.js",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
