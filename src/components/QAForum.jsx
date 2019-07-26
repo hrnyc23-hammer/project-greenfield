@@ -6,6 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import QAAddAnswerContainer from "./../containers/QAAddAnswerContainer";
 import QAAddQuestionContainer from "./../containers/QAAddQuestionContainer";
 import Modal from "@material-ui/core/Modal";
+import Highlighter from "react-highlight-words";
 import {
   putAnswerReport,
   putAnswerHelpful,
@@ -39,10 +40,15 @@ let QAForum = props => {
                       fontFamily: "roboto"
                     }}
                   >
-                    Q: {question.question_body}
+                    Q:{" "}
+                    <Highlighter
+                      highlightClassName="YourHighlightClass"
+                      searchWords={[props.qaSearchEntry]}
+                      autoEscape={true}
+                      textToHighlight={question.question_body}
+                    />
                   </span>
                 </strong>
-
                 <span
                   style={{
                     textDecoration: "underline",
@@ -66,7 +72,6 @@ let QAForum = props => {
                   </span>
                   <QAAddAnswerContainer />
                 </span>
-
                 <span
                   style={{
                     fontSize: "small",
@@ -78,7 +83,6 @@ let QAForum = props => {
                 >
                   |
                 </span>
-
                 <span
                   style={{
                     fontSize: "small",
@@ -120,7 +124,6 @@ let QAForum = props => {
                   {" "}
                   helpful?{" "}
                 </span>
-
                 <ul>
                   {Object.values(question.answers)
                     .sort((a, b) =>
