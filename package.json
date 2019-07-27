@@ -11,8 +11,7 @@
     "start": "nodemon transpile/server.js",
     "build": "webpack -d --watch",
     "production_build": "webpack -p && babel src -d transpile",
-    "travisbuild": "webpack -d",
-    "babelbuild": "babel src -d transpile",
+    "dev_build": "webpack -d && babel src -d transpile",
     "clean": "eslint src/ && eslint server.js",
     "coverage": "jest --coverage"
   },
