@@ -42,7 +42,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
       props.handleSelectedStyle(props.styles.results[styleDefault]);
     }
 
-    if (imageSlider.backgroundImage !== `url("${props.selectedStyle.photos[count].url}")`) {
+    if (imageSlider.backgroundImage !== props.selectedStyle.photos[count] ? `url("${props.selectedStyle.photos[count].url}")` : `url("${noImgAvailableURL}")`) {
       setImageSlider(backgroundImageStyle);
     }
   });
@@ -132,16 +132,16 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   };
   const selectedThumbnail = {
     border: "3px solid lightGreen",
-    cursor:"pointer"
+    cursor: "pointer"
   };
   const thumbnail = {
     opacity: 0.65,
-    cursor:"pointer",
-    border:"3px"
+    cursor: "pointer",
+    border: "3px"
   };
 
   const backgroundImageStyle = {
-    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundImage: props.selectedStyle.photos[count] ? `url("${props.selectedStyle.photos[count].url}")` : `url("${noImgAvailableURL}")`,
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -153,7 +153,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
     borderRadius: 15
   };
   const backgroundImageStyleExpanded = {
-    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundImage: props.selectedStyle.photos[count] ? `url("${props.selectedStyle.photos[count].url}")` : `url("${noImgAvailableURL}")`,
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -166,7 +166,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
   };
 
   const zoomed = {
-    backgroundImage: `url("${props.selectedStyle.photos[count].url}")`,
+    backgroundImage: props.selectedStyle.photos[count] ? `url("${props.selectedStyle.photos[count].url}")` : `url("${noImgAvailableURL}")`,
     backgroundPosition: position,
     height: "100%",
     backgroundRepeat: "no-repeat"
@@ -177,7 +177,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
       justifyContent: "space-around"
     },
     zoom: {
-      opacity : 0
+      opacity: 0
     },
     img: {
       display: "block",
@@ -188,7 +188,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
       maxWidth: "100%"
     },
     buttonBase: {
-      borderRadius:35
+      borderRadius: 35
     }
   }));
   const classes = useStyles();
@@ -200,26 +200,26 @@ const Carousel = ({ props, setView, expanded, meta }) => {
           className={expanded.xs === 12 ? classes.zoom : null}
           style={expanded.xs === 8 ? imageSlider : zoom === false ? backgroundImageStyleExpanded : null}
           onMouseOver={handleMouseMove}
-          onClick={()=>{setView();clickTracker("change-view","overview")}}
+          onClick={() => { setView(); clickTracker("change-view", "overview") }}
         >
           <FullScreenIcon
             style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer", position: "absolute", left: 10, top: 10 }}
-            onClick={()=>{setView();clickTracker("change-view","overview")}}
+            onClick={() => { setView(); clickTracker("change-view", "overview") }}
           />
           <div style={{ display: "flex", position: "relative", top: "45%", opacity: 0.5 }}>
-            <div style={count === 0 ? hideArrow : showLeftArrow} 
-                        onClick={(e)=>{handleLeftArrow(e);clickTracker("left-arrow-click","overview")}}>
+            <div style={count === 0 ? hideArrow : showLeftArrow}
+              onClick={(e) => { handleLeftArrow(e); clickTracker("left-arrow-click", "overview") }}>
               <ChevronLeftIcon />
             </div>
-            <div style={count === photoLength ? hideArrow : showRightArrow} 
-                 onClick={(e)=>{handleRightArrow(e);clickTracker("right-arrow-click","overview")}}>
+            <div style={count === photoLength ? hideArrow : showRightArrow}
+              onClick={(e) => { handleRightArrow(e); clickTracker("right-arrow-click", "overview") }}>
               <ChevronRightIcon />
             </div>
           </div>
           <div style={{ zIndex: 2, position: "relative", top: "85%", display: "inlineBlock" }}>
             <GridList cellHeight={100} cols={9} className={classes.root}>
-              <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow} 
-                    onClick={(e)=>{handleThumbLeftArrow(e);clickTracker("left-thumbnail-click","overview")}}>
+              <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow}
+                onClick={(e) => { handleThumbLeftArrow(e); clickTracker("left-thumbnail-click", "overview") }}>
                 <ChevronLeftIcon />
               </div>
               {thumbnailsShown.map((photo, i) => (
@@ -228,7 +228,7 @@ const Carousel = ({ props, setView, expanded, meta }) => {
                     className={classes.buttonBase}
                     onClick={e => {
                       setCount(thumbCount + i);
-                      clickTracker("thumbail-image","overview")
+                      clickTracker("thumbail-image", "overview")
                       e.stopPropagation();
                     }}
                   >
@@ -239,70 +239,70 @@ const Carousel = ({ props, setView, expanded, meta }) => {
                   </ButtonBase>
                 </GridListTile>
               ))}
-              <div style={thumbCount + 7 >= photoLength ? hideThumbArrow : showRightThumbArrow} 
-                   onClick={(e)=>{handleThumbRightArrow(e); clickTracker("right-thumbnail-click","overview")}}>
+              <div style={thumbCount + 7 >= photoLength ? hideThumbArrow : showRightThumbArrow}
+                onClick={(e) => { handleThumbRightArrow(e); clickTracker("right-thumbnail-click", "overview") }}>
                 <ChevronRightIcon />
               </div>
             </GridList>
           </div>
         </div>
       ) : zoom === true ? (
-        <figure onMouseMove={handleMouseMove} style={zoom? zoomed : backgroundImageStyleExpanded}>
-          <div className={classes.zoom} style={backgroundImageStyleExpanded} 
-               onClick={(e)=>{handleBackgroundClick(e); clickTracker("change-view","overview")}} />
+        <figure onMouseMove={handleMouseMove} style={zoom ? zoomed : backgroundImageStyleExpanded}>
+          <div className={classes.zoom} style={backgroundImageStyleExpanded}
+            onClick={(e) => { handleBackgroundClick(e); clickTracker("change-view", "overview") }} />
         </figure>
       ) : (
-        <div
-          style={expanded.xs === 8 ? imageSlider : zoom === false ? backgroundImageStyleExpanded : null}
-          onMouseOver={handleMouseMove}
-          onClick={(e)=>{handleBackgroundClick(e);clickTracker("change-view","overview")}}
-        >
-          <FullScreenIcon
-            style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer", left: 10, top: 10, position: "absolute" }}
-            onClick={()=>{setView();clickTracker("change-view","overview")}}
-          />
-          <div style={{ display: "flex", position: "relative", top: "50%" }}>
-            <div style={count === 0 ? hideArrow : showLeftArrow} 
-                 onClick={(e)=>{handleLeftArrow();clickTracker("left-arrow-click","overview")}}>
-              <ChevronLeftIcon />
-            </div>
-            <div style={count === photoLength ? hideArrow : showRightArrow} 
-                onClick={(e)=>{handleRightArrow(e);clickTracker("left-arrow-click","overview")}}>
-              <ChevronRightIcon />
-            </div>
-          </div>
-          <div style={{ zIndex: 2, position: "relative", top: "85%", display: "inlineBlock" }}>
-            <GridList cellHeight={100} cols={9} className={classes.root}>
-              <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow} 
-              onClick={(e)=>{handleThumbLeftArrow(e);clickTracker("left-thumbnail-click","overview")}}>
-                <ChevronLeftIcon />
+            <div
+              style={expanded.xs === 8 ? imageSlider : zoom === false ? backgroundImageStyleExpanded : null}
+              onMouseOver={handleMouseMove}
+              onClick={(e) => { handleBackgroundClick(e); clickTracker("change-view", "overview") }}
+            >
+              <FullScreenIcon
+                style={{ maxHeight: 50, maxWidth: 50, color: "gray", cursor: "pointer", left: 10, top: 10, position: "absolute" }}
+                onClick={() => { setView(); clickTracker("change-view", "overview") }}
+              />
+              <div style={{ display: "flex", position: "relative", top: "50%" }}>
+                <div style={count === 0 ? hideArrow : showLeftArrow}
+                  onClick={(e) => { handleLeftArrow(); clickTracker("left-arrow-click", "overview") }}>
+                  <ChevronLeftIcon />
+                </div>
+                <div style={count === photoLength ? hideArrow : showRightArrow}
+                  onClick={(e) => { handleRightArrow(e); clickTracker("left-arrow-click", "overview") }}>
+                  <ChevronRightIcon />
+                </div>
               </div>
-              {thumbnailsShown.map((photo, i) => (
-                <GridListTile key={photo.thumbnail_url}>
-                  <ButtonBase
-                    className={classes.buttonBase}
-                    style={{cursor:"pointer"}}
-                    onClick={e => {
-                      setCount(thumbCount + i);
-                      clickTracker("thumbnail-image","overview");
-                      e.stopPropagation();
-                    }}
-                  >
-                    <Avatar
-                      src={photo.thumbnail_url || noImgAvailableURL}
-                      style={photo.thumbnail_url === props.selectedStyle.photos[count].thumbnail_url ? selectedThumbnail : thumbnail}
-                    />
-                  </ButtonBase>
-                </GridListTile>
-              ))}
-              <div style={thumbCount + 7 >= photoLength ? hideThumbArrow : showRightThumbArrow} 
-              onClick={(e)=>{handleThumbRightArrow(e);clickTracker("right-thumbnail-click","overview")}}>
-                <ChevronRightIcon />
+              <div style={{ zIndex: 2, position: "relative", top: "85%", display: "inlineBlock" }}>
+                <GridList cellHeight={100} cols={9} className={classes.root}>
+                  <div style={thumbCount > 0 ? showLeftThumbArrow : hideThumbArrow}
+                    onClick={(e) => { handleThumbLeftArrow(e); clickTracker("left-thumbnail-click", "overview") }}>
+                    <ChevronLeftIcon />
+                  </div>
+                  {thumbnailsShown.map((photo, i) => (
+                    <GridListTile key={photo.thumbnail_url}>
+                      <ButtonBase
+                        className={classes.buttonBase}
+                        style={{ cursor: "pointer" }}
+                        onClick={e => {
+                          setCount(thumbCount + i);
+                          clickTracker("thumbnail-image", "overview");
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Avatar
+                          src={photo.thumbnail_url || noImgAvailableURL}
+                          style={photo.thumbnail_url === props.selectedStyle.photos[count].thumbnail_url ? selectedThumbnail : thumbnail}
+                        />
+                      </ButtonBase>
+                    </GridListTile>
+                  ))}
+                  <div style={thumbCount + 7 >= photoLength ? hideThumbArrow : showRightThumbArrow}
+                    onClick={(e) => { handleThumbRightArrow(e); clickTracker("right-thumbnail-click", "overview") }}>
+                    <ChevronRightIcon />
+                  </div>
+                </GridList>
               </div>
-            </GridList>
-          </div>
-        </div>
-      )}
+            </div>
+          )}
     </div>
   );
 };

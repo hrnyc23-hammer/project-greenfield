@@ -29,7 +29,7 @@ import qaQuestionNickname from "./QAQuestionNicknameReducer";
 import qaQuestionEmail from "./QAQuestionEmailReducer";
 
 const rootReducer = combineReducers({
-  related,
+  // related,
   overviewProductInfo,
   overviewChangeStyles,
   overviewChangeSelectedStyles,
@@ -42,7 +42,7 @@ const rootReducer = combineReducers({
   qaIncrementer,
   reviewsLengthReducer,
   overviewChangeSize,
-  outfits,
+  // outfits,
   reviewsLoadedReducer,
   qaAnswerClicked,
   qaAnswerNickname,

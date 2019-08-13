@@ -312,7 +312,7 @@ const ReviewList = (props) => {
                                         <ReviewsImageModal product={props.reviews.product} open={openImage} handleClose={handleCloseImage} url={url} /></React.Fragment>
                                 })}
                                 {(review.recommend === 1) ? <React.Fragment><p style={{ fontFamily: 'roboto' }}><strong>✓</strong> I recommend this product</p></React.Fragment> : null}
-                                {(review.response) ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
+                                {(review.response && review.response !== 'null') ? <div style={{ background: 'lightblue', padding: '10px 20px', borderRadius: '20px' }}>
                                     <p style={{ fontFamily: 'roboto' }}><strong>Response:</strong></p>
                                     <p style={{ fontFamily: 'roboto' }}>{review.response}</p>
                                 </div> : null}

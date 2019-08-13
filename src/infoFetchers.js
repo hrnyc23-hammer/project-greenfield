@@ -1,43 +1,46 @@
-const apiUrl = "http://18.222.40.124";
+const apiUrl = "http://13.58.161.60";
+const productsUrl = "http://18.218.140.241";
+const qaUrl = "http://54.172.1.169";
+const reviewsUrl = "http://3.89.227.84";
 const Axios = require("axios");
 
 module.exports = {
   getProductInfo: productId => {
-    return Axios.get(`${apiUrl}/products/${productId}`);
+    return Axios.get(`${productsUrl}/products/${productId}`);
   },
 
   getStyles: productId => {
-    return Axios.get(`${apiUrl}/products/${productId}/styles`);
+    return Axios.get(`${productsUrl}/products/${productId}/styles`);
   },
 
-  getRelated: productId => {
-    return Axios.get(`${apiUrl}/products/${productId}/related`);
-  },
+  // getRelated: productId => {
+  //   return Axios.get(`${apiUrl}/products/${productId}/related`);
+  // },
 
   getQA: productId => {
-    return Axios.get(`${apiUrl}/qa/${productId}`);
+    return Axios.get(`${qaUrl}/qa/${productId}`);
   },
 
   getReviews: productId => {
-    return Axios.get(`${apiUrl}/reviews/${productId}/list?count=4`);
+    return Axios.get(`${reviewsUrl}/reviews/${productId}/list?count=4`);
   },
 
   getMeta: productId => {
-    return Axios.get(`${apiUrl}/reviews/${productId}/meta`);
+    return Axios.get(`${reviewsUrl}/reviews/${productId}/meta`);
   },
   putReport: reviewId => {
-    return Axios.put(`${apiUrl}/reviews/report/${reviewId}`);
+    return Axios.put(`${reviewsUrl}/reviews/report/${reviewId}`);
   },
   getSortedReviews: (productId, sort, page) => {
     return Axios.get(
-      `${apiUrl}/reviews/${productId}/list?count=4&sort=${sort}&page=${page}`
+      `${reviewsUrl}/reviews/${productId}/list?count=4&sort=${sort}&page=${page}`
     );
   },
   putHelpful: reviewId => {
-    return Axios.put(`${apiUrl}/reviews/helpful/${reviewId}`);
+    return Axios.put(`${reviewsUrl}/reviews/helpful/${reviewId}`);
   },
   postReview: (productId, rating, summary, body, recommend, name, email, photos, characteristics) => {
-    return Axios.post(`${apiUrl}/reviews/${productId}`, {
+    return Axios.post(`${reviewsUrl}/reviews/${productId}`, {
       rating: rating,
       summary: summary,
       body: body,
@@ -49,7 +52,7 @@ module.exports = {
     });
   },
   postAnswer: (questionId, body, name, email, photos) => {
-    return Axios.post(`${apiUrl}/qa/${questionId}/answers`, {
+    return Axios.post(`${qaUrl}/qa/${questionId}/answers`, {
       body: body,
       name: name,
       email: email,
@@ -57,32 +60,32 @@ module.exports = {
     });
   },
   putAnswerReport: answerId => {
-    return Axios.put(`${apiUrl}/qa/answer/${answerId}/report`);
+    return Axios.put(`${qaUrl}/qa/answer/${answerId}/report`);
   },
   putAnswerHelpful: answerId => {
-    return Axios.put(`${apiUrl}/qa/answer/${answerId}/helpful`);
+    return Axios.put(`${qaUrl}/qa/answer/${answerId}/helpful`);
   },
   putQuestionHelpful: questionId => {
-    return Axios.put(`${apiUrl}/qa/question/${questionId}/helpful`);
+    return Axios.put(`${qaUrl}/qa/question/${questionId}/helpful`);
   },
   postQuestion: (productId, body, name, email) => {
-    return Axios.post(`${apiUrl}/qa/${productId}`, {
+    return Axios.post(`${qaUrl}/qa/${productId}`, {
       body: body,
       name: name,
       email: email
     });
-  }, 
+  },
   clickTracker: (element, widget) => {
-    Axios.post(`${apiUrl}/interactions`, {
-      element: element,
-      widget: widget,
-      time: Date.now().toString()
-    });
+    // Axios.post(`${apiUrl}/interactions`, {
+    //   element: element,
+    //   widget: widget,
+    //   time: Date.now().toString()
+    // });
   },
   postToCart: (productId, sessionId) => {
-    return Axios.post(`${apiUrl}/cart`, {
-      user_session: parseInt(sessionId),
-      product_id: parseInt(productId)
-    });
+    // return Axios.post(`${apiUrl}/cart`, {
+    //   user_session: parseInt(sessionId),
+    //   product_id: parseInt(productId)
+    // });
   }
 };
