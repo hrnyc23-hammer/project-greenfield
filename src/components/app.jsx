@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import OverviewContainer from '../containers/OverviewContainer.js';
 import RelatedContainer from '../containers/RelatedContainer.js';
 import ReviewsContainer from '../containers/ReviewsContainer.js';
@@ -27,14 +27,14 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Box px={8}>
-        <Paper className={classes.paper} style={{overflow: 'auto'}}>
+        <Paper className={classes.paper} style={{ overflow: 'auto' }}>
           <OverviewContainer />
-          <Divider light={true} variant="middle"/>
+          {/* <Divider light={true} variant="middle"/>
           <RelatedContainer />
-          <OutfitsContainer />
-          <Divider light={true} variant="middle"/>
+          <OutfitsContainer /> */}
+          <Divider light={true} variant="middle" />
           <QAContainer />
-          <Divider light={true} variant="middle"/> 
+          <Divider light={true} variant="middle" />
           <ReviewsContainer />
         </Paper>
       </Box>

@@ -30,7 +30,7 @@ const classes = useStyles();
         <Tooltip title={style.name}>
         <ButtonBase style={{borderRadius:35}}
                     onClick={() => {props.handleSelectedStyle(style);clickTracker("select-style","overview")}}>
-        <Avatar style={{height: 65, width: 65}} src={style.photos[0].thumbnail_url} 
+        <Avatar style={{height: 65, width: 65}} src={style.photos[0] ? style.photos[0].thumbnail_url : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'} 
         className={style.style_id === props.selectedStyle.style_id ? classes.selectedStyle:classes.bigAvatar} />
         </ButtonBase>
         </Tooltip>
